@@ -1,12 +1,12 @@
 import React from 'react';
 import "./styles/index.scss"
-import { Button } from 'shared/ui/button';
+import { routeConfig } from './providers/router/routeConfig/appRouterConfig';
+import AppRouter from './providers/router/ui/AppRouter';
 const App = () => {
     return (
-        <div>
-            Hello world!
-            <Button variant="contained">Button</Button>
-        </div>
+       <>
+      {AppRouter(routeConfig)}
+    </>
     );
 };
 

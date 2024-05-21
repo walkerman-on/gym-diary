@@ -1,0 +1,59 @@
+.TrainingPage {
+    display: grid;
+    grid-template-rows: 0.25fr 1fr 0.1fr;
+    height: 100vh;
+}
+.calendarBlock {
+    background: var(--color-primary-200);
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 0px 20px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.exersisesBlock {
+    padding: 30px;
+}
+
+.exersise_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exersise {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settingBlock {
+    padding: 10px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.moreInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background: var(--color-primary-600);
+    flex-shrink: 0;
+}
+
+.moreInfoCircle {
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background: var(--color-primary-200)
+}
+
+.moreInfo:hover,
+.moreInfo:active {
+    background-color: var(--color-primary-800);
+    transition: background-color 0.2s;
+}

@@ -1,0 +1,54 @@
+.workoutDropDownMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: var(--workoutDropDownMenu-height);
+    transition: width 0.3s;
+}
+
+.dropDownMenu {
+    padding-top: 10px;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.menuText {
+    font-size: 12px;
+    color: var(--color-primary-800)
+}
+
+.menuBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.menuTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menuCells {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.cellsText {
+    font-size: 16px;
+    color: var(--color-primary-800);
+    margin: 0px 10px 0px 7px;
+}
+
+
+.collapsed {
+    height: var(--workoutDropDownMenu-height-collapsed);
+
+    .dropDownMenu {
+        display: none;
+        transition: 0.2s display;
+    }
+}
