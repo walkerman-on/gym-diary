@@ -1,0 +1,5 @@
+*:not(svg *):not(span > svg){
+    all: unset;
+    display: revert;
+    list-style: none;
+}
