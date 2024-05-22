@@ -17,8 +17,8 @@ export const WorkoutDropDownMenu:FC<IProps> = ({collapsed}) => {
                     <div className={cl.menuBlock}>
                         <ul className={cl.menuCells}>
                             <li className={cl.cellsText}>1</li>
-                            <li><Input placeholder="вес"/></li>
-                            <li><Input placeholder="повторения"/></li>
+                            <li><Input height="50px" placeholder="вес"/></li>
+                            <li><Input height="50px" placeholder="повторения"/></li>
                         </ul>
                     </div>
                 </div>

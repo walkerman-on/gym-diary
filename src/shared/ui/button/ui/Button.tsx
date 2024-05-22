@@ -7,9 +7,9 @@ const ButtonF: FC<IButtonProps> = (props) => {
     <MUIButton
         sx={{
           background: 'var(--color-primary-800)',
-          borderRadius: 5,
+          borderRadius: props.radius,
           color: 'var(--color-primary-200)',
-          height: 60,
+          height: props.height,
           padding: '0 30px',
           '&:hover': {
             backgroundColor: '#FF8E53',

@@ -1,0 +1,37 @@
+.AuthPage {
+    padding: 30px;
+    display: grid;
+    grid-template-rows: 0.2fr 0.8fr;
+}
+
+.textTitle {
+    margin-top: 40%;
+    font-size: 32px;
+    text-align: center;
+}
+
+.authBlock {
+    margin-top: 45%;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+}
+
+.authInput {
+    display: flex;
+    flex-direction: column;
+    gap: 15px
+}
+
+.authButton {
+    display: flex;
+    flex-direction: column;
+    gap: 15px
+}
+
+.passwText {
+    font-size: 18px;
+    color: var(--color-primary-600)
+}

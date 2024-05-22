@@ -42,7 +42,7 @@ export const TrainingPage = () => {
                       <li className={cl.moreInfoCircle}></li>  
                       <li className={cl.moreInfoCircle}></li>  
                     </ul>
-                    <Button>Добавить еще</Button>
+                    <Button height='60px' radius='15px'>Добавить еще</Button>
                 </section>
             </div>
         </main>
