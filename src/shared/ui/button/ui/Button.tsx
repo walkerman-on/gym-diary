@@ -16,6 +16,7 @@ const ButtonF: FC<IButtonProps> = (props) => {
           },
         }}
         style={{ flexGrow: 1 }}
+        {...props}
       >
         {props.children}
       </MUIButton>

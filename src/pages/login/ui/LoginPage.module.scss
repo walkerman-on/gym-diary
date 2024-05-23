@@ -1,0 +1,12 @@
+.LoginPage {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    text-align: center;
+}
+
+.passwText {
+    font-size: 18px;
+    color: var(--color-primary-600)
+}

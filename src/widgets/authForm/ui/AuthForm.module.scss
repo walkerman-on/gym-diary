@@ -1,5 +1,4 @@
 .AuthPage {
-    padding: 30px;
     display: grid;
     grid-template-rows: 0.2fr 0.8fr;
 }
@@ -31,7 +30,3 @@
     gap: 15px
 }
 
-.passwText {
-    font-size: 18px;
-    color: var(--color-primary-600)
-}
