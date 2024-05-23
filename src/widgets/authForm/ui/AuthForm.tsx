@@ -22,9 +22,7 @@ export const AuthForm:FC<IForm> = ({ title, handleClick }) => {
 
   const onBtnClick = useCallback((): void => {
     handleClick(userData.login, userData.password);
-    console.log(userData.login, userData.password)
   }, [userData, handleClick]);
-  // console.log([userData, setUserData])
 
     return (
        <div className={cl.AuthPage}>

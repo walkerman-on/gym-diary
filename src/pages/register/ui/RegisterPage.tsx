@@ -5,15 +5,17 @@ import { useLogin } from 'entities/Auth/hooks/useLogin';
 import cl from "./RegisterPage.module.scss"
 import { getLogin } from 'app/providers/router';
 import { Link } from 'react-router-dom';
+import { useSignUp } from 'entities/Auth/hooks/useSignUp';
 
 export const RegisterPage = () => {
   const { theme } = useTheme();
-   const { login } = useLogin() 
+   const {signUp} = useSignUp();
+
 
     return (
         <main className={classNames("app", {}, [theme])}>
             <div className={cl.RegisterPage}>
-                <AuthForm title='Регистрация'handleClick={login}/>
+                <AuthForm title='Регистрация'handleClick={signUp}/>
                 <Link to={getLogin()}>
                     <span className={cl.passwText}>Войти</span>
                 </Link>

@@ -1,4 +1,3 @@
-import { User } from '../model/types/user';
 import { useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -7,6 +6,7 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import { getUserSelector } from '../model/selectors/userSelector';
 import { useNavigate } from 'react-router-dom';
 import { getLogin } from 'app/providers/router/routeConfig/routes';
+import { User } from '../model/types/user';
 
 export interface IUseAuthReturn {
   isAuth: boolean;
@@ -20,14 +20,14 @@ export const useAuth = (): IUseAuthReturn => {
 
   useEffect(() => {
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, user => {
       if (user) {
         dispatch(setUser({ id: user.uid, email: user.email }));
       } else {
         navigate(getLogin());
       }
     });
-  }, []);
+  }, [dispatch, navigate]);
 
   return {
     isAuth: isAuthorized,
