@@ -27,9 +27,11 @@ export const TrainingPage = () => {
         <main className={classNames("app", {}, [theme])}>
             <div className={cl.TrainingPage}>
                 <section className={cl.calendarBlock}>
-                    Календарь тут
-                    {/* <SettingsIcon/> */}
+                  <div className={cl.theme}>
                     <ThemeSwitcher/>
+                  </div>
+                    {/* <SettingsIcon/> */}
+                    Календарь тут
                     <span onClick={logout}>Выйти</span>
                 </section>
                 <section className={cl.trainingBlock}>

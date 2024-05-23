@@ -1,12 +1,13 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Theme } from 'app/providers/ThemeProvider';
+import {Switch} from 'shared/ui/switch/ui/Switch';
 
-export const ThemeSwitcher = () => {
-    const {theme, changeTheme} = useTheme()
+export const ThemeSwitcher = (props:any) => {
+    const {changeTheme} = useTheme()
 
     return (
-        <div onClick={changeTheme}>
-            {theme === Theme.DARK ? <p>Темная тема</p> : <p>Светлая тема</p>}
+        <div onClick={changeTheme} {...props}>
+            <Switch/>
         </div>
     );
 };

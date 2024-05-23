@@ -8,6 +8,8 @@
     border-radius: 0px 0px 15px 15px;
     box-shadow: 0px 20px 15px -3px rgba(0, 0, 0, 0.1);
     padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .exersisesBlock {
@@ -56,4 +58,9 @@
 .moreInfo:active {
     background-color: var(--color-primary-800);
     transition: background-color 0.2s;
+}
+
+.theme {
+    display: flex;
+    justify-content: flex-end;
 }
