@@ -1,0 +1,29 @@
+.week {
+    display: flex;
+    justify-content: space-between;
+    // padding: 10px;
+}
+
+.days {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+}
+
+.dayName {
+    color: var(--color-primary-600);
+    font-weight: 800;
+}
+
+.dayNumber {
+    border-radius: 50%;
+}
+
+
+
+.dayNumber:hover {
+    background-color: var(--color-primary-800);
+    color: var(--color-primary-200);
+    cursor: pointer;
+}

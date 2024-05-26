@@ -13,6 +13,7 @@ import { useAuth } from 'entities/Auth/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 import { getLogin } from 'app/providers/router';
 import { useLogout } from 'entities/Auth/hooks/useLogout';
+import { Calendar } from 'shared/ui/calendar';
 
 export const TrainingPage = () => {
   const { theme } = useTheme();
@@ -28,11 +29,10 @@ export const TrainingPage = () => {
             <div className={cl.TrainingPage}>
                 <section className={cl.calendarBlock}>
                   <div className={cl.theme}>
-                    <ThemeSwitcher/>
+                    {/* <ThemeSwitcher/> */}
                   </div>
-                    {/* <SettingsIcon/> */}
-                    Календарь тут
-                    <span onClick={logout}>Выйти</span>
+                    <Calendar/>
+                    {/* <span onClick={logout}>Выйти</span> */}
                 </section>
                 <section className={cl.trainingBlock}>
                     <ul className={cl.exersisesBlock}>

@@ -1,6 +1,6 @@
 .TrainingPage {
     display: grid;
-    grid-template-rows: 0.25fr 1fr 0.1fr;
+    grid-template-rows: auto 1fr 0.1fr;
     height: 100vh;
 }
 .calendarBlock {
