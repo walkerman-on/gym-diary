@@ -5,14 +5,11 @@ import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
 import cl from "./WorkoutDropDownMenu.module.scss"
 import { Input } from 'shared/ui/input';
 
-export interface IProps {
-    collapsed: boolean,
-}
 
-export const WorkoutDropDownMenu:FC<IProps> = ({collapsed}) => {
+export const WorkoutDropDownMenu:FC = () => {
  
     return (
-        <div className={classNames(cl.workoutDropDownMenu, {[cl.collapsed]: collapsed})}>
+        <div className={cl.workoutDropDownMenu}>
                 <div className={cl.dropDownMenu}>
                     <div className={cl.menuBlock}>
                         <ul className={cl.menuCells}>
