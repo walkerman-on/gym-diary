@@ -13,9 +13,34 @@ body {
     background: var(--bg-color);
     color: var(--color-primary-800);
     box-sizing: border-box;
-    height: 100vh;
     font: var(--font-l);
     font-weight: 900;
     font-size: 20px;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: 100vh;
+}
+
+.container {
+    padding: 0 113.5px;
+}
+
+
+@media (max-width: map-get($breakpoints, dekstop)) {
+    .container {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: map-get($breakpoints, tablet)) {
+    .container {
+        padding: 0;
+    }
+}
+
+@media (max-width: map-get($breakpoints, mobile)) {
+    .container {
+        // padding: 0 0 300px 0;
+    }
 }
 

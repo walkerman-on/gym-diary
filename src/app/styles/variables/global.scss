@@ -20,3 +20,9 @@
     --DropDownMenu-height: 80px;
     --DropDownMenu-height-collapsed: 0px;
 }
+
+$breakpoints: (
+    mobile: 480px,
+    tablet: 1024px,
+    desktop: 1280px,
+);

@@ -1,8 +1,12 @@
 .TrainingPage {
-    display: grid;
-    grid-template-rows: auto 1fr 0.1fr;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+.trainingBlock {
+    flex-grow: 1;
+}
+
 .calendarBlock {
     background: var(--color-primary-200);
     border-radius: 0px 0px 15px 15px;

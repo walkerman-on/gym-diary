@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import cl from "./Calendar.module.scss"
-import { DateCalendar } from '@mui/x-date-pickers';
+import classNames from 'classnames';
 
 dayjs.locale('ru'); 
 
@@ -24,11 +23,11 @@ export const Calendar: React.FC = () => {
         <div key={i} className={cl.days}>
             <ul>
                 <li className={cl.dayName}>
-                {day.format('dd')}
+                    {day.format('dd')}
                 </li>
             </ul>
             <ul>
-                <li className={cl.dayNumber}>
+                <li className={classNames(cl.dayNumber, {[cl.dayNumberActive]: false})}>
                     {day.format('D')}
                 </li>
             </ul>
@@ -42,11 +41,7 @@ export const Calendar: React.FC = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-    {renderWeekDays(startOfWeek)}
-      {/* <DateCalendar
-        value={selectedDate}
-        onChange={(newValue) => handleDateChange(newValue)}
-      /> */}
+      {renderWeekDays(startOfWeek)}
     </LocalizationProvider>
   );
 };

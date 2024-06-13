@@ -36,7 +36,7 @@ export const TrainingPage = () => {
   };
 
   return isAuth ? (
-    <main className={classNames("app", {}, [theme])}>
+    <main className={classNames("app container", {}, [theme])}>
       <div className={cl.TrainingPage}>
         <section className={cl.calendarBlock}>
           <div className={cl.theme}>

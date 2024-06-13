@@ -44,6 +44,7 @@
     "@mui/material": "^5.15.18",
     "@mui/x-date-pickers": "^6.20.0",
     "@reduxjs/toolkit": "^1.8.0",
+    "classnames": "^2.5.1",
     "dayjs": "^1.11.11",
     "firebase": "^10.6.0",
     "react": "^17.0.2",
