@@ -13,6 +13,13 @@ import { Calendar } from 'shared/ui/calendar';
 import { DropDownMenu } from 'widgets/dropDownMenu';
 import { WorkoutDropDownMenu } from 'widgets/workoutDropDownMenu';
 import { useTheme } from 'app/providers/ThemeProvider';
+import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
+import { ExercisesBlock } from 'widgets/exercises';
+
+const exersises: [{id: string, name: string}] = [{
+  id: "qwqw",
+  name: "Тяга верхнего блока параллельным хватом"
+}]
 
 export const TrainingPage = () => {
   const { theme } = useTheme();
@@ -40,7 +47,7 @@ export const TrainingPage = () => {
       <div className={cl.TrainingPage}>
         <section className={cl.calendarBlock}>
           <div className={cl.theme}>
-            {/* <ThemeSwitcher/> */}
+            <ThemeSwitcher/>
           </div>
           <div className={cl.calendarMore}>
             <Calendar />
@@ -48,39 +55,16 @@ export const TrainingPage = () => {
           <DropDownMenu collapsed={collapsed.calendarMenu} maxHeight={150}>
             {!collapsed.calendarMenu && 
               <div style={{display:"flex", flexDirection:"column"}}>
-                <span>Календарь</span>
-                <span>Календарь</span>
-                <span>Календарь</span>
-                <span>Календарь</span>
-                <span>Календарь</span>
+                <span>Тут полный календарь</span>
               </div>
             }
           </DropDownMenu>
           <div className={cl.calendarMoreBtn} onClick={toggleCalendarMenu}></div>
-          {/* <span onClick={logout}>Выйти</span> */}
         </section>
         <section className={cl.trainingBlock}>
-          <ul className={cl.exersisesBlock}>
-            <li className={cl.exersise_item} onClick={toggleWorkoutMenu}>
-              <div className={cl.exersise}>
-                <DarkThemeIcon/>
-                <span>Тяга верхнего блока параллельным хватом</span>
-              </div>
-              {collapsed.workoutMenu ?  <ArrowDownIcon />:  <ArrowUpIcon />} 
-            </li>
-            <DropDownMenu collapsed={collapsed.workoutMenu} maxHeight={150}>
-              {!collapsed.workoutMenu && 
-                <WorkoutDropDownMenu />
-              }
-            </DropDownMenu>
-          </ul>
+          <ExercisesBlock/>
         </section>
         <section className={cl.settingBlock}>
-          <ul className={cl.moreInfo}>
-            <li className={cl.moreInfoCircle}></li>  
-            <li className={cl.moreInfoCircle}></li>  
-            <li className={cl.moreInfoCircle}></li>  
-          </ul>
           <Button height='60px' radius='15px'>Добавить еще</Button>
         </section>
       </div>

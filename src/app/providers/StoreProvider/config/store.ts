@@ -1,6 +1,7 @@
 import { configureStore, combineReducers, Middleware } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/Auth/index';
 import { UserState } from 'entities/Auth';
+import { workoutReducer } from 'entities/workout';
 
 // Функция для загрузки состояния из localStorage
 const loadState = (): UserState | undefined => {
@@ -40,6 +41,7 @@ const preloadedState = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+  workout: workoutReducer
 });
 
 export const store = configureStore({

@@ -13,7 +13,9 @@ export const Calendar: React.FC = () => {
 
   const handleDateChange = (date: Dayjs | null) => {
     setSelectedDate(date);
+    console.log(date?.format('YYYY-MM-DD'));
   };
+
 
   const renderWeekDays = (startOfWeek: Dayjs) => {
     const days = [];
@@ -27,7 +29,7 @@ export const Calendar: React.FC = () => {
                 </li>
             </ul>
             <ul>
-                <li className={classNames(cl.dayNumber, {[cl.dayNumberActive]: false})}>
+                <li className={classNames(cl.dayNumber, {[cl.dayNumberActive]: false})} onClick={() => handleDateChange(day)}>
                     {day.format('D')}
                 </li>
             </ul>
