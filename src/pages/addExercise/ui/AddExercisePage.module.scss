@@ -1,0 +1,38 @@
+.AddExercisePage {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 40px 10px 10px 10px;
+    background: var(--color-primary-200);
+    height: 100%;
+
+}
+.exercises {
+    padding: 30px;
+}
+
+.exercisesBlock {
+    flex-grow: 1;
+}
+
+.exerciseItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.exercise {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.exerciseMore {
+    display: flex;
+    align-items: center;
+    gap: 5px
+}
+
+.exerciseCount {
+    color: var(--color-primary-600)
+}

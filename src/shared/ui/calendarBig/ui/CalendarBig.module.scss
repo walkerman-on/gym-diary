@@ -1,0 +1,51 @@
+.Calendar {
+  position: relative;
+  user-select: none; /* Отключить выделение текста при свайпе */
+}
+
+.currentMonth {
+  margin-left: 15px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: 1px;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dayName {
+  margin-bottom: 5px;
+}
+
+.dayNames {
+  color: var(--color-primary-600);
+}
+
+.dayNumber {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.dayNumberCurrent {
+  background-color: var(--color-primary-800);
+  color: var(--color-primary-200);
+}
+
+.dayNumberActive {
+  background-color: var(--color-primary-600);
+  color: var(--color-primary-200);
+}
+
+.dayNumberOtherMonth {
+  color: var(--color-primary-600);
+}

@@ -1,45 +1,27 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cl from "./TrainingPage.module.scss";
-import DarkThemeIcon from 'shared/assets/icons/DarkThemeIcon';
 import { Button } from 'shared/ui/button/index';
-import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
-import ArrowUpIcon from 'shared/assets/icons/ArrowUpIcon';
 import { useAuth } from 'entities/Auth/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
-import { getLogin } from 'app/providers/router';
-import { useLogout } from 'entities/Auth/hooks/useLogout';
+import { getAddExercise, getLogin } from 'app/providers/router';
 import { Calendar } from 'shared/ui/calendar';
 import { DropDownMenu } from 'widgets/dropDownMenu';
-import { WorkoutDropDownMenu } from 'widgets/workoutDropDownMenu';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { ExercisesBlock } from 'widgets/exercises';
-
-const exersises: [{id: string, name: string}] = [{
-  id: "qwqw",
-  name: "Тяга верхнего блока параллельным хватом"
-}]
+import { CalendarBig } from 'shared/ui/calendarBig';
+import { Link } from 'react-router-dom';
+import { PullButton } from 'shared/ui/pullButton';
 
 export const TrainingPage = () => {
   const { theme } = useTheme();
-  const { isAuth, user } = useAuth();
-  const { logout } = useLogout();
+  const { isAuth } = useAuth();
 
-  const [collapsed, setCollapsed] = useState<{ workoutMenu: boolean; calendarMenu: boolean; }>({ workoutMenu: true, calendarMenu: true });
-
-  const toggleWorkoutMenu = () => {
-    setCollapsed(prevState => ({
-      ...prevState,
-      workoutMenu: !prevState.workoutMenu
-    }));
-  };
+  const [collapsed, setCollapsed] = useState<boolean>(true);
 
   const toggleCalendarMenu = () => {
-    setCollapsed(prevState => ({
-      ...prevState,
-      calendarMenu: !prevState.calendarMenu
-    }));
+    setCollapsed(prevState => !prevState);
   };
 
   return isAuth ? (
@@ -49,24 +31,20 @@ export const TrainingPage = () => {
           <div className={cl.theme}>
             <ThemeSwitcher/>
           </div>
-          <div className={cl.calendarMore}>
+          <div className={classNames(cl.calendarMore, {[cl.calendarSmallHidden]: !collapsed})}>
             <Calendar />
           </div>
-          <DropDownMenu collapsed={collapsed.calendarMenu} maxHeight={150}>
-            {!collapsed.calendarMenu && 
-              <div style={{display:"flex", flexDirection:"column"}}>
-                <span>Тут полный календарь</span>
-              </div>
-            }
+          <DropDownMenu collapsed={collapsed} maxHeight={500}>
+            {!collapsed && <CalendarBig />}
           </DropDownMenu>
-          <div className={cl.calendarMoreBtn} onClick={toggleCalendarMenu}></div>
+          <PullButton onClick={toggleCalendarMenu}/>
         </section>
-        <section className={cl.trainingBlock}>
-          <ExercisesBlock/>
-        </section>
+        <ExercisesBlock/>
+          <Link to={getAddExercise()}>
         <section className={cl.settingBlock}>
-          <Button height='60px' radius='15px'>Добавить еще</Button>
+            <Button height='60px' radius='15px'>Добавить еще</Button>
         </section>
+          </Link>
       </div>
     </main>
   ) : (
