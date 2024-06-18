@@ -1,0 +1,35 @@
+.exercises {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.exerciseItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.exercise {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.exerciseMore {
+    display: flex;
+    align-items: center;
+    gap: 5px
+}
+
+.exerciseCount {
+    color: var(--color-primary-600)
+}
+
+.scheme {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+}

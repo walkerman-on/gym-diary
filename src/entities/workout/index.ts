@@ -1,3 +1,3 @@
 export { default as workoutReducer } from './model/slice/workoutSlice';
 
-export type { Workout, WorkoutState } from './model/types/workout';
+export type { Workout, WorkoutState, Exercise } from './model/types/workout';

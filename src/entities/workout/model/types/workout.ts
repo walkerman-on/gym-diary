@@ -1,16 +1,14 @@
 export interface Workout {
   workoutId: string,
   date: string,
-  exersises: [
-    {
-      exerciseId: {
-        name: string,
-        sets: number,
-        reps: number,
-        weight: number
-      }
-    }
-  ]
+  exersises: Exercise[]
+}
+export interface Exercise {
+  exerciseId: string
+  name: string,
+  sets: number,
+  reps: number,
+  weight: number
 }
 
 export interface WorkoutState {

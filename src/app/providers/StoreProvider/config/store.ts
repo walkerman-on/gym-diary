@@ -2,7 +2,7 @@ import { configureStore, combineReducers, Middleware } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/Auth/index';
 import { UserState } from 'entities/Auth';
 import { workoutReducer } from 'entities/workout';
-
+import { exercisesCategoryReducer } from 'entities/exercisesCategory';
 // Функция для загрузки состояния из localStorage
 const loadState = (): UserState | undefined => {
   try {
@@ -21,7 +21,7 @@ const loadState = (): UserState | undefined => {
 const persistUserMiddleware: Middleware = store => next => action => {
   const result = next(action);
   const state = store.getState();
-  
+
   if (state.user) {
     try {
       const serializedState = JSON.stringify(state.user);
@@ -41,7 +41,8 @@ const preloadedState = {
 
 const rootReducer = combineReducers({
   user: userReducer,
-  workout: workoutReducer
+  exercisesCategory: exercisesCategoryReducer
+  // workout: workoutReducer
 });
 
 export const store = configureStore({
