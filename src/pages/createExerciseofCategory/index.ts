@@ -1,0 +1,1 @@
+export { CreateExerciseofCategoryPage } from "./ui/CreateExerciseofCategoryPage"

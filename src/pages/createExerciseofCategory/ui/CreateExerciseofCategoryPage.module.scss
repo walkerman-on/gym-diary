@@ -1,0 +1,33 @@
+.CreateExerciseofCategoryPage {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 40px 30px 10px 30px;
+    background: var(--bg-color);
+    height: 100%;
+}
+
+.createExercise {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.createExerciseBlock {
+    display: flex;
+    gap: 10px
+}
+
+.backArrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background: var(--color-primary-800)
+}
+
+.title {
+    font-size: 25px;
+}

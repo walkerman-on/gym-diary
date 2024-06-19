@@ -1,0 +1,20 @@
+.CreateExercisePage {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 40px 10px 10px 10px;
+    background: var(--bg-color);
+    height: 100%;
+}
+
+.subTitle {
+    padding-bottom: 10px;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.titleBlock {
+    padding-left: 30px;
+}

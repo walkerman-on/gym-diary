@@ -4,12 +4,10 @@ import classNames from 'classnames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Input } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
-import DarkThemeIcon from 'shared/assets/icons/DarkThemeIcon';
-import ArrowRightIcon from 'shared/assets/icons/ArrowRightIcon';
 import { PullButton } from 'shared/ui/pullButton';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchExercisesCategory } from 'entities/exercisesCategory';
 import { ExercisesCategory } from 'widgets/exercisesCategory';
+import { Link } from 'react-router-dom';
+import { getCreateExercise } from 'app/providers/router';
 
 export const AddExercisePage = () => {
     const { theme } = useTheme();
@@ -26,7 +24,9 @@ export const AddExercisePage = () => {
                     <Input placeholder="Искать" height='50px' />
                 </section>
                 <section className={cl.exercisesBlock}>
-                    <Button height='60px' radius="15px">Создать упражнение +</Button>
+                    <Link to={getCreateExercise()}>
+                        <Button height='60px' radius="15px">Создать упражнение +</Button>
+                    </Link>
                     <ExercisesCategory />
                 </section>
             </div>
