@@ -3,3 +3,4 @@ export { default as exercisesCategoryReducer } from "./model/slice/exercisesCate
 
 export { fetchExercisesCategory } from "./api/fetchExercisesCategory"
 export { fetchExercisesCategoryById } from "./api/fetchExercisesCategoryById"
+export { fetchExercisesByCategoryId } from "./api/fetchExercisesByCategoryId"

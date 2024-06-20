@@ -13,5 +13,6 @@ export interface Exercise {
 
 export interface WorkoutState {
   workout: Workout | null;
-  userID: string
+  error: string | null,
+  loading: boolean,
 }

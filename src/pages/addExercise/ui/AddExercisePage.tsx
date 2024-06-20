@@ -16,6 +16,7 @@ export const AddExercisePage = () => {
     const toggleMenu = () => {
         setCollapsed(prevState => !prevState);
     };
+
     return (
         <main className={classNames("app container", {}, [theme])}>
             <div className={cl.AddExercisePage}>

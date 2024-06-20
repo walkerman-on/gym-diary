@@ -10,12 +10,11 @@ export const fetchExercisesCategoryById = createAsyncThunk<IExerciseCategory, st
 			const categoriesCollectionRef = collection(db, 'exercises-category');
 			const categoryQuery = query(categoriesCollectionRef, where('id', '==', categoryId));
 			const querySnapshot = await getDocs(categoryQuery);
-
 			if (!querySnapshot.empty) {
 				const categoryData = querySnapshot.docs[0].data() as IExerciseCategory
 				return categoryData;
 			} else {
-				throw new Error("Server Error! Can not GET facility")
+				throw new Error("Server Error! Can not GET exercises categories")
 			}
 
 		} catch (error) {

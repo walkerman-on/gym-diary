@@ -1,8 +1,8 @@
 import { configureStore, combineReducers, Middleware } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/Auth/index';
 import { UserState } from 'entities/Auth';
-import { workoutReducer } from 'entities/workout';
 import { exercisesCategoryReducer } from 'entities/exercisesCategory';
+import { workoutReducer } from 'entities/workout';
 // Функция для загрузки состояния из localStorage
 const loadState = (): UserState | undefined => {
   try {
@@ -41,7 +41,7 @@ const preloadedState = {
 
 const rootReducer = combineReducers({
   user: userReducer,
-  exercisesCategory: exercisesCategoryReducer
+  exercisesCategory: exercisesCategoryReducer,
   // workout: workoutReducer
 });
 

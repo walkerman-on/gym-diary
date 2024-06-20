@@ -31,3 +31,10 @@
 .title {
     font-size: 25px;
 }
+
+.exercises {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}

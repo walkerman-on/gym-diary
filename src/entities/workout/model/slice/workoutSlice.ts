@@ -1,21 +1,33 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Workout, WorkoutState } from '../types/workout';
+import { createSlice } from "@reduxjs/toolkit";
+import { WorkoutState } from "../types/workout";
+import { addWorkout } from "entities/workout/api/addWorkout";
 
 const initialState: WorkoutState = {
-  userID: null,
-  workout: null
-};
+    workout: null,
+    error: null,
+    loading: false,
+}
 
-const workoutSlice = createSlice({
-  name: 'workout',
-  initialState,
-  reducers: {
-    addWorkout(state: WorkoutState, { payload }: PayloadAction<Workout>) {
-      state.workout = payload
+export const workoutSlice = createSlice({
+    name: "workoutSlice",
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(addWorkout.fulfilled, (state, action) => {
+                state.workout = action.payload
+                state.loading = false
+                state.error = null
+            })
+            .addCase(addWorkout.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(addWorkout.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload
+            })
     }
-  }
-});
+})
 
-export const { addWorkout } = workoutSlice.actions;
-
-export default workoutSlice.reducer;
+export default workoutSlice.reducer

@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchExercisesCategory } from "../../api/fetchExercisesCategory";
 import { IExercisesCategoryState } from "../../types/types"
-import { fetchExercisesCategoryById } from "entities/exercisesCategory/api/fetchExercisesCategoryById";
+import { fetchExercisesCategoryById } from "../../api/fetchExercisesCategoryById";
+import { fetchExercisesByCategoryId } from "../../api/fetchExercisesByCategoryId";
 
 const initialState: IExercisesCategoryState = {
     categories: [],
@@ -40,6 +41,20 @@ export const exercisesCategorySlice = createSlice({
                 state.error = null
             })
             .addCase(fetchExercisesCategoryById.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload
+            })
+
+            .addCase(fetchExercisesByCategoryId.fulfilled, (state, action) => {
+                state.currentCategory = action.payload
+                state.loading = false
+                state.error = null
+            })
+            .addCase(fetchExercisesByCategoryId.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(fetchExercisesByCategoryId.rejected, (state, action) => {
                 state.loading = false
                 state.error = action.payload
             })
