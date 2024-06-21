@@ -15,7 +15,15 @@
 
 .createExerciseBlock {
     display: flex;
-    gap: 10px
+    gap: 10px;
+}
+
+.exerciseBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    /* добавьте курсор указателя, чтобы визуально показать, что элемент кликабельный */
 }
 
 .backArrow {
@@ -25,7 +33,7 @@
     border-radius: 50%;
     height: 50px;
     width: 50px;
-    background: var(--color-primary-800)
+    background: var(--color-primary-800);
 }
 
 .title {
@@ -36,5 +44,18 @@
     padding-top: 15px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+}
+
+.iconShow {
+    display: block;
+}
+
+.icon {
+    // display: none;
+}
+
+.menu {
+    display: flex;
     gap: 10px
 }
