@@ -1,27 +1,25 @@
-import { db, doc, deleteDoc, collection, query, where, getDocs } from '../services/firebase/firebase';
+import { db, deleteDoc, collection, query, where, getDocs } from '../services/firebase/firebase';
 
-export async function deleteExercise(exerciseData: { id: string, userId: string }) {
+export async function deleteExercises(exerciseData: { ids: string[], userId: string }) {
     try {
         // Создаем ссылку на коллекцию упражнений для указанного пользователя
         const exercisesCollectionRef = collection(db, `users/${exerciseData.userId}/exercises`);
 
-        // Формируем запрос для проверки наличия упражнения с заданным идентификатором
-        const exerciseQuery = query(exercisesCollectionRef, where('id', '==', exerciseData.id));
+        // Формируем запрос для проверки наличия упражнений с заданными идентификаторами
+        const exerciseQuery = query(exercisesCollectionRef, where('id', 'in', exerciseData.ids));
 
         const querySnapshot = await getDocs(exerciseQuery);
 
         if (!querySnapshot.empty) {
-            // Получаем документ упражнения
-            const exerciseDocRef = querySnapshot.docs[0].ref;
+            // Удаляем все найденные документы упражнений
+            const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
+            await Promise.all(deletePromises);
 
-            // Удаляем документ упражнения
-            await deleteDoc(exerciseDocRef);
-
-            console.log('Упражнение успешно удалено');
+            console.log('Упражнения успешно удалены');
         } else {
-            console.log('Упражнение не найдено');
+            console.log('Упражнения не найдены');
         }
     } catch (error) {
-        console.error('Ошибка при удалении упражнения: ', error);
+        console.error('Ошибка при удалении упражнений: ', error);
     }
 }

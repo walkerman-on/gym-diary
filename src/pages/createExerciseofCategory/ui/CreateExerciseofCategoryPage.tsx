@@ -14,7 +14,8 @@ import { useAuth } from 'entities/Auth/hooks/useAuth';
 import { fetchExercisesByCategoryId } from 'entities/exercisesCategory/api/fetchExercisesByCategoryId';
 import ArrowLeftIcon from 'shared/assets/icons/ArrowLeftIcon';
 import CheckIcon from 'shared/assets/icons/CheckIcon';
-import { deleteExercise } from 'shared/helper/deleteExercise';
+import { deleteExercises } from 'shared/helper/deleteExercise';
+import { Skeleton } from 'shared/ui/skeleton';
 
 export const CreateExerciseofCategoryPage = () => {
     const { user } = useAuth();
@@ -22,12 +23,11 @@ export const CreateExerciseofCategoryPage = () => {
     const { categoryId } = useParams();
     const dispatch = useDispatch();
     const [exerciseName, setExerciseName] = useState<string>("");
-    const [selectedExerciseId, setSelectedExerciseId] = useState<string | null>(null);
+    const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
 
     useEffect(() => {
-        dispatch(fetchExercisesCategoryById(categoryId));
         dispatch(fetchExercisesByCategoryId({ categoryId: categoryId, userId: user.id }));
-    }, [dispatch, categoryId, user.id]);
+    }, []);
 
     const { currentCategory, error, loading } = useAppSelector(state => state?.exercisesCategory);
 
@@ -39,69 +39,79 @@ export const CreateExerciseofCategoryPage = () => {
     const handleOnClick = () => {
         navigate(getCreateExercise());
     };
-    const [selectedExercises, setSelectedExercises] = useState([])
 
     const selectExercise = (id: string) => {
-        setSelectedExerciseId(id);
-        setSelectedExercises([...selectedExercises, id])
-        console.log({ selectedExercises })
-        console.log(id)
+        setSelectedExerciseIds(prevIds => {
+            if (prevIds.includes(id)) {
+                return prevIds.filter(itemId => itemId !== id);
+            } else {
+                return [...prevIds, id];
+            }
+        });
     };
 
     const createExerciseOnClick = async () => {
-        await createExercise(categoryId, { name: exerciseName, userId: user.id });
+        createExercise(categoryId, { name: exerciseName, userId: user.id });
         setExerciseName('');
         dispatch(fetchExercisesByCategoryId({ categoryId, userId: user.id }));
     };
 
-
-
-    const deleteExerciseOnClick = () => {
-
-        deleteExercise({ id: "lxnid5f4", userId: user?.id })
-    }
+    const handleDeleteExercises = async () => {
+        deleteExercises({ ids: selectedExerciseIds, userId: user?.id });
+        setSelectedExerciseIds([]);
+        dispatch(fetchExercisesByCategoryId({ categoryId, userId: user.id }));
+    };
 
     return (
-        <main className={classNames("app container", {}, [theme])}>
-            <div className={cl.CreateExerciseofCategoryPage}>
-                <section className={cl.createExercise}>
-                    <h1 className={cl.title}>{currentCategory?.title}</h1>
-                    <Input
-                        placeholder='Название упражнения'
-                        height='50px'
-                        value={exerciseName}
-                        onChange={handleOnChange}
-                    />
-                    <div>
-                        {exerciseName !== "" && (
-                            <Button height='50px' radius='12px' style={{ flex: "1" }} onClick={createExerciseOnClick}>
-                                Создать упражнение
-                            </Button>
-                        )}
-                    </div>
-                </section>
-                <ul className={cl.exercises}>
-                    {currentCategory?.exercises?.map(item => (
-                        <li
-                            className={cl.exerciseBlock}
-                            key={item.id}
-                            onClick={() => selectExercise(item.id)}
-                        >
-                            <span>{item?.name}</span>
-                            <div className={classNames(cl.icon, { [cl.iconShow]: selectedExerciseId === item?.id })}>
-                                <CheckIcon />
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-                <div className={cl.menu}>
-                    <div className={cl.backArrow} onClick={handleOnClick}>
-                        <ArrowLeftIcon />
-                    </div>
-                    <Button height='50px' radius='12px' style={{ flex: "1" }} onClick={() => deleteExerciseOnClick}>
+        <main className={classNames("app", cl.CreateExerciseofCategoryPage, {}, [theme])}>
+            <section className={cl.createExerciseHeader}>
+                {
+                    loading ? <Skeleton height='50px' width="150px" />
+                        : <h1 className={cl.titleCategory}>{currentCategory?.title}</h1>
+                }
+                <Input
+                    placeholder='Название упражнения'
+                    height='50px'
+                    value={exerciseName}
+                    onChange={handleOnChange}
+                />
+                <div>
+                    {exerciseName !== "" && (
+                        <Button height='50px' radius='12px' style={{ flex: "1" }} onClick={createExerciseOnClick}>
+                            Создать упражнение
+                        </Button>
+                    )}
+                </div>
+            </section>
+            {
+                currentCategory?.exercises
+                    ? <ul className={cl.exercises__group}>
+                        {currentCategory?.exercises?.map(item => (
+                            <li
+                                className={cl.exercise__item}
+                                key={item.id}
+                                onClick={() => selectExercise(item.id)}
+                            >
+                                <span className={classNames(cl.subtitleExercise, { [cl.subtitleExercise__active]: selectedExerciseIds.includes(item?.id) })}>{item?.name}</span>
+                                {
+                                    selectedExerciseIds.includes(item?.id) &&
+                                    <CheckIcon />
+                                }
+                            </li>
+                        ))}
+                    </ul>
+                    : <ul className={cl.exercises__group}>
+                        <h1>Загрузка...</h1>
+                    </ul>
+            }
+            <div className={cl.menuFooter}>
+                <ArrowLeftIcon onClick={handleOnClick} />
+                {
+                    selectedExerciseIds.length > 0 &&
+                    <Button height='50px' radius='12px' style={{ flex: "1" }} onClick={handleDeleteExercises}>
                         Удалить
                     </Button>
-                </div>
+                }
             </div>
         </main>
     );
