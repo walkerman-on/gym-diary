@@ -16,7 +16,8 @@ export interface IExercisesCategoryState {
 export interface IExercise {
     id: string,
     name: string,
-    categoryId: string
+    categoryId: string,
+    selected: boolean
 }
 
 

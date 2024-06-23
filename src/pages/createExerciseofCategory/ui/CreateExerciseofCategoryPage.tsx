@@ -16,6 +16,8 @@ import ArrowLeftIcon from 'shared/assets/icons/ArrowLeftIcon';
 import CheckIcon from 'shared/assets/icons/CheckIcon';
 import { deleteExercises } from 'shared/helper/deleteExercise';
 import { Skeleton } from 'shared/ui/skeleton';
+import { Exercise } from 'shared/ui/exercise';
+import { ExercisesGroup } from 'widgets/exercisesGroup';
 
 export const CreateExerciseofCategoryPage = () => {
     const { user } = useAuth();
@@ -40,15 +42,6 @@ export const CreateExerciseofCategoryPage = () => {
         navigate(getCreateExercise());
     };
 
-    const selectExercise = (id: string) => {
-        setSelectedExerciseIds(prevIds => {
-            if (prevIds.includes(id)) {
-                return prevIds.filter(itemId => itemId !== id);
-            } else {
-                return [...prevIds, id];
-            }
-        });
-    };
 
     const createExerciseOnClick = async () => {
         createExercise(categoryId, { name: exerciseName, userId: user.id });
@@ -61,6 +54,7 @@ export const CreateExerciseofCategoryPage = () => {
         setSelectedExerciseIds([]);
         dispatch(fetchExercisesByCategoryId({ categoryId, userId: user.id }));
     };
+
 
     return (
         <main className={classNames("app", cl.CreateExerciseofCategoryPage, {}, [theme])}>
@@ -83,26 +77,10 @@ export const CreateExerciseofCategoryPage = () => {
                     )}
                 </div>
             </section>
-            {
-                currentCategory?.exercises
-                    ? <ul className={cl.exercises__group}>
-                        {currentCategory?.exercises?.map(item => (
-                            <li
-                                className={cl.exercise__item}
-                                key={item.id}
-                                onClick={() => selectExercise(item.id)}
-                            >
-                                <span className={classNames(cl.subtitleExercise, { [cl.subtitleExercise__active]: selectedExerciseIds.includes(item?.id) })}>{item?.name}</span>
-                                {
-                                    selectedExerciseIds.includes(item?.id) &&
-                                    <CheckIcon />
-                                }
-                            </li>
-                        ))}
-                    </ul>
-                    : <ul className={cl.exercises__group}>
-                        <h1>Загрузка...</h1>
-                    </ul>
+            {loading ?
+                <h1 className={cl.loading}>Загрузка...</h1>
+                :
+                <ExercisesGroup userId={user?.id} />
             }
             <div className={cl.menuFooter}>
                 <ArrowLeftIcon onClick={handleOnClick} />

@@ -1,5 +1,7 @@
 import uniqid from 'uniqid';
 import { db, setDoc, doc, collection, query, where, getDocs } from '../services/firebase/firebase';
+import { Exercise } from 'entities/workout';
+import { IExercise } from 'entities/exercisesCategory';
 
 export async function createExercise(exercisesCategoryID: string, exerciseData: { name: string, userId: string }) {
     const exerciseID = uniqid(); // Генерируем уникальный идентификатор для упражнения
@@ -23,8 +25,9 @@ export async function createExercise(exercisesCategoryID: string, exerciseData: 
         await setDoc(exerciseDocRef, {
             name: exerciseData.name,
             id: exerciseID,
-            categoryId: exercisesCategoryID
-        });
+            categoryId: exercisesCategoryID,
+            selected: false
+        } as IExercise);
 
         console.log('Упражнение успешно добавлено');
     } catch (error) {

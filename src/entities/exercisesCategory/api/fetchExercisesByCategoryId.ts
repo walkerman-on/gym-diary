@@ -21,7 +21,8 @@ export const fetchExercisesByCategoryId = createAsyncThunk<IExerciseCategory, { 
 			const exercises: IExercise[] = exercisesSnapshot.docs.map(doc => ({
 				id: doc.id,
 				name: doc.data().name,
-				categoryId: doc.data().categoryId
+				categoryId: doc.data().categoryId,
+				selected: false
 			}));
 			const exerciseCategory: IExerciseCategory = {
 				...categoryData,
