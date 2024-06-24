@@ -22,7 +22,7 @@ export const fetchExercisesByCategoryId = createAsyncThunk<IExerciseCategory, { 
 				id: doc.id,
 				name: doc.data().name,
 				categoryId: doc.data().categoryId,
-				selected: false
+				selected: doc.data().selected
 			}));
 			const exerciseCategory: IExerciseCategory = {
 				...categoryData,

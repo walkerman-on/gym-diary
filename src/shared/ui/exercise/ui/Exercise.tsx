@@ -4,18 +4,15 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import classNames from 'classnames';
 import CheckIcon from 'shared/assets/icons/CheckIcon';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { selectExerciseById } from 'entities/exercises/api/selectExerciseById';
-import { useAuth } from 'entities/Auth/hooks/useAuth';
-import { fetchAllExercises } from 'entities/exercises/api/fetchAllExercises';
-import { toggleExerciseSelected } from 'entities/exercises/model/slice/exercisesSlice';
+import { toggleExerciseSelected } from 'entities/exercisesCategory/model/slice/exercisesCategorySlice';
+import { selectExerciseById } from 'entities/exercisesCategory/api/selectExerciseById';
 
 interface IExercise {
     userId: string
 }
 
 export const Exercise: FC<IExercise> = ({ userId }) => {
-    const { currentCategory, error, loading } = useAppSelector((state) => state.exercisesCategory);
-    const { exercises } = useAppSelector((state) => state.exercises);
+    const { currentCategory } = useAppSelector((state) => state.exercisesCategory);
     const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
 
     const dispatch = useAppDispatch();
@@ -28,21 +25,10 @@ export const Exercise: FC<IExercise> = ({ userId }) => {
                 return [...prevIds, id];
             }
         });
-        dispatch(toggleExerciseSelected(id)); // Оптимистическое обновление
+        dispatch(toggleExerciseSelected(id)); // Для обновления локального state
         dispatch(selectExerciseById({ userId: userId, exerciseId: id })); // Синхронизация с Firebase
     };
 
-    useEffect(() => {
-        dispatch(fetchAllExercises({ userId: userId }));
-    }, []);
-
-    if (loading) {
-        return <h1>Загрузка...</h1>;
-    }
-
-    if (error) {
-        return <h1>Ошибка: {error}</h1>;
-    }
 
     return (
         <>
@@ -55,12 +41,12 @@ export const Exercise: FC<IExercise> = ({ userId }) => {
                     >
                         <span
                             className={classNames(cl.subtitleExercise, {
-                                [cl.subtitleExercise__active]: exercises?.some(ex => ex.id === item.id && ex.selected),
+                                [cl.subtitleExercise__active]: selectedExerciseIds.includes(item.id),
                             })}
                         >
                             {item.name}
                         </span>
-                        {exercises?.some(ex => ex.id === item.id && ex.selected) && <CheckIcon />}
+                        {item?.selected === true && <CheckIcon />}
                     </li>
                 ))
             ) : (

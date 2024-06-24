@@ -3,6 +3,7 @@ import { fetchExercisesCategory } from "../../api/fetchExercisesCategory";
 import { IExercisesCategoryState } from "../../types/types"
 import { fetchExercisesCategoryById } from "../../api/fetchExercisesCategoryById";
 import { fetchExercisesByCategoryId } from "../../api/fetchExercisesByCategoryId";
+import { selectExerciseById } from "entities/exercisesCategory/api/selectExerciseById";
 
 const initialState: IExercisesCategoryState = {
     categories: [],
@@ -14,7 +15,15 @@ const initialState: IExercisesCategoryState = {
 export const exercisesCategorySlice = createSlice({
     name: "exercises",
     initialState,
-    reducers: {},
+    reducers: {
+        toggleExerciseSelected: (state, action) => {
+            const exerciseId = action.payload;
+            const exercise = state?.currentCategory.exercises?.find(item => item.id === exerciseId);
+            if (exercise) {
+                exercise.selected = !exercise.selected;
+            }
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchExercisesCategory.fulfilled, (state, action) => {
@@ -60,5 +69,6 @@ export const exercisesCategorySlice = createSlice({
             })
     }
 })
+export const { toggleExerciseSelected } = exercisesCategorySlice.actions;
 
 export default exercisesCategorySlice.reducer
