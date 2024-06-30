@@ -1,15 +1,19 @@
 .app.light {
-    --bg-color: #F2F2F2;
+    --color-primary-white: #F2F2F2;
+    --color-primary-black: #262626;
 
-    --color-primary-200: #FEFEFE;
-    --color-primary-400: #F3F3F3;
-    --color-primary-600: #D4D4D4;
-    --color-primary-800: #282D34;
+    --color-bg: #F2F2F2;
+    --color-primary-800: #E9E9EB;
+    --color-primary-200: #262626;
 
-    --color-accent-200: #a5ccee;
-    --color-accent-400: #a5ccee;
-    --color-accent-600: #77b4e9;
-    --color-accent-800: #66adec;
-    // neutral
-    // feedback (error, warning, success)
+    --color-accent: #eb6f3e;
+
+    --color-category-stretching: #EDD4BA;
+    --color-category-hand: #B5EEC0;
+    --color-category-back: #E9C1F2;
+    --color-category-cardio: #BAE1EB;
+    --color-category-chest: #CCC8F0;
+    --color-category-shoulders: #E9F0C8;
+    --color-category-legs: #F0B7B7;
+    --color-category-abs: #B7C9F0;
 }

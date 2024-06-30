@@ -1,12 +1,15 @@
 .exercises {
     padding: 30px;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    // flex-direction: column;
+    gap: 10px;
     flex: 1
 }
 
 .exerciseItem {
+    background: var(--color-accent-200);
+    padding: 10px;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center

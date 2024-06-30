@@ -42,13 +42,13 @@ export const ExercisesCategory: FC<IExercisesCategory> = ({ createExercise }) =>
                             categories?.map(item => (
                                 <li className={cl.exerciseItem} key={item?.id} onClick={() => handleClick(item?.id)}>
                                     <div className={cl.exercise}>
-                                        <div className={cl.scheme} style={{ backgroundImage: `url("https://via.placeholder.com/500")` }}>dd</div>
+                                        {/* <div className={cl.scheme} style={{ backgroundImage: `url("https://via.placeholder.com/500")` }}>dd</div> */}
                                         <span className={cl.categoryName}>{item?.title}</span>
                                     </div>
-                                    <div className={cl.exerciseMore}>
+                                    {/* <div className={cl.exerciseMore}>
                                         <span className={cl.exerciseCount}>5</span>
                                         <ArrowRightIcon />
-                                    </div>
+                                    </div> */}
                                 </li>
                             ))
 

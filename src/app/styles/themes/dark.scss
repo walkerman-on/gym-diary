@@ -1,17 +1,21 @@
 .app.dark {
-    --bg-color: #1a1a1a;
+    --color-primary-white: #F2F2F2;
+    --color-primary-black: #181717;
 
-    --color-primary-200: #d3d0d0;
-    --color-primary-400: #787777;
-    --color-primary-600: #282828;
-    --color-primary-800: #181717;
+    --color-bg: #181717;
+    --color-primary-800: #262626;
 
-    --color-accent-200: #a5ccee;
-    --color-accent-400: #a5ccee;
-    --color-accent-600: #77b4e9;
-    --color-accent-800: #66adec;  
 
-    // neutral
-    // feedback (error, warning, success)
+    --color-primary-200: #F2F2F2;
+
+    --color-accent: #eb6f3e;
+
+    --color-category-stretching: #EDD4BA;
+    --color-category-hand: #B5EEC0;
+    --color-category-back: #E9C1F2;
+    --color-category-cardio: #BAE1EB;
+    --color-category-chest: #CCC8F0;
+    --color-category-shoulders: #E9F0C8;
+    --color-category-legs: #F0B7B7;
+    --color-category-abs: #B7C9F0;
 }
-

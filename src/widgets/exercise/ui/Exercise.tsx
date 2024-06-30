@@ -12,15 +12,15 @@ export const Exercise = () => {
     setCollapsed(prevState => !prevState);
   };
 
-    return (
-      <li className={cl.exersise_item} >
-        <div className={cl.exersise} onClick={toggleWorkoutMenu}>
-          <DarkThemeIcon/>
-          <span>Тяга верхнего блока параллельным хватом</span>
-          {collapsed ? <ArrowDownIcon /> : <ArrowUpIcon />} 
-        </div>
-        {!collapsed &&  <WorkoutDropDownMenu />} 
-        <DropDownMenu collapsed={collapsed} maxHeight={150} />
-      </li>
-    );
+  return (
+    <li className={cl.exersise_item} >
+      <div className={cl.exersise} onClick={toggleWorkoutMenu}>
+        <DarkThemeIcon />
+        <span className={cl.title}>Тяга верхнего блока параллельным хватом</span>
+        {collapsed ? <ArrowDownIcon /> : <ArrowUpIcon />}
+      </div>
+      {!collapsed && <WorkoutDropDownMenu />}
+      <DropDownMenu collapsed={collapsed} maxHeight={150} />
+    </li>
+  );
 };

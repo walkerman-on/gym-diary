@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import classNames from 'classnames';
 import cl from "./TrainingPage.module.scss";
 import { Button } from 'shared/ui/button/index';
 import { useAuth } from 'entities/Auth/hooks/useAuth';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { getAddExercise, getLogin } from 'app/providers/router';
 import { Calendar } from 'shared/ui/calendar';
 import { DropDownMenu } from 'widgets/dropDownMenu';
@@ -24,54 +24,35 @@ export const TrainingPage = () => {
 
   createInitialStructure(user?.id);
 
-  const [collapsed, setCollapsed] = useState<boolean>(true);
-  const [date, setDate] = useState('');
-  const [exercises, setExercises] = useState<{ workoutId: string, name: string, sets: number, reps: number, weight: number }[]>([]);
 
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const toggleCalendarMenu = () => {
     setCollapsed(prevState => !prevState);
   };
 
-  const dispatch = useAppDispatch()
-
-
-  const handleAddExercise = () => {
-    const workoutId = uniqid(); // Генерируем уникальный workoutId для новой тренировки
-
-    // Создаем новую тренировку
-    const newWorkout = {
-      workoutId,
-      date,
-      exercises: [...exercises, { workoutId, name: '', sets: 0, reps: 0, weight: 0 }],
-    };
-
-    // Диспатчим событие добавления тренировки
-    // dispatch(addWorkout({ userId: user?.id || '', workout: newWorkout }));
-  };
-
+  const navigate = useNavigate()
+  const addMoreBtnHandler = () => {
+    navigate(getAddExercise())
+  }
 
 
   return isAuth ? (
-    <main className={classNames("app container", {}, [theme])}>
-      <div className={cl.TrainingPage}>
-        <section className={cl.calendarBlock}>
-          <div className={cl.theme}>
-            <ThemeSwitcher />
-          </div>
-          <div className={classNames(cl.calendarMore, { [cl.calendarSmallHidden]: !collapsed })}>
-            <Calendar />
-          </div>
-          <DropDownMenu collapsed={collapsed} maxHeight={500}>
-            {!collapsed && <CalendarBig />}
-          </DropDownMenu>
-          <PullButton onClick={toggleCalendarMenu} />
-        </section>
+    <main className={classNames("app", cl.TrainingPage, {}, [theme])}>
+      <section className={cl.trainingPageHeader}>
+        {/* <ThemeSwitcher /> */}
+        <Calendar />
+        {/* <div className={classNames(cl.calendarMore, { [cl.calendarSmallHidden]: !collapsed })}>
+        </div> */}
+        {/* <DropDownMenu collapsed={collapsed} maxHeight={500}>
+          {!collapsed && <CalendarBig />}
+        </DropDownMenu>
+        <PullButton onClick={toggleCalendarMenu} /> */}
+      </section>
+      <section className={cl.mainMenu}>
         <ExercisesBlock />
-        <Link to={getAddExercise()}>
-          <section className={cl.settingBlock}>
-            <Button height='60px' radius='15px'>Добавить еще</Button>
-          </section>
-        </Link>
+      </section>
+      <div className={cl.menuFooter}>
+        <Button height='60px' radius='15px' onClick={addMoreBtnHandler}>Добавить еще</Button>
       </div>
     </main>
   ) : (

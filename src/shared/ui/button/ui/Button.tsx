@@ -6,15 +6,12 @@ const ButtonF: FC<IButtonProps> = (props) => {
   return (
     <MUIButton
       sx={{
-        background: 'var(--color-primary-800)',
+        background: 'var(--color-primary-black)',
         borderRadius: props.radius,
-        color: 'var(--color-primary-200)',
+        color: 'var(--color-primary-white)',
         height: props.height,
         width: "100%",
         padding: '0 30px',
-        '&:hover': {
-          backgroundColor: '#FF8E53',
-        },
       }}
       style={{ flexGrow: 1, fontWeight: "800" }}
       {...props}

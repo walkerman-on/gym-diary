@@ -6,9 +6,42 @@
 .days {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    gap: 3px;
-    flex: 1;
+}
+
+.dayItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-primary-800);
+    padding: 4px 8px;
+    border-radius: 10px;
+    color: var(--color-primary-200);
+}
+
+.dayItemCurrent {
+    background: var(--color-accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 10px;
+    color: var(--color-primary-white);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.subTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: -8px;
+}
+
+.currentMonth {
+    color: var(--color-primary-200);
+    font-size: 30px;
 }
 
 .dayName {
@@ -16,19 +49,9 @@
     font-weight: 800;
 }
 
-.dayNumber {
-    border-radius: 8px;
-    text-align: center;
-    padding-bottom: 3px;
-}
-
-.dayNumberActive {
-    background-color: var(--color-primary-800);
-    color: var(--color-primary-200);
-}
-
-.dayNumber:hover {
-    background-color: var(--color-primary-800);
-    color: var(--color-primary-200);
-    cursor: pointer;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
 }

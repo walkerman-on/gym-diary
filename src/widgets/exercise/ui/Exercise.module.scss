@@ -3,10 +3,19 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    gap: 20px
 }
 
 .exersise {
     display: flex;
     align-items: center;
     gap: 10px;
+    background: var(--color-category-back);
+    padding: 12px;
+    border-radius: 16px;
+}
+
+.title {
+    font-weight: 700;
+    color: var(--color-primary-black)
 }
