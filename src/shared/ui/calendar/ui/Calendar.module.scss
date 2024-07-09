@@ -1,3 +1,10 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
 .week {
     display: flex;
     justify-content: space-between;
@@ -8,26 +15,38 @@
     flex-direction: column;
 }
 
-.dayItem {
+.currentMonth {
+    color: var(--color-bg);
+    font-size: 30px;
+    margin-left: 12px;
+}
+
+.day {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 45px;
     padding: 5px 0 5px 0;
     border-radius: 10px;
-    color: var(--color-primary-200);
 }
 
-.dayItemCurrent {
+.daySelected {
     background: var(--color-accent);
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    color: var(--color-primary-white);
 }
 
-.dayItemCurrentNotSelected::after {
+.dayCurrentNotSelected {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.dayCurrentNotSelected::after {
     content: "";
     position: absolute;
     bottom: 0px;
@@ -35,24 +54,6 @@
     width: 5px;
     border-radius: 50%;
     background: var(--color-accent);
-}
-
-.dayItemCurrentNotSelected {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
-    color: var(--color-primary-white);
-}
-
-.dayItemSelected {
-    background: var(--color-accent);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
-    color: var(--color-primary-white);
 }
 
 .title {
@@ -64,21 +65,5 @@
     font-size: 16px;
     font-weight: 600;
     margin-top: -8px;
-}
-
-.currentMonth {
-    color: var(--color-primary-200);
-    font-size: 30px;
-}
-
-.dayName {
-    color: var(--color-primary-600);
-    font-weight: 800;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
+    color: var(--color-bg)
 }

@@ -6,13 +6,15 @@ import 'dayjs/locale/ru';
 import cl from "./CalendarBig.module.scss";
 import classNames from 'classnames';
 import { useSpring, animated } from '@react-spring/web';
-import { useSwipeable } from 'react-swipeable'; // Updated import
+import { useSwipeable } from 'react-swipeable';
 
 dayjs.locale('ru');
 
 export const CalendarBig: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
-  
+  const [selectedDateKey, setSelectedDateKey] = useState<string>(selectedDate.format('YYYY-MM-DD'));
+  const today = dayjs();
+
   const startOfMonth = selectedDate.startOf('month');
   const endOfMonth = selectedDate.endOf('month');
   const startOfCalendar = startOfMonth.startOf('week');
@@ -23,7 +25,9 @@ export const CalendarBig: React.FC = () => {
   };
 
   const handleDateChange = (dateKey: string) => {
-    console.log('Выбранная дата:', dateKey);
+    setSelectedDate(dayjs(dateKey));
+    setSelectedDateKey(dateKey);
+    console.log(dateKey)
   };
 
   const generateCalendarDates = () => {
@@ -42,28 +46,26 @@ export const CalendarBig: React.FC = () => {
     const dates = generateCalendarDates();
 
     return (
-      <div className={cl.daysGrid}>
+      <ul className={cl.daysGrid}>
         {dates.map(date => {
           const dateKey = date.format('YYYY-MM-DD');
+          const isToday = date.isSame(today, 'day');
 
           return (
-            <div key={dateKey} className={cl.day}>
-              <ul>
-                <li
-                  className={classNames(cl.dayNumber, {
-                    [cl.dayNumberCurrent]: date.isSame(selectedDate, 'day'),
-                    // [cl.dayNumberActive]: date.isSame(selectedDate, 'day'),
-                    [cl.dayNumberOtherMonth]: !date.isSame(selectedDate, 'month')
-                  })}
-                  onClick={() => handleDateChange(dateKey)}
-                >
-                  {date.format('D')}
-                </li>
-              </ul>
-            </div>
+            <li
+              key={dateKey}
+              className={classNames(cl.day, {
+                [cl.daySelected]: dateKey === selectedDateKey,
+                [cl.dayNotFromCurrentMonth]: !date.isSame(selectedDate, 'month'),
+                [cl.dayCurrentNotSelected]: isToday
+              })}
+              onClick={() => handleDateChange(dateKey)}
+            >
+              {date.format('D')}
+            </li>
           );
         })}
-      </div>
+      </ul>
     );
   };
 
@@ -71,7 +73,7 @@ export const CalendarBig: React.FC = () => {
     const weekDays = [];
     for (let i = 0; i < 7; i++) {
       weekDays.push(
-        <div key={i} className={cl.day}>
+        <div key={i} className={cl.days}>
           <span className={cl.dayNames}>
             {dayjs().day(i).format('dd')}
           </span>
@@ -97,9 +99,7 @@ export const CalendarBig: React.FC = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <animated.div style={slideProps} className={cl.Calendar} {...swipeHandlers}>
-        <div className={cl.CalendarHeader}>
-          <span className={cl.currentMonth}>{selectedDate.format('MMMM YYYY')}</span>
-        </div>
+        <span className={cl.currentMonth}>{selectedDate.format('MMMM YYYY')}</span>
         {renderWeekDays()}
         {renderDays()}
       </animated.div>

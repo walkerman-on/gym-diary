@@ -9,33 +9,25 @@
 }
 
 .trainingPageHeader {
-    background: #282828;
+    background: var(--color-primary-400);
     flex-shrink: 0;
     top: 0;
     position: sticky;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10px 0 10px;
     border-radius: 0 0 25px 25px;
 }
 
-.mainMenu {
-    background: #161618;
-    flex-grow: 1;
-}
-
-
-.calendarMoreBtn {
+.arrow {
     margin: 0 auto;
-    height: 10px;
-    width: 70px;
-    border-radius: 10px;
-    background: var(--color-primary-600)
+    margin-top: -15px;
+    margin-bottom: -5px;
 }
 
-.calendarSmallHidden {
-    display: none;
+.mainMenu {
+    flex-grow: 1;
 }
 
 .menuFooter {
@@ -45,8 +37,7 @@
     bottom: 0;
     display: flex;
     gap: 10px;
-    // background: #F2F2F2;
-    background: #161618;
+    background: var(--color-primary-200);
 }
 
 .theme {

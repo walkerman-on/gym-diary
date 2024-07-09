@@ -1,12 +1,6 @@
-.Calendar {
-  position: relative;
-  user-select: none; /* Отключить выделение текста при свайпе */
-}
-
 .currentMonth {
-  margin-left: 15px;
+  padding: 0 0 20px 12px;
   font-size: 30px;
-  font-weight: 800;
 }
 
 .daysGrid {
@@ -15,7 +9,7 @@
   gap: 1px;
 }
 
-.day {
+.days {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,24 +20,49 @@
 }
 
 .dayNames {
-  color: var(--color-primary-600);
+  color: var(--color-bg);
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.dayNumber {
+.day {
   cursor: pointer;
-  padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  width: 45px;
+  padding: 5px 0;
+  border-radius: 10px;
+  margin: 0 auto;
 }
 
-.dayNumberCurrent {
-  background-color: var(--color-primary-800);
-  color: var(--color-primary-200);
+.daySelected {
+  color: var(--color-bg);
+  background: var(--color-accent);
 }
 
-.dayNumberActive {
-  background-color: var(--color-primary-600);
-  color: var(--color-primary-200);
+
+.dayCurrentNotSelected {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.dayNotFromCurrentMonth {
+  color: var(--color-primary-400)
+}
+
+.dayCurrentNotSelected::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
 }
 
 .dayNumberOtherMonth {

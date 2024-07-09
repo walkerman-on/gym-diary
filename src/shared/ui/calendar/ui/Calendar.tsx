@@ -26,9 +26,9 @@ export const Calendar: React.FC = () => {
       days.push(
         <ul key={i} className={cl.days}>
           <li
-            className={classNames(cl.dayItem, {
-              [cl.dayItemCurrent]: selectedDate && selectedDate.isSame(day, 'day'),
-              [cl.dayItemCurrentNotSelected]: isToday,
+            className={classNames(cl.day, {
+              [cl.daySelected]: selectedDate && selectedDate.isSame(day, 'day'),
+              [cl.dayCurrentNotSelected]: isToday,
             })}
             onClick={() => handleDateChange(day)}
           >
