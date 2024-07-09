@@ -36,17 +36,18 @@ export const TrainingPage = () => {
   }
 
 
+
+
   return isAuth ? (
     <main className={classNames("app", cl.TrainingPage, {}, [theme])}>
       <section className={cl.trainingPageHeader}>
-        {/* <ThemeSwitcher /> */}
         <Calendar />
-        {/* <div className={classNames(cl.calendarMore, { [cl.calendarSmallHidden]: !collapsed })}>
-        </div> */}
-        {/* <DropDownMenu collapsed={collapsed} maxHeight={500}>
+        {/* <div className={classNames(cl.calendarMore, { [cl.calendarSmallHidden]: !collapsed })}></div>
+        <DropDownMenu collapsed={collapsed} maxHeight={500}>
           {!collapsed && <CalendarBig />}
         </DropDownMenu>
         <PullButton onClick={toggleCalendarMenu} /> */}
+
       </section>
       <section className={cl.mainMenu}>
         <ExercisesBlock />

@@ -6,7 +6,7 @@ const ButtonF: FC<IButtonProps> = (props) => {
   return (
     <MUIButton
       sx={{
-        background: 'var(--color-primary-black)',
+        background: '#282828',
         borderRadius: props.radius,
         color: 'var(--color-primary-white)',
         height: props.height,

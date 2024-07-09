@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: var(--bg-color);
 }
 
 .trainingBlock {
@@ -10,19 +9,19 @@
 }
 
 .trainingPageHeader {
-    background: var(--color-bg);
+    background: #282828;
     flex-shrink: 0;
     top: 0;
     position: sticky;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px 10px 30px 10px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 0 0 25px 25px;
 }
 
 .mainMenu {
-    border-radius: 15px 15px 0px 0px;
-    background: var(--color-primary-white);
+    background: #161618;
     flex-grow: 1;
 }
 
@@ -46,7 +45,8 @@
     bottom: 0;
     display: flex;
     gap: 10px;
-    background: #F2F2F2;
+    // background: #F2F2F2;
+    background: #161618;
 }
 
 .theme {

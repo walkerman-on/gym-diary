@@ -28,7 +28,7 @@ export const Calendar: React.FC = () => {
           <li
             className={classNames(cl.dayItem, {
               [cl.dayItemCurrent]: selectedDate && selectedDate.isSame(day, 'day'),
-              [cl.currentDay]: isToday,
+              [cl.dayItemCurrentNotSelected]: isToday,
             })}
             onClick={() => handleDateChange(day)}
           >
@@ -51,7 +51,7 @@ export const Calendar: React.FC = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={cl.header}>
         <span className={cl.currentMonth}>{selectedDate ? selectedDate.format('MMMM YYYY') : dayjs().format('MMMM YYYY')}</span>
-        <ThemeSwitcher />
+        {/* <ThemeSwitcher /> */}
       </div>
       {renderWeekDays(startOfWeek)}
     </LocalizationProvider>
