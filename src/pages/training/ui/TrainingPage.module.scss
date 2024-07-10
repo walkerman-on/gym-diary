@@ -4,11 +4,7 @@
     height: 100%;
 }
 
-.trainingBlock {
-    flex-grow: 1;
-}
-
-.trainingPageHeader {
+.calendar {
     background: var(--color-primary-400);
     flex-shrink: 0;
     top: 0;
@@ -20,27 +16,19 @@
     border-radius: 0 0 25px 25px;
 }
 
-.arrow {
-    margin: 0 auto;
-    margin-top: -15px;
-    margin-bottom: -5px;
-}
-
-.mainMenu {
+.menu {
+    padding: 25px 10px 0 10px;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.menuFooter {
-    padding: 20px 10px 10px 10px;
+.footer {
+    padding: 20px 0 10px 0;
     flex-shrink: 0;
     position: sticky;
     bottom: 0;
     display: flex;
     gap: 10px;
     background: var(--color-primary-200);
-}
-
-.theme {
-    display: flex;
-    justify-content: flex-end;
 }

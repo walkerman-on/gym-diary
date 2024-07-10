@@ -4,7 +4,7 @@ import { LoginPage } from 'pages/login';
 import { RegisterPage } from 'pages/register';
 import { TrainingPage } from 'pages/training';
 import { NotFoundPage } from 'pages/notFound';
-import { AddExercisePage } from 'pages/addExercise';
+import { AddExercisePage } from 'pages/add-exercise';
 import { CreateExerciseofCategoryPage } from 'pages/createExerciseofCategory';
 import { CreateExercisePage } from 'pages/createExercise';
 import { AddExerciseOfCategoryPage } from 'pages/addExerciseOfCategory';

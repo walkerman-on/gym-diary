@@ -3,14 +3,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
-import cl from "./CalendarBig.module.scss";
+import cl from "./CalendarExpanded.module.scss";
 import classNames from 'classnames';
 import { useSpring, animated } from '@react-spring/web';
 import { useSwipeable } from 'react-swipeable';
 
 dayjs.locale('ru');
 
-export const CalendarBig: React.FC = () => {
+export const CalendarExpanded: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
   const [selectedDateKey, setSelectedDateKey] = useState<string>(selectedDate.format('YYYY-MM-DD'));
   const today = dayjs();
@@ -73,14 +73,14 @@ export const CalendarBig: React.FC = () => {
     const weekDays = [];
     for (let i = 0; i < 7; i++) {
       weekDays.push(
-        <div key={i} className={cl.days}>
-          <span className={cl.dayNames}>
+        <li key={i} className={cl.weekDays}>
+          <span className={cl.dayNameTitle}>
             {dayjs().day(i).format('dd')}
           </span>
-        </div>
+        </li>
       );
     }
-    return <div className={cl.daysGrid}>{weekDays}</div>;
+    return <ul className={cl.daysGrid}>{weekDays}</ul>;
   };
 
   // React-spring animation for month transition
@@ -98,10 +98,14 @@ export const CalendarBig: React.FC = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <animated.div style={slideProps} className={cl.Calendar} {...swipeHandlers}>
-        <span className={cl.currentMonth}>{selectedDate.format('MMMM YYYY')}</span>
-        {renderWeekDays()}
-        {renderDays()}
+      <animated.div style={slideProps} {...swipeHandlers}>
+        <section className={cl.calendar}>
+          <span className={cl.currentMonth}>{selectedDate.format('MMMM YYYY')}</span>
+          <div className={cl.calendarBlock}>
+            {renderWeekDays()}
+            {renderDays()}
+          </div>
+        </section>
       </animated.div>
     </LocalizationProvider>
   );

@@ -1,0 +1,1 @@
+export { CalendarСollapsed } from "./ui/CalendarСollapsed"

@@ -3,13 +3,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
-import cl from "./Calendar.module.scss"
+import cl from "./CalendarСollapsed.module.scss"
 import classNames from 'classnames';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 
 dayjs.locale('ru');
 
-export const Calendar: React.FC = () => {
+export const CalendarСollapsed: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
   const today = dayjs();
 

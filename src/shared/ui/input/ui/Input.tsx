@@ -5,19 +5,19 @@ import { IInputProps } from './IProps';
 const InputF: FC<IInputProps> = (props) => {
   return (
     <MUIInput
-        sx={{
-          background: 'var(--color-primary-600)',
-          borderRadius: 2,
-          height: props.height,
-          color: 'var(--color-primary-800)',
-          padding: '0 30px',
-          // textAlign: "center",
-          width: "100%",
-        }}
-          disableUnderline={true}
-          placeholder={props.placeholder}
-        {...props}
-      />
+      sx={{
+        background: 'var(--color-primary-400)',
+        borderRadius: 2,
+        height: props.height,
+        color: 'var(--color-primary-800)',
+        padding: '0 30px',
+        // textAlign: "center",
+        width: "100%",
+      }}
+      disableUnderline={true}
+      placeholder={props.placeholder}
+      {...props}
+    />
   );
 };
 

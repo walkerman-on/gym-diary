@@ -1,13 +1,21 @@
 .AddExercisePage {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 40px;
     padding: 40px 10px 10px 10px;
     background: var(--color-primary-200);
     height: 100%;
-
 }
 
-.exercisesBlock {
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px
+}
+
+.categories {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
 }
