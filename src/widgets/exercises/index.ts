@@ -1,1 +1,1 @@
-export {ExercisesBlock} from "./ui/ExercisesBlock"
+export { Exercises } from "./ui/Exercises"

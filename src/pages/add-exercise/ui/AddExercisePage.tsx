@@ -5,14 +5,14 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { Input } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
 import { PullButton } from 'shared/ui/pullButton';
-import { ExercisesCategory } from 'widgets/exercisesCategory';
 import { Link } from 'react-router-dom';
 import { getCreateExercise } from 'app/providers/router';
 import { useAuth } from 'entities/Auth/hooks/useAuth';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { findExerciseByName } from 'entities/exercises/api/findExerciseByName';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import { ExercisesGroup } from 'widgets/exercisesGroup';
+import { ExercisesCategory } from 'features/exercises-category';
+import { Exercises } from 'widgets/exercises';
 
 export const AddExercisePage = () => {
     const { user } = useAuth();
@@ -22,11 +22,11 @@ export const AddExercisePage = () => {
 
     const dispatch = useAppDispatch()
     const { exercises: findExercises } = useAppSelector(state => state?.exercises)
+
     const findExerciseOnChange = (e: any) => {
         setExerciseName(e.target.value)
         dispatch(findExerciseByName({ userId: user?.id, namePrefix: e.target.value }))
     }
-
 
     return (
         <main className={classNames("app container", cl.AddExercisePage, {}, [theme])}>
@@ -51,7 +51,7 @@ export const AddExercisePage = () => {
                         ))
                         : <ExercisesCategory />
                 }
-                <ExercisesGroup userId={user?.id} />
+                <Exercises />
             </section>
         </main>);
 };

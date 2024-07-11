@@ -1,1 +1,0 @@
-export { ExercisesGroup } from "./ui/ExercisesGroup"

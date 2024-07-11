@@ -7,6 +7,12 @@ export const findExerciseByName = createAsyncThunk<IExercise[], { userId: string
     'findExerciseByName',
     async ({ userId, namePrefix }, { rejectWithValue }) => {
         try {
+            // Проверка на пустое поле инпута
+            if (!namePrefix.trim()) {
+                console.log("Поле инпута пустое. Поиск не выполняется.");
+                return []; // Возвращаем пустой массив, если поле инпута пустое
+            }
+
             // Создаем ссылку на коллекцию упражнений для указанного пользователя
             const exercisesCollectionRef = collection(db, `users/${userId}/exercises`);
 

@@ -5,7 +5,7 @@ import { useAuth } from 'entities/Auth/hooks/useAuth';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { getAddExercise, getLogin } from 'app/providers/router';
 import { useTheme } from 'app/providers/ThemeProvider';
-import { ExercisesBlock } from 'widgets/exercises';
+import { ExercisesBlock } from 'widgets/exercisesBlock';
 import { Calendar } from 'widgets/calendar';
 
 export const TrainingPage = () => {

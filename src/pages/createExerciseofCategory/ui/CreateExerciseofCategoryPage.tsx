@@ -14,7 +14,7 @@ import { fetchExercisesByCategoryId } from 'entities/exercisesCategory/api/fetch
 import ArrowLeftIcon from 'shared/assets/icons/ArrowLeftIcon';
 import { deleteExercises } from 'shared/helper/deleteExercise';
 import { Skeleton } from 'shared/ui/skeleton';
-import { ExercisesGroup } from 'widgets/exercisesGroup';
+import { Exercises } from 'widgets/exercises';
 
 export const CreateExerciseofCategoryPage = () => {
     const { user } = useAuth();
@@ -78,7 +78,7 @@ export const CreateExerciseofCategoryPage = () => {
             {loading ?
                 <h1 className={cl.loading}>Загрузка...</h1>
                 :
-                <ExercisesGroup userId={user?.id} />
+                <Exercises />
             }
             <div className={cl.menuFooter}>
                 <ArrowLeftIcon onClick={handleOnClick} />
