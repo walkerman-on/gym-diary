@@ -5,7 +5,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ru';
 import cl from "./CalendarСollapsed.module.scss"
 import classNames from 'classnames';
-import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
+import { ThemeSwitcher } from 'shared/ui/theme-switcher';
 
 dayjs.locale('ru');
 

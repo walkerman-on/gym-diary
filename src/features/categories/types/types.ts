@@ -10,7 +10,7 @@ export interface IExercisesCategoryState {
     categories: IExerciseCategory[],
     error: string | null,
     loading: boolean,
-    currentCategory: IExerciseCategory | null,
+    category__current: IExerciseCategory | null,
 }
 
 export interface IExercise {

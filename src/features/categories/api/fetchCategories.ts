@@ -3,8 +3,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "shared/services/firebase/firebase";
 import { IExerciseCategory } from "../types/types";
 
-export const fetchExercisesCategory = createAsyncThunk<IExerciseCategory[], void, { rejectValue: string }>(
-	"fetchExercisesCategory",
+export const fetchCategories = createAsyncThunk<IExerciseCategory[], void, { rejectValue: string }>(
+	"fetchCategories",
 	async (_, { rejectWithValue }) => {
 		try {
 			const querySnapshot = await getDocs(collection(db, "exercises-category"));

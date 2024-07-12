@@ -5,11 +5,11 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import PeopleIcon from "shared/assets/img/people.svg"
 import { useAuth } from 'features/auth/hooks/useAuth';
-import { toggleExerciseSelected } from 'features/categories/model/slice/exercisesCategorySlice';
-import { selectExerciseById } from 'features/categories/api/selectExerciseById';
+import { toggleExerciseSelected } from 'features/categories/model/slice/categoriesSlice';
+import { selectExerciseById } from 'features/exercises/api/selectExerciseById';
 
 export const ExercisesFromCategory: FC = () => {
-    const currentCategory = useAppSelector(state => state.exercisesCategory.currentCategory);
+    const category = useAppSelector(state => state.categories?.category__current);
     const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
     const { user } = useAuth();
     const dispatch = useAppDispatch();
@@ -27,7 +27,7 @@ export const ExercisesFromCategory: FC = () => {
     };
 
     // Проверка наличия данных перед рендерингом
-    if (!currentCategory || !currentCategory.exercises) {
+    if (!category || !category.exercises) {
         return (<div className={cl.warning}>
             <div style={{ width: "320px" }}>
                 <PeopleIcon />
@@ -40,7 +40,7 @@ export const ExercisesFromCategory: FC = () => {
     return (
         <ul className={cl.exercises__group}>
             <ExerciseFromCategory
-                exercises={currentCategory.exercises}
+                exercises={category.exercises}
                 selectExercise={selectExercise}
                 selectExerciseId={selectedExerciseIds}
             />

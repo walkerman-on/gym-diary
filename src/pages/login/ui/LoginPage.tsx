@@ -1,6 +1,6 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AuthForm } from 'widgets/authForm';
+import { AuthForm } from 'widgets/auth-form';
 import cl from "./LoginPage.module.scss"
 import { Link } from 'react-router-dom';
 import { getRegister } from 'app/providers/router';

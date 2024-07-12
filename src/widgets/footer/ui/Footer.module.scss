@@ -1,0 +1,9 @@
+.footer {
+    padding: 20px 0 10px 0;
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    gap: 10px;
+    background: var(--color-primary-200);
+}

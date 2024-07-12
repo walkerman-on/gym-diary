@@ -5,11 +5,11 @@ import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
 import ArrowUpIcon from 'shared/assets/icons/ArrowUpIcon';
 import { IExercise } from 'features/exercises';
 
-interface ISelectedExercise {
+interface IExerciseInWorkout {
   exercises: IExercise[],
 }
 
-export const ExerciseInWorkout: FC<ISelectedExercise> = ({ exercises }) => {
+export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercises }) => {
   const [collapsed, setCollapsed] = useState<boolean>(true);
 
   const toggleWorkoutMenu = () => {

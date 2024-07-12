@@ -9,7 +9,7 @@ import { Input } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
 import { getCreateExercise } from 'app/providers/router';
 import { createExercise } from "shared/helper/createExercise";
-// import { fetchExercisesByCategoryId } from 'entities/exercisesCategory/api/fetchExercisesByCategoryId';
+// import { fetchCategoryCurrent } from 'entities/exercisesCategory/api/fetchCategoryCurrent';
 import ArrowLeftIcon from 'shared/assets/icons/ArrowLeftIcon';
 import { deleteExercises } from 'shared/helper/deleteExercise';
 import { Skeleton } from 'shared/ui/skeleton';
@@ -25,10 +25,10 @@ export const CreateExerciseofCategoryPage = () => {
     // const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
 
     // useEffect(() => {
-    //     dispatch(fetchExercisesByCategoryId({ categoryId: categoryId, userId: user.id }));
+    //     dispatch(fetchCategoryCurrent({ categoryId: categoryId, userId: user.id }));
     // }, []);
 
-    const { currentCategory, error, loading } = useAppSelector(state => state?.exercisesCategory);
+    const { category__current, error, loading } = useAppSelector(state => state?.categories);
 
     const handleOnChange = (e: any) => {
         setExerciseName(e.target.value);
@@ -43,14 +43,14 @@ export const CreateExerciseofCategoryPage = () => {
     const createExerciseOnClick = async () => {
         createExercise(categoryId, { name: exerciseName, userId: user.id });
         setExerciseName('');
-        // dispatch(fetchExercisesByCategoryId({ categoryId, userId: user.id }));
+        // dispatch(fetchCategoryCurrent({ categoryId, userId: user.id }));
     };
     // const selectedExercises = currentCategory?.exercises?.filter(item => item?.selected === true)
     // const selectedExercisesIds = selectedExercises?.map(item => item?.id)
 
     // const handleDeleteExercises = async () => {
     //     deleteExercises({ ids: selectedExercisesIds, userId: user?.id });
-    //     // dispatch(fetchExercisesByCategoryId({ categoryId, userId: user.id }));
+    //     // dispatch(fetchCategoryCurrent({ categoryId, userId: user.id }));
     // };
 
 
@@ -59,7 +59,7 @@ export const CreateExerciseofCategoryPage = () => {
             <section className={cl.createExerciseHeader}>
                 {
                     loading ? <Skeleton height='50px' width="150px" />
-                        : <h1 className={cl.titleCategory}>{currentCategory?.title}</h1>
+                        : <h1 className={cl.titleCategory}>{category__current?.title}</h1>
                 }
                 <Input
                     placeholder='Название упражнения'

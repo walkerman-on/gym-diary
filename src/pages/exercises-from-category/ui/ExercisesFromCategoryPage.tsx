@@ -8,16 +8,18 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import ArrowLeftIcon from 'shared/assets/icons/ArrowLeftIcon';
 import { getAddExercise, getCreateExerciseofCategory } from 'app/providers/router';
 import { Button } from 'shared/ui/button';
-import { fetchExercisesCategoryById } from 'features/categories';
+import { fetchCategoryCurrent } from 'features/categories/api/fetchCategoryCurrent';
+import { useAuth } from 'features/auth/hooks/useAuth';
 
 export const ExercisesFromCategoryPage = () => {
     const { theme } = useTheme();
+    const { user } = useAuth()
 
     const { categoryId } = useParams()
 
     const dispatch = useAppDispatch()
     useEffect(() => {
-        dispatch(fetchExercisesCategoryById(categoryId))
+        dispatch(fetchCategoryCurrent({ userId: user?.id, categoryId: categoryId }))
     }, [])
 
     const navigate = useNavigate()
@@ -29,7 +31,7 @@ export const ExercisesFromCategoryPage = () => {
     const createExercise = () => {
         navigate(getCreateExerciseofCategory(categoryId))
     }
-    const { currentCategory } = useAppSelector(state => state?.exercisesCategory)
+    const { category__current } = useAppSelector(state => state?.categories)
 
     return (
         <main className={classNames("app container", {}, [theme])}>

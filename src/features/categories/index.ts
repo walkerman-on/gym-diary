@@ -1,6 +1,5 @@
 export * from "./types/types"
-export { default as exercisesCategoryReducer } from "./model/slice/exercisesCategorySlice"
+export { default as categoriesReducer } from "./model/slice/categoriesSlice"
 
-export { fetchExercisesCategory } from "./api/fetchExercisesCategory"
-export { fetchExercisesCategoryById } from "./api/fetchExercisesCategoryById"
-export { fetchExercisesByCategoryId } from "./api/fetchExercisesByCategoryId"
+export { fetchCategories } from "./api/fetchCategories"
+export { fetchCategoryCurrent } from "./api/fetchCategoryCurrent"

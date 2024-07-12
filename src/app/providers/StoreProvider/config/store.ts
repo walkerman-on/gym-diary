@@ -1,7 +1,7 @@
 import { configureStore, combineReducers, Middleware } from '@reduxjs/toolkit';
 import { userReducer } from 'features/auth/index';
 import { UserState } from 'features/auth';
-import { exercisesCategoryReducer } from 'features/categories';
+import { categoriesReducer } from 'features/categories';
 import { exercisesReducer } from 'features/exercises';
 
 
@@ -43,7 +43,7 @@ const preloadedState = {
 
 const rootReducer = combineReducers({
   user: userReducer,
-  exercisesCategory: exercisesCategoryReducer,
+  categories: categoriesReducer,
   exercises: exercisesReducer
 });
 

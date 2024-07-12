@@ -13,13 +13,13 @@ export const Calendar = () => {
     };
 
     return (
-        <>
+        <section className={cl.calendar}>
             {showCalendarBig ? <CalendarСollapsed /> : <CalendarExpanded />}
             <span onClick={toggleCalendarBig} className={cl.arrow}>
                 {
                     showCalendarBig ? <ArrowDownIcon /> : <ArrowUpIcon />
                 }
             </span>
-        </>
+        </section>
     );
 };
