@@ -1,16 +1,16 @@
 import classNames from 'classnames';
 import cl from './TrainingPage.module.scss';
 import { Button } from 'shared/ui/button/index';
-import { useAuth } from 'entities/Auth/hooks/useAuth';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { getAddExercise, getLogin } from 'app/providers/router';
 import { useTheme } from 'app/providers/ThemeProvider';
-import { ExercisesBlock } from 'widgets/exercisesBlock';
 import { Calendar } from 'widgets/calendar';
+import { useAuth } from 'features/auth/hooks/useAuth';
+import { ExercisesWorkoutCard } from 'widgets/exercises-card/exercises-workout-card';
 
 export const TrainingPage = () => {
   const { theme } = useTheme();
-  const { isAuth, user } = useAuth();
+  const { isAuth } = useAuth();
 
   const navigate = useNavigate();
   const addMoreBtnHandler = () => {
@@ -23,7 +23,7 @@ export const TrainingPage = () => {
         <Calendar />
       </section>
       <section className={cl.menu}>
-        <ExercisesBlock />
+        <ExercisesWorkoutCard />
         <div className={cl.footer}>
           <Button height="60px" radius="15px" onClick={addMoreBtnHandler}>
             Добавить еще

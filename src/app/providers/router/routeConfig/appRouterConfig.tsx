@@ -7,7 +7,7 @@ import { NotFoundPage } from 'pages/notFound';
 import { AddExercisePage } from 'pages/add-exercise';
 import { CreateExerciseofCategoryPage } from 'pages/createExerciseofCategory';
 import { CreateExercisePage } from 'pages/createExercise';
-import { AddExerciseOfCategoryPage } from 'pages/addExerciseOfCategory';
+import { ExercisesFromCategoryPage } from 'pages/exercises-from-category';
 
 export enum AppRoutes {
   LOGIN = 'login',
@@ -50,7 +50,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.ADD_EXERCISE_OF_CATEGORY]: {
     path: RoutePath.add_exercise_of_category,
-    element: <AddExerciseOfCategoryPage />,
+    element: <ExercisesFromCategoryPage />,
   },
   [AppRoutes.CREATE_EXERCISE]: {
     path: RoutePath.create_exercise,

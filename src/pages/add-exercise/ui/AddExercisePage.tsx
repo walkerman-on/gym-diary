@@ -5,14 +5,15 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { Input } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
 import { PullButton } from 'shared/ui/pullButton';
-import { Link } from 'react-router-dom';
-import { getCreateExercise } from 'app/providers/router';
-import { useAuth } from 'entities/Auth/hooks/useAuth';
+import { Link, useNavigate } from 'react-router-dom';
+import { getCreateExercise, getTraining } from 'app/providers/router';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { findExerciseByName } from 'entities/exercises/api/findExerciseByName';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import { ExercisesCategory } from 'features/exercises-category';
-import { Exercises } from 'widgets/exercises';
+import { ExercisesFromCategoryPage } from 'pages/exercises-from-category';
+import { useAuth } from 'features/auth/hooks/useAuth';
+import { findExerciseByName } from 'features/exercises/api/findExerciseByName';
+import { ExercisesCategoryCard } from 'widgets/exercises-card/exercises-category-card';
+import { CategoriesCard } from 'widgets/categories-card';
 
 export const AddExercisePage = () => {
     const { user } = useAuth();
@@ -27,6 +28,11 @@ export const AddExercisePage = () => {
         setExerciseName(e.target.value)
         dispatch(findExerciseByName({ userId: user?.id, namePrefix: e.target.value }))
     }
+
+    const navigate = useNavigate();
+    const addMoreBtnHandler = () => {
+        navigate(getTraining());
+    };
 
     return (
         <main className={classNames("app container", cl.AddExercisePage, {}, [theme])}>
@@ -44,15 +50,23 @@ export const AddExercisePage = () => {
 
             <section className={cl.categories}>
 
-                {
+                {/* {
                     findExercises ?
                         findExercises?.map(item => (
                             <h1>{item?.name}</h1>
                         ))
-                        : <ExercisesCategory />
-                }
-                <Exercises />
+                        : <CategoriesCard />
+                } */}
+                <CategoriesCard />
+                {/* widget для отображения категорий выше*/}
+                {/* widget для отображения упражнений из категории*/}
+                <ExercisesCategoryCard />
             </section>
+            <div className={cl.footer}>
+                <Button height="60px" radius="15px" onClick={addMoreBtnHandler}>
+                    Добавить в тренировку
+                </Button>
+            </div>
         </main>);
 };
 

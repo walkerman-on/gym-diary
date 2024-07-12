@@ -1,7 +1,6 @@
 import uniqid from 'uniqid';
 import { db, setDoc, doc, collection, query, where, getDocs } from '../services/firebase/firebase';
-import { Exercise } from 'entities/workout';
-import { IExercise } from 'entities/exercisesCategory';
+import { IExercise } from 'features/exercises';
 
 export async function createExercise(exercisesCategoryID: string, exerciseData: { name: string, userId: string }) {
     const exerciseID = uniqid(); // Генерируем уникальный идентификатор для упражнения

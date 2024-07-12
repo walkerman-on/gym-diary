@@ -1,1 +1,0 @@
-export {ExercisesBlock} from "./ui/ExercisesBlock"

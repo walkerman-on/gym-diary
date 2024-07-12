@@ -1,8 +1,8 @@
 import { configureStore, combineReducers, Middleware } from '@reduxjs/toolkit';
-import { userReducer } from 'entities/Auth/index';
-import { UserState } from 'entities/Auth';
-import { exercisesCategoryReducer } from 'entities/exercisesCategory';
-import { exercisesReducer } from 'entities/exercises';
+import { userReducer } from 'features/auth/index';
+import { UserState } from 'features/auth';
+import { exercisesCategoryReducer } from 'features/categories';
+import { exercisesReducer } from 'features/exercises';
 
 
 // Функция для загрузки состояния из localStorage

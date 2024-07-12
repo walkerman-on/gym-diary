@@ -1,4 +1,4 @@
-import { UserState } from 'entities/Auth';
+import { UserState } from 'features/auth';
 import { store } from './store';
 
 export type AppDispatch = typeof store.dispatch;

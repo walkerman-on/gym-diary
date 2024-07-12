@@ -1,0 +1,1 @@
+export { ExercisesFromCategoryPage } from "./ui/ExercisesFromCategoryPage"

@@ -1,0 +1,1 @@
+export { ExercisesCategoryCard } from "./ui/ExercisesCategoryCard"

@@ -1,1 +1,0 @@
-export { ExercisesCategory } from "./ui/ExercisesCategory"

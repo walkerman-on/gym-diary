@@ -1,0 +1,9 @@
+.category__list {
+    overflow-x: auto;
+    display: flex;
+    gap: 20px;
+}
+
+.category__list::-webkit-scrollbar {
+    display: none;
+}

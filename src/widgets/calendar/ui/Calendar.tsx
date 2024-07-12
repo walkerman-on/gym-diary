@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cl from "./Calendar.module.scss"
-import { CalendarСollapsed } from 'widgets/сalendarСollapsed';
-import { CalendarExpanded } from 'widgets/calendarExpanded';
+import { CalendarСollapsed } from 'features/calendar/сalendar-collapsed';
+import { CalendarExpanded } from 'features/calendar/calendar-expanded';
 import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
 import ArrowUpIcon from 'shared/assets/icons/ArrowUpIcon';
 
