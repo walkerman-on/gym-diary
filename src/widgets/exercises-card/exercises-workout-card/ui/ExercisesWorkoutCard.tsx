@@ -7,6 +7,5 @@ export const ExercisesWorkoutCard = () => {
         <section className={cl.menu}>
             <ExercisesInWorkout />
         </section>
-
     );
 };

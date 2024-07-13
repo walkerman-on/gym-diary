@@ -1,6 +1,6 @@
 import cl from "./ExercisesInWorkout.module.scss"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAuth } from "features/auth/hooks/useAuth";
 import { fetchSelectedExercises } from "features/exercises/api/fetchSelectedExercises";
@@ -11,15 +11,24 @@ export const ExercisesInWorkout = () => {
 
   const dispatch = useAppDispatch()
 
+  const { exercises__selected, loading } = useAppSelector(state => state?.exercises)
   useEffect(() => {
     dispatch(fetchSelectedExercises({ userId: user?.id }))
   }, [])
 
-  const { selectedExercises } = useAppSelector(state => state?.exercises)
   return (
-    <ul className={cl.exersises__list}>
-      <ExerciseInWorkout exercises={selectedExercises} />
-    </ul>
+    <>
+      {
+        loading ? <h1>Загрузка данных...</h1>
+          :
+          exercises__selected ?
+            <ul className={cl.exersises__list}>
+              <ExerciseInWorkout exercises={exercises__selected} />
+            </ul>
+            :
+            <h1>Упржанения не добавлены в тренировку, добавьте!</h1>
+      }
+    </>
   );
 };
 

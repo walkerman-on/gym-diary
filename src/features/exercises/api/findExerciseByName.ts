@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, startAt, endAt } from 'firebase/firestore';
 import { db } from 'shared/services/firebase/firebase';
 import { IExercise } from '../types/types';
 
@@ -10,17 +10,21 @@ export const findExerciseByName = createAsyncThunk<IExercise[], { userId: string
             // Проверка на пустое поле инпута
             if (!namePrefix.trim()) {
                 console.log("Поле инпута пустое. Поиск не выполняется.");
-                return []; // Возвращаем пустой массив, если поле инпута пустое
+                return null; // Возвращаем пустой массив, если поле инпута пустое
             }
+
+            // Преобразуем префикс имени в нижний и верхний регистр для поиска независимо от регистра
+            const lowercasePrefix = namePrefix.toLowerCase();
+            const uppercasePrefix = namePrefix.toUpperCase();
 
             // Создаем ссылку на коллекцию упражнений для указанного пользователя
             const exercisesCollectionRef = collection(db, `users/${userId}/exercises`);
 
-            // Формируем запрос для поиска упражнений, имена которых начинаются с namePrefix
-            const startAtPrefix = namePrefix;
-            const endAtPrefix = namePrefix + '\uf8ff'; // Unicode символ, следующий за всеми другими символами
-
-            const exerciseQuery = query(exercisesCollectionRef, where('name', '>=', startAtPrefix), where('name', '<=', endAtPrefix));
+            // Формируем запрос для поиска упражнений, имена которых начинаются с namePrefix (независимо от регистра)
+            const exerciseQuery = query(exercisesCollectionRef,
+                where('name', '>=', lowercasePrefix),
+                where('name', '<=', lowercasePrefix + '\uf8ff')
+            );
             const querySnapshot = await getDocs(exerciseQuery);
 
             // Проверяем, найдены ли упражнения с заданным префиксом

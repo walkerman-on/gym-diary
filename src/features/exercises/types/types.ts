@@ -1,8 +1,8 @@
 export interface IExercisesCategoryState {
     error: string | null,
     loading: boolean,
-    exercises: IExercise[] | null,
-    selectedExercises: IExercise[] | null
+    exercise__search: IExercise[] | null,
+    exercises__selected: IExercise[] | null
 }
 
 export interface IExercise {

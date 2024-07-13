@@ -1,18 +1,17 @@
 import React from 'react';
 import cl from "./ExercisesSearchCard.module.scss"
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
+import { ExercisesFromCategory } from 'features/exercises/ui/exercises-from-category';
 
 export const ExercisesSearchCard = () => {
-    const { exercises: findExercises } = useAppSelector(state => state?.exercises)
+    const { exercise__search } = useAppSelector(state => state?.exercises)
 
     return (
         <>
             {
-                findExercises ?
-                    findExercises?.map(item => (
-                        <h1>{item?.name}</h1>
-                    ))
-                    : <h1>Такого упражнения не найдено(</h1>
+                exercise__search.length > 0 ?
+                    <ExercisesFromCategory exercises__all />
+                    : <h1 className={cl.title}>Такого упражнения не найдено(</h1>
             }
         </>
     );

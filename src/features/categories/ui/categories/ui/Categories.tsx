@@ -20,7 +20,7 @@ export const Categories: FC<IExercisesCategory> = () => {
         dispatch(fetchCategories())
     }, [dispatch])
 
-    const { categories } = useAppSelector(state => state?.categories)
+    const { categories, loading } = useAppSelector(state => state?.categories)
     // const categoryURL: string[] = theme === Theme.LIGHT ? categories?.map(item => item?.imageDarkURL) : categories?.map(item => item?.imageLightURL);
 
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
@@ -36,9 +36,15 @@ export const Categories: FC<IExercisesCategory> = () => {
     });
 
     return (
-        <ul {...swipeHandlers} className={cl.category__list}>
-            <Category categories={categories} handleClick={handleClick} selectedCategoryId={selectedCategoryId} />
-        </ul>
+        <>
+            {
+                loading ? <h1>Загрузка категорий...</h1>
+                    :
+                    <ul {...swipeHandlers} className={cl.category__list}>
+                        <Category categories={categories} handleClick={handleClick} selectedCategoryId={selectedCategoryId} />
+                    </ul>
+            }
+        </>
     );
 };
 

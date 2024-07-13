@@ -38,8 +38,6 @@ export const categoriesSlice = createSlice({
                 state.error = action.payload
             })
 
-            // fetchCategoryCurrent
-
             .addCase(fetchCategoryCurrent.fulfilled, (state, action) => {
                 state.category__current = action.payload
                 state.loading = false

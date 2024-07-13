@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IExercisesCategoryState } from '../../types/types';
 import { findExerciseByName } from '../../api/findExerciseByName';
-import { fetchAllExercises } from 'features/exercises/api/fetchAllExercises';
 import { fetchSelectedExercises } from 'features/exercises/api/fetchSelectedExercises';
 
 const initialState: IExercisesCategoryState = {
     error: null,
     loading: false,
-    exercises: null,
-    selectedExercises: null
+    exercise__search: null,
+    exercises__selected: null
 };
 
 export const exercisesSlice = createSlice({
@@ -18,22 +17,8 @@ export const exercisesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchAllExercises.fulfilled, (state, action) => {
-                state.exercises = action.payload;
-                state.loading = false;
-                state.error = null;
-            })
-            .addCase(fetchAllExercises.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(fetchAllExercises.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
-            })
-
             .addCase(findExerciseByName.fulfilled, (state, action) => {
-                state.exercises = action.payload;
+                state.exercise__search = action.payload;
                 state.loading = false;
                 state.error = null;
             })
@@ -47,7 +32,7 @@ export const exercisesSlice = createSlice({
             })
 
             .addCase(fetchSelectedExercises.fulfilled, (state, action) => {
-                state.selectedExercises = action.payload;
+                state.exercises__selected = action.payload;
                 state.loading = false;
                 state.error = null;
             })
@@ -59,7 +44,6 @@ export const exercisesSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-
     },
 });
 

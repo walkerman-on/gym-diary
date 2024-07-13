@@ -1,1 +1,1 @@
-export {AddExercisePage} from "./ui/AddExercisePage";
+export { AddExercisePage } from "./ui/AddExercisePage";

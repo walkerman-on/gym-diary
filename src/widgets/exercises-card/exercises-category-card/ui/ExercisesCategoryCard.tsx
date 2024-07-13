@@ -3,6 +3,8 @@ import React from 'react';
 import cl from "./ExercisesCategoryCard.module.scss"
 
 export const ExercisesCategoryCard = () => {
+
+
     return (
         <section className={cl.categories}>
             <ExercisesFromCategory />
