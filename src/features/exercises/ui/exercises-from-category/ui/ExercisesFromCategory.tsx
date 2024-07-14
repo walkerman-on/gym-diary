@@ -7,7 +7,7 @@ import PeopleIcon from "shared/assets/img/people.svg"
 import { useAuth } from 'features/auth/hooks/useAuth';
 import { toggleExerciseSelected } from 'features/categories/model/slice/categoriesSlice';
 import { selectExerciseById } from 'features/exercises/api/selectExerciseById';
-import { IExercise } from 'features/categories';
+import { ExerciseCreateForm } from 'widgets/exercise-form/exercise-create-form';
 
 interface IExercisesFromCategory {
     exercises__all?: boolean,
@@ -15,15 +15,11 @@ interface IExercisesFromCategory {
 
 export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__all }) => {
     const category = useAppSelector(state => state.categories?.category__current);
-
     const { exercise__search } = useAppSelector(state => state?.exercises)
-
     const exercises = exercises__all ? exercise__search : category?.exercises
-
     const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
     const { user } = useAuth();
     const dispatch = useAppDispatch();
-
 
     const selectExercise = (id: string) => {
         setSelectedExerciseIds(prevIds => {
@@ -39,21 +35,27 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
 
     // Проверка наличия данных перед рендерингом
     if (!exercises) {
-        return (<div className={cl.warning}>
-            <div style={{ width: "320px" }}>
-                <PeopleIcon />
+        return (
+            <div className={cl.warning}>
+                <div style={{ width: "320px" }}>
+                    <PeopleIcon />
+                </div>
+                <h1 className={cl.warning__title}>выбери категорию</h1>
             </div>
-            <h1 className={cl.warning__title}>выбери категорию</h1>
-        </div>)
+        );
     }
 
     return (
-        <ul className={cl.exercises__group}>
-            <ExerciseFromCategory
-                exercises={exercises}
-                selectExercise={selectExercise}
-                selectExerciseId={selectedExerciseIds}
-            />
-        </ul>
+        <>
+            <ExerciseCreateForm />
+
+            <ul className={cl.exercises__group}>
+                <ExerciseFromCategory
+                    exercises={exercises}
+                    selectExercise={selectExercise}
+                    selectExerciseId={selectedExerciseIds}
+                />
+            </ul>
+        </>
     );
 };

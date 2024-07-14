@@ -1,3 +1,5 @@
+import { IExercise } from "features/exercises";
+
 export interface IExerciseCategory {
     id: string,
     imageDarkURL: string,
@@ -13,11 +15,5 @@ export interface IExercisesCategoryState {
     category__current: IExerciseCategory | null,
 }
 
-export interface IExercise {
-    id: string,
-    name: string,
-    categoryId: string,
-    selected: boolean
-}
 
 

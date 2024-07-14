@@ -5,6 +5,9 @@ import cl from "./CreateExercisePage.module.scss"
 import ArrowLeftIcon from 'shared/assets/icons/ArrowLeftIcon';
 import { useNavigate } from 'react-router-dom';
 import { getAddExercise } from 'app/providers/router';
+import { ExerciseSearchForm } from 'widgets/exercise-form/exercise-search-form';
+import { Layout } from 'pages/layout';
+import { ExercisesCard } from 'widgets/exercises-card/exercises-card';
 
 export const CreateExercisePage = () => {
 
@@ -16,13 +19,15 @@ export const CreateExercisePage = () => {
     };
 
     return (
-        <main className={classNames("app", cl.CreateExercisePage, {}, [theme])}>
-            <div className={cl.chooseBlock}>
+        <Layout>
+            {/* <div className={cl.chooseBlock}>
                 <h2 className={cl.subTitle}>Новое упражнение</h2>
                 <h1 className={cl.title}>Выбери категорию</h1>
-            </div>
+            </div> */}
+            <ExerciseSearchForm />
+            <ExercisesCard />
             <div className={cl.footer}>
                 <ArrowLeftIcon onClick={handleOnClick} />
             </div>
-        </main>);
+        </Layout>)
 };

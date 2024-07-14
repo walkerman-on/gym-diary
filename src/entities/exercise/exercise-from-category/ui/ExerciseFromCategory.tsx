@@ -14,7 +14,7 @@ export const ExerciseFromCategory: FC<IExerciseProps> = ({ exercises, selectExer
     return (
         <>
             {exercises.length > 0 ? (
-                exercises.map((item) => (
+                exercises?.map((item) => (
                     <li
                         className={cl.exercise__item}
                         key={item.id}
