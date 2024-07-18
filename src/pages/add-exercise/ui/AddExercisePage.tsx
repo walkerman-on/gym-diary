@@ -7,7 +7,7 @@ import { Footer } from "widgets/footer";
 import { ExercisesCard } from "widgets/exercises-card/exercises-card";
 import { Layout } from "pages/layout";
 
-export const AddExercisePage = () => {
+const AddExercisePage = () => {
     const { theme } = useTheme();
 
     return (
@@ -19,5 +19,7 @@ export const AddExercisePage = () => {
         </Layout>
     );
 };
+
+export default AddExercisePage
 
 

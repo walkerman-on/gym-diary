@@ -9,6 +9,8 @@ import { Category } from 'entities/category';
 import { useAuth } from 'features/auth/hooks/useAuth';
 import { fetchCategoryCurrent } from 'features/categories/api/fetchCategoryCurrent';
 import { fetchCategories } from 'features/categories/api/fetchCategories';
+import { getCategory } from 'app/providers/router';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface IExercisesCategory { }
 
@@ -24,11 +26,19 @@ export const Categories: FC<IExercisesCategory> = () => {
     // const categoryURL: string[] = theme === Theme.LIGHT ? categories?.map(item => item?.imageDarkURL) : categories?.map(item => item?.imageLightURL);
 
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+    const navigate = useNavigate()
+
+    const { categoryId } = useParams()
+
+    useEffect(() => {
+        dispatch(fetchCategoryCurrent({ categoryId, userId: user?.id }));
+    }, [categoryId])
 
     const handleClick = (categoryId: string) => {
         setSelectedCategoryId(categoryId);
-        dispatch(fetchCategoryCurrent({ categoryId, userId: user?.id }));
+        navigate(getCategory(categoryId))
     };
+
 
     const swipeHandlers = useSwipeable({
         onSwipedLeft: () => console.log("Swiped left"),
@@ -38,11 +48,10 @@ export const Categories: FC<IExercisesCategory> = () => {
     return (
         <>
             {
-                loading ? <h1>Загрузка категорий...</h1>
-                    :
-                    <ul {...swipeHandlers} className={cl.category__list}>
-                        <Category categories={categories} handleClick={handleClick} selectedCategoryId={selectedCategoryId} />
-                    </ul>
+
+                <ul {...swipeHandlers} className={cl.category__list}>
+                    <Category categories={categories} handleClick={handleClick} selectedCategoryId={categoryId} />
+                </ul>
             }
         </>
     );

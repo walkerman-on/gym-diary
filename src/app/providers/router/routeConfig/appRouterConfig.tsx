@@ -5,14 +5,16 @@ import { RegisterPage } from 'pages/register';
 import { TrainingPage } from 'pages/training';
 import { NotFoundPage } from 'pages/not-found';
 import { AddExercisePage } from 'pages/add-exercise';
-import { CreateExercisePage } from 'pages/create-exercise';
+import { CategoryExercisePage } from 'pages/category-exercise';
+import { ExercisesCard } from "widgets/exercises-card/exercises-card";
 
 export enum AppRoutes {
   LOGIN = 'login',
   REGISTER = 'register',
   TRAINING = 'training',
   ADD_EXERCISE = 'add_exercise',
-  CREATE_EXERCISE = 'create_exercise',
+  ADD_EXERCISE_CATEGORY = 'add_exercise_category',
+  // CREATE_EXERCISE = 'create_exercise',
   NOT_FOUND = 'not_found'
 }
 
@@ -20,8 +22,9 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.LOGIN]: getLogin(),
   [AppRoutes.REGISTER]: getRegister(),
   [AppRoutes.TRAINING]: getTraining(),
-  [AppRoutes.ADD_EXERCISE]: getAddExercise(),
-  [AppRoutes.CREATE_EXERCISE]: getCreateExercise(),
+  [AppRoutes.ADD_EXERCISE]: `/add-exercise`,
+  [AppRoutes.ADD_EXERCISE_CATEGORY]: `/add-exercise/category/:categoryId`,
+  // [AppRoutes.CREATE_EXERCISE]: getCreateExercise(),
   [AppRoutes.NOT_FOUND]: getNotFound(),
 };
 
@@ -42,9 +45,14 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: RoutePath.add_exercise,
     element: <AddExercisePage />,
   },
-  [AppRoutes.CREATE_EXERCISE]: {
-    path: RoutePath.create_exercise,
-    element: <CreateExercisePage />,
+  // [AppRoutes.CREATE_EXERCISE]: {
+  //   path: RoutePath.create_exercise,
+  //   element: <CreateExercisePage />,
+  // },
+
+  [AppRoutes.ADD_EXERCISE_CATEGORY]: {
+    path: RoutePath.add_exercise_category,
+    element: < CategoryExercisePage />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,

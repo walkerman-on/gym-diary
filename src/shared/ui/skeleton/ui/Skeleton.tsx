@@ -6,8 +6,10 @@ const SkeletonF: FC<ISkeletonProps> = (props) => {
   return (
     <MUISkeleton height={props.height} width={props.width}
       sx={{
+        background: "var(--color-primary-400)",
         padding: '0',
-        margin: "0"
+        margin: "0",
+        borderRadius: "12px"
       }} />
   );
 };

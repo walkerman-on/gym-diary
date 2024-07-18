@@ -4,7 +4,7 @@ import { AppRoutesProps } from '../routeConfig/types';
 
 const AppRouter = (config: Record<any, AppRoutesProps>) => {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<p style={{ color: "red", fontSize: "30px" }}>Loading...</p>}>
       <Routes>
         {Object.values(config).map(({ element, path, authOnly }) => (
           <Route

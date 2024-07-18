@@ -1,5 +1,32 @@
 .menu {
     display: flex;
-    flex-direction: column;
-    gap: 15px
+    gap: 5px;
+}
+
+.additional__button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    align-items: flex-end;
+    background: var(--color-primary-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.element {
+    opacity: 1;
+    width: 100%;
+    /* или любая другая начальная ширина */
+    transition: opacity 0.3s ease, width 0.3s ease;
+    /* плавная анимация для opacity и width */
+}
+
+.element.hidden {
+    opacity: 0;
+    width: 0;
+    /* ширина элемента становится 0 при скрытии */
+    pointer-events: none;
+    /* отключаем события мыши */
 }

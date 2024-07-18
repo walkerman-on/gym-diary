@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTheme } from 'app/providers/ThemeProvider';
-import cl from "./CreateExercisePage.module.scss"
+import cl from "./CategoryExercisePage.module.scss"
 import ArrowLeftIcon from 'shared/assets/icons/ArrowLeftIcon';
 import { useNavigate } from 'react-router-dom';
-import { getAddExercise } from 'app/providers/router';
+import { getAddExercise, getTraining } from 'app/providers/router';
 import { ExerciseSearchForm } from 'widgets/exercise-form/exercise-search-form';
 import { Layout } from 'pages/layout';
 import { ExercisesCard } from 'widgets/exercises-card/exercises-card';
+import { Footer } from 'widgets/footer';
 
-export const CreateExercisePage = () => {
+const CategoryExercisePage = () => {
 
     const { theme } = useTheme();
     const navigate = useNavigate();
 
     const handleOnClick = () => {
-        navigate(getAddExercise());
+        // navigate(getAddExercise());
     };
 
     return (
         <Layout>
-            {/* <div className={cl.chooseBlock}>
-                <h2 className={cl.subTitle}>Новое упражнение</h2>
-                <h1 className={cl.title}>Выбери категорию</h1>
-            </div> */}
-            <ExerciseSearchForm />
+            {/* <ExerciseSearchForm />
             <ExercisesCard />
             <div className={cl.footer}>
                 <ArrowLeftIcon onClick={handleOnClick} />
-            </div>
+            </div> */}
+            <ExerciseSearchForm />
+            <ExercisesCard />
+            <Footer link={getTraining()} text="Добавить в тренировку" />
         </Layout>)
 };
+
+export default CategoryExercisePage
