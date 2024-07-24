@@ -1,0 +1,1 @@
+export { fetchDateCurrent } from "./api/fetchDateCurrent"

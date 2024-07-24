@@ -15,10 +15,10 @@ export const Footer: FC<IFooter> = ({ link, text }) => {
     };
 
     return (
-        <div className={cl.footer}>
+        <footer className={cl.footer}>
             <Button height="60px" radius="15px" onClick={addMoreBtnHandler}>
                 {text}
             </Button>
-        </div>
+        </footer>
     );
 };

@@ -1,11 +1,10 @@
 .menu {
     display: flex;
-    gap: 5px;
+    gap: 10px;
+    justify-content: flex-end;
 }
 
 .additional__button {
-    height: 50px;
-    width: 50px;
     border-radius: 50%;
     align-items: flex-end;
     background: var(--color-primary-400);
@@ -17,7 +16,8 @@
 
 .element {
     opacity: 1;
-    width: 100%;
+    // width: 100%;
+    flex-grow: 1;
     /* или любая другая начальная ширина */
     transition: opacity 0.3s ease, width 0.3s ease;
     /* плавная анимация для opacity и width */

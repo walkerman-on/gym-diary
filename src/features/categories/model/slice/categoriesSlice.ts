@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchCategories } from "../../api/fetchCategories";
 import { IExercisesCategoryState } from "../../types/types"
 import { fetchCategoryCurrent } from "../../api/fetchCategoryCurrent";
+import { createExercise } from "features/exercises";
 
 const initialState: IExercisesCategoryState = {
     categories: [],
@@ -50,6 +51,21 @@ export const categoriesSlice = createSlice({
             .addCase(fetchCategoryCurrent.rejected, (state, action) => {
                 state.loading = false
                 state.error = action.payload
+            })
+
+            .addCase(createExercise.fulfilled, (state, action) => {
+                console.log("action.payload", action.payload)
+                state.category__current.exercises = [...state.category__current.exercises, action.payload]
+                state.loading = false
+                state.error = null
+            })
+            .addCase(createExercise.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(createExercise.rejected, (state, action) => {
+                state.loading = false
+                // state.error = action.payload
             })
     }
 })

@@ -7,10 +7,12 @@ import cl from "./CalendarExpanded.module.scss";
 import classNames from 'classnames';
 import { useSpring, animated } from '@react-spring/web';
 import { useSwipeable } from 'react-swipeable';
+import { fetchDateCurrent } from 'features/calendar';
+import { ICalendar } from '../../../types/types';
 
 dayjs.locale('ru');
 
-export const CalendarExpanded: React.FC = () => {
+export const CalendarExpanded: React.FC<ICalendar> = ({ userId }) => {
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
   const [selectedDateKey, setSelectedDateKey] = useState<string>(selectedDate.format('YYYY-MM-DD'));
   const today = dayjs();
@@ -27,6 +29,7 @@ export const CalendarExpanded: React.FC = () => {
   const handleDateChange = (dateKey: string) => {
     setSelectedDate(dayjs(dateKey));
     setSelectedDateKey(dateKey);
+    fetchDateCurrent({ userId: userId, date__current: dateKey })
     console.log(dateKey)
   };
 

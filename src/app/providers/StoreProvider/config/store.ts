@@ -3,7 +3,7 @@ import { userReducer } from 'features/auth/index';
 import { UserState } from 'features/auth';
 import { categoriesReducer } from 'features/categories';
 import { exercisesReducer } from 'features/exercises';
-
+import { workoutReducer } from 'features/workout';
 
 // Функция для загрузки состояния из localStorage
 const loadState = (): UserState | undefined => {
@@ -44,7 +44,9 @@ const preloadedState = {
 const rootReducer = combineReducers({
   user: userReducer,
   categories: categoriesReducer,
-  exercises: exercisesReducer
+  exercises: exercisesReducer,
+  workout: workoutReducer
+
 });
 
 export const store = configureStore({

@@ -6,15 +6,18 @@ import 'dayjs/locale/ru';
 import cl from "./CalendarСollapsed.module.scss"
 import classNames from 'classnames';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
+import { fetchDateCurrent } from 'features/calendar';
+import { ICalendar } from '../../../types/types';
 
 dayjs.locale('ru');
 
-export const CalendarСollapsed: React.FC = () => {
+export const CalendarСollapsed: React.FC<ICalendar> = ({ userId }) => {
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
   const today = dayjs();
 
   const handleDateChange = (date: Dayjs | null) => {
     setSelectedDate(date);
+    fetchDateCurrent({ userId: userId, date__current: date?.format('YYYY-MM-DD') })
     console.log(date?.format('YYYY-MM-DD'));
   };
 

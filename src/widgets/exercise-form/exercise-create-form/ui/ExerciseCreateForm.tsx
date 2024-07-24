@@ -5,8 +5,9 @@ import { useAuth } from 'features/auth/hooks/useAuth';
 import classNames from 'classnames';
 import MoreIcon from 'shared/assets/icons/MoreIcon';
 import AddIcon from 'shared/assets/icons/AddIcon';
-import { createExercise } from 'shared/helper/createExercise';
 import { useParams } from 'react-router-dom';
+import { createExercise } from 'features/exercises';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const ExerciseCreateForm = () => {
     const { user } = useAuth();
@@ -18,10 +19,11 @@ export const ExerciseCreateForm = () => {
     };
 
     const { categoryId } = useParams()
+    const dispatch = useAppDispatch()
 
     const createExerciseOnClick = async () => {
         setIsVisible(prev => !prev); // инвертируем состояние isVisible
-        createExercise(categoryId, { name: exerciseName, userId: user.id });
+        dispatch(createExercise({ exercisesCategoryID: categoryId, exerciseData: { name: exerciseName, userId: user.id } }));
         setExerciseName('');
     };
 
@@ -41,14 +43,10 @@ export const ExerciseCreateForm = () => {
             </div>
             {
                 isVisible ?
-                    <div className={cl.additional__button} onClick={createExerciseOnClick}>
-                        <AddIcon />
-                    </div>
+                    <AddIcon onClick={createExerciseOnClick} />
 
                     :
-                    <div className={cl.additional__button} onClick={openFormClick}>
-                        <MoreIcon />
-                    </div>
+                    <MoreIcon onClick={openFormClick} />
 
             }
         </section>

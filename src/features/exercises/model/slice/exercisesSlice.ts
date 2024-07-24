@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IExercisesCategoryState } from '../../types/types';
 import { findExerciseByName } from '../../api/findExerciseByName';
 import { fetchSelectedExercises } from 'features/exercises/api/fetchSelectedExercises';
+import { createExercise } from 'features/exercises/api/createExercise';
 
 const initialState: IExercisesCategoryState = {
     error: null,

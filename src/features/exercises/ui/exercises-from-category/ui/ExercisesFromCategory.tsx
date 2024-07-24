@@ -41,7 +41,7 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
     console.log("category", category?.exercises)
     if (!category) {
         return (
-            <Skeleton height={150} />
+            null
         );
     }
 
