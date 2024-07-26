@@ -9,7 +9,7 @@ interface CreateExerciseArgs {
     exerciseData: { name: string; userId: string };
 }
 
-export const createExercise = createAsyncThunk(
+export const createExerciseByCategoryId = createAsyncThunk(
     'exercises/createExercise',
     async ({ exercisesCategoryID, exerciseData }: CreateExerciseArgs, { rejectWithValue }) => {
         try {
@@ -41,9 +41,8 @@ export const createExercise = createAsyncThunk(
 
             return exerciseDataToSave; // Возвращаем созданные данные упражнения
 
-        } catch (error) {
-            console.error('Error adding exercise: ', error);
-            throw new Error(`Failed to create exercise: ${error.message}`);
+        } catch (error: any) {
+            return rejectWithValue(error.message);
         }
     }
 );

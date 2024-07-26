@@ -3,14 +3,16 @@ import cl from './ExerciseFromCategory.module.scss';
 import classNames from 'classnames';
 import CheckIcon from 'shared/assets/icons/CheckIcon';
 import { IExercise } from 'features/exercises';
+import TrashIcon from 'shared/assets/icons/TrashIcon';
 
 interface IExerciseProps {
     exercises: IExercise[],
     selectExerciseId: string[],
     selectExercise: (id: string) => void,
+    value: boolean
 }
 
-export const ExerciseFromCategory: FC<IExerciseProps> = ({ exercises, selectExercise, selectExerciseId }) => {
+export const ExerciseFromCategory: FC<IExerciseProps> = ({ exercises, selectExercise, selectExerciseId, value }) => {
     return (
         <>
             {exercises.length > 0 ? (
@@ -27,7 +29,13 @@ export const ExerciseFromCategory: FC<IExerciseProps> = ({ exercises, selectExer
                         >
                             {item.name}
                         </span>
-                        {item.selected && <CheckIcon />}
+                        {
+                            value ? item && <TrashIcon color='var(--color-primary-400)' /> : item.selected && <CheckIcon />
+                        }
+                        {/* <div className={cl.shake}>
+
+                            <TrashIcon color='var(--color-error)' />
+                        </div> */}
                     </li>
                 ))
             ) : (

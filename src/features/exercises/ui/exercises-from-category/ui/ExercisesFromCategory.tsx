@@ -10,6 +10,7 @@ import { selectExerciseById } from 'features/exercises/api/selectExerciseById';
 import { ExerciseCreateForm } from 'widgets/exercise-form/exercise-create-form';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from 'shared/ui/skeleton';
+import { deleteExerciseById } from 'features/exercises';
 
 interface IExercisesFromCategory {
     exercises__all?: boolean,
@@ -22,10 +23,16 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
     const { user } = useAuth();
     const dispatch = useAppDispatch();
 
+    const [deleteState, setDeleteState] = useState<boolean>(false)
+    const valueOnChange = (value: boolean) => {
+        setDeleteState(value)
+    }
+    console.log({ deleteState })
+
+
     const { loading } = useAppSelector(state => state?.categories)
 
     const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
-
 
     const selectExercise = (id: string) => {
         setSelectedExerciseIds(prevIds => {
@@ -35,10 +42,16 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
                 return [...prevIds, id];
             }
         });
-        dispatch(toggleExerciseSelected(id)); // Local state update
-        dispatch(selectExerciseById({ userId: user?.id, exerciseId: id })); // Sync with Firebase
+        if (deleteState) {
+            dispatch(deleteExerciseById({ userId: user?.id, exerciseId: id })); // Sync with Firebase
+
+        } else {
+            dispatch(toggleExerciseSelected(id)); // Local state update
+            dispatch(selectExerciseById({ userId: user?.id, exerciseId: id })); // Sync with Firebase
+        }
+
     };
-    console.log("category", category?.exercises)
+
     if (!category) {
         return (
             null
@@ -60,12 +73,13 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
 
     return (
         <>
-            <ExerciseCreateForm />
+            <ExerciseCreateForm onValueChange={valueOnChange} />
             <ul className={cl.exercises__group}>
                 <ExerciseFromCategory
                     exercises={exercises}
                     selectExercise={selectExercise}
                     selectExerciseId={selectedExerciseIds}
+                    value={deleteState}
                 />
             </ul>
         </>

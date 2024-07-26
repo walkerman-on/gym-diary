@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IExercisesCategoryState } from '../../types/types';
 import { findExerciseByName } from '../../api/findExerciseByName';
 import { fetchSelectedExercises } from 'features/exercises/api/fetchSelectedExercises';
-import { createExercise } from 'features/exercises/api/createExercise';
+import { deleteExerciseById } from 'features/exercises/api/deleteExerciseById';
 
 const initialState: IExercisesCategoryState = {
     error: null,
@@ -45,6 +45,8 @@ export const exercisesSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
+
+
     },
 });
 

@@ -4,11 +4,11 @@ import { routeConfig } from './providers/router/routeConfig/appRouterConfig';
 import AppRouter from './providers/router/ui/AppRouter';
 
 const App = () => {
-    return (
-       <>
+  return (
+    <>
       {AppRouter(routeConfig)}
     </>
-    );
+  );
 };
 
 export default App;
