@@ -32,14 +32,10 @@ export const ExerciseFromCategory: FC<IExerciseProps> = ({ exercises, selectExer
                         {
                             value ? item && <TrashIcon color='var(--color-primary-400)' /> : item.selected && <CheckIcon />
                         }
-                        {/* <div className={cl.shake}>
-
-                            <TrashIcon color='var(--color-error)' />
-                        </div> */}
                     </li>
                 ))
             ) : (
-                <h1>Упражнение не найдено, добавьте его</h1>
+                <h1>Упражнений пока нет, добавьте их</h1>
             )}
         </>
     );

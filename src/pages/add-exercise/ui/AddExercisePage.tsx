@@ -13,7 +13,6 @@ const AddExercisePage = () => {
     return (
         <Layout>
             <ExerciseSearchForm />
-            {/* вместо  <ExercisesCard /> сделать страницу категорий*/}
             <ExercisesCard />
             <Footer link={getTraining()} text="Добавить в тренировку" />
         </Layout>

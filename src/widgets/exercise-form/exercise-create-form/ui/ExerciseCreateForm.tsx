@@ -8,6 +8,7 @@ import AddIcon from 'shared/assets/icons/AddIcon';
 import { useParams } from 'react-router-dom';
 import { createExerciseByCategoryId } from 'features/exercises';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import CloseIcon from 'shared/assets/icons/CloseIcon';
 
 interface IExerciseCreateForm {
     onValueChange: (value: boolean) => void;
@@ -49,7 +50,7 @@ export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) =
             </div>
             {
                 isVisible ?
-                    <AddIcon onClick={createExerciseOnClick} />
+                    exerciseName === "" ? <CloseIcon onClick={openFormClick} /> : < AddIcon onClick={createExerciseOnClick} />
                     :
                     <MoreIcon onClick={openFormClick} />
             }

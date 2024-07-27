@@ -27,8 +27,6 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
     const valueOnChange = (value: boolean) => {
         setDeleteState(value)
     }
-    console.log({ deleteState })
-
 
     const { loading } = useAppSelector(state => state?.categories)
 
