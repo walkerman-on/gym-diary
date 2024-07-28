@@ -15,7 +15,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 interface IExercisesCategory { }
 
 export const Categories: FC<IExercisesCategory> = () => {
-    const { user } = useAuth()
 
     const dispatch = useAppDispatch()
     useEffect(() => {
@@ -31,7 +30,9 @@ export const Categories: FC<IExercisesCategory> = () => {
     const { categoryId } = useParams()
 
     useEffect(() => {
-        dispatch(fetchCategoryCurrent({ categoryId, userId: user?.id }));
+        if (categoryId) {
+            dispatch(fetchCategoryCurrent({ categoryID: categoryId }));
+        }
     }, [categoryId])
 
     const handleClick = (categoryId: string) => {

@@ -15,7 +15,6 @@ interface IExerciseCreateForm {
 }
 
 export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) => {
-    const { user } = useAuth();
     const [exerciseName, setExerciseName] = useState<string>("");
     const [isVisible, setIsVisible] = useState(false);
 
@@ -27,7 +26,7 @@ export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) =
     const dispatch = useAppDispatch();
 
     const createExerciseOnClick = () => {
-        dispatch(createExerciseByCategoryId({ exercisesCategoryID: categoryId, exerciseData: { name: exerciseName, userId: user.id } }));
+        dispatch(createExerciseByCategoryId({ categoryID: categoryId, exerciseName: exerciseName }));
         setExerciseName('');
         setIsVisible(false); // скрываем форму после создания упражнения
         onValueChange(false); // уведомляем родителя о изменении состояния

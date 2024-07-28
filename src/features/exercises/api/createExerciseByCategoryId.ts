@@ -1,45 +1,49 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import uniqid from 'uniqid';
 import { db, setDoc, doc, collection, query, where, getDocs } from '../../../shared/services/firebase/firebase';
 import { IExercise } from 'features/exercises';
-
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from "app/providers/StoreProvider"; // Adjust the import according to your setup
 
 interface CreateExerciseArgs {
-    exercisesCategoryID: string;
-    exerciseData: { name: string; userId: string };
+    categoryID: string;
+    exerciseName: string;
 }
 
 export const createExerciseByCategoryId = createAsyncThunk(
     'exercises/createExercise',
-    async ({ exercisesCategoryID, exerciseData }: CreateExerciseArgs, { rejectWithValue }) => {
+    async ({ categoryID, exerciseName }: CreateExerciseArgs, { rejectWithValue, getState }) => {
         try {
-            // Создаем ссылку на коллекцию упражнений для указанного пользователя
-            const exercisesCollectionRef = collection(db, `users/${exerciseData.userId}/exercises`);
+            const state = getState() as RootState;
+            const userId = state.user.user?.id; // Adjust according to your state shape
 
-            // Формируем запрос для проверки наличия упражнения с заданным именем
-            const exerciseQuery = query(exercisesCollectionRef, where('name', '==', exerciseData.name));
-            const querySnapshot = await getDocs(exerciseQuery);
-
-            // Проверяем, есть ли упражнение с заданным именем
-            if (!querySnapshot.empty) {
-                console.log(`Упражнение с именем '${exerciseData.name}' уже существует`);
-                return rejectWithValue(`Exercise with name '${exerciseData.name}' already exists`);
+            if (!userId) {
+                return rejectWithValue('User not authenticated');
             }
 
-            // Создаем новый документ упражнения с уникальным идентификатором
-            const exerciseID = uniqid(); // Предположим, что у вас есть функция для генерации уникального ID
+
+            const exercisesCollectionRef = collection(db, `users/${userId}/exercises`);
+
+            const exerciseQuery = query(exercisesCollectionRef, where('name', '==', exerciseName));
+            const querySnapshot = await getDocs(exerciseQuery);
+
+            if (!querySnapshot.empty) {
+                console.log(`Exercise with name '${exerciseName}' already exists`);
+                return rejectWithValue(`Exercise with name '${exerciseName}' already exists`);
+            }
+
+            const exerciseID = uniqid();
             const exerciseDocRef = doc(exercisesCollectionRef, exerciseID);
 
             const exerciseDataToSave = {
-                name: exerciseData.name,
+                name: exerciseName.toLowerCase(),
                 id: exerciseID,
-                categoryId: exercisesCategoryID,
+                categoryId: categoryID,
                 selected: false
             } as IExercise;
 
             await setDoc(exerciseDocRef, exerciseDataToSave);
 
-            return exerciseDataToSave; // Возвращаем созданные данные упражнения
+            return exerciseDataToSave;
 
         } catch (error: any) {
             return rejectWithValue(error.message);

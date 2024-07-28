@@ -14,21 +14,20 @@ import { deleteExerciseById } from 'features/exercises';
 
 interface IExercisesFromCategory {
     exercises__all?: boolean,
+    categoryId: string
 }
 
-export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__all }) => {
+export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__all, categoryId }) => {
+
     const category = useAppSelector(state => state.categories?.category__current);
-    const { exercise__search, loading: exerciseLoading } = useAppSelector(state => state?.exercises);
-    const { categoryId } = useParams<{ categoryId: string }>();
-    const { user } = useAuth();
+
+    const { exercise__search } = useAppSelector(state => state?.exercises);
     const dispatch = useAppDispatch();
 
     const [deleteState, setDeleteState] = useState<boolean>(false)
     const valueOnChange = (value: boolean) => {
         setDeleteState(value)
     }
-
-    const { loading } = useAppSelector(state => state?.categories)
 
     const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
 
@@ -41,31 +40,20 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
             }
         });
         if (deleteState) {
-            dispatch(deleteExerciseById({ userId: user?.id, exerciseId: id })); // Sync with Firebase
+            dispatch(deleteExerciseById({ exerciseID: id })); // Sync with Firebase
 
         } else {
             dispatch(toggleExerciseSelected(id)); // Local state update
-            dispatch(selectExerciseById({ userId: user?.id, exerciseId: id })); // Sync with Firebase
+            dispatch(selectExerciseById({ exerciseID: id })); // Sync with Firebase
         }
 
     };
 
-    if (!category) {
+    if (!categoryId) {
         return (
-            null
+            <h1>категория не выбрана</h1>
         );
     }
-
-    // if (!category) {
-    //     return (
-    //         <div className={cl.warning}>
-    //             <div style={{ width: "320px" }}>
-    //                 {/* <PeopleIcon /> */}
-    //             </div>
-    //             <h1 className={cl.warning__title}>Выберите категорию</h1>
-    //         </div>
-    //     );
-    // }
 
     const exercises = exercises__all ? exercise__search : category?.exercises;
 

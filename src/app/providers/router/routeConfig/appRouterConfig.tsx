@@ -5,7 +5,6 @@ import { RegisterPage } from 'pages/register';
 import { TrainingPage } from 'pages/training';
 import { NotFoundPage } from 'pages/not-found';
 import { AddExercisePage } from 'pages/add-exercise';
-import { CategoryExercisePage } from 'pages/category-exercise';
 import { ExercisesCard } from "widgets/exercises-card/exercises-card";
 
 export enum AppRoutes {
@@ -45,14 +44,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: RoutePath.add_exercise,
     element: <AddExercisePage />,
   },
-  // [AppRoutes.CREATE_EXERCISE]: {
-  //   path: RoutePath.create_exercise,
-  //   element: <CreateExercisePage />,
-  // },
-
   [AppRoutes.ADD_EXERCISE_CATEGORY]: {
     path: RoutePath.add_exercise_category,
-    element: < CategoryExercisePage />,
+    element: <AddExercisePage />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,

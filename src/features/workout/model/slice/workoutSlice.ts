@@ -34,7 +34,7 @@ export const workoutSlice = createSlice({
 
             .addCase(fetchSelectedExercises.fulfilled, (state, action) => {
                 console.log('Payload:', action.payload);
-                state.workout__current.exercises = action.payload;
+                // state.workout__current.exercises = action.payload;
                 state.loading = false;
                 state.error = null;
             })
