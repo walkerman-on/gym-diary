@@ -13,12 +13,12 @@ import { User } from 'features/auth';
 interface IExerciseSearchForm {
 }
 
-export const ExerciseSearchForm: FC<IExerciseSearchForm> = () => {
+export const ExerciseSearchForm: FC<IExerciseSearchForm> = React.memo(() => {
     const [exerciseName, setExerciseName] = useState<string>("")
 
     const dispatch = useAppDispatch()
 
-    const findExerciseOnChange = (e: any) => {
+    const findExerciseOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setExerciseName(e.target.value)
         dispatch(findExerciseByName({ exerciseName: e.target.value }))
     }
@@ -29,8 +29,8 @@ export const ExerciseSearchForm: FC<IExerciseSearchForm> = () => {
                 placeholder="Искать"
                 height='50px'
                 value={exerciseName}
-                onChange={(e) => findExerciseOnChange(e)}
+                onChange={findExerciseOnChange}
             />
         </section>
     );
-};
+});

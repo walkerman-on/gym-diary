@@ -15,7 +15,7 @@ interface IExerciseProps {
 export const ExerciseFromCategory: FC<IExerciseProps> = ({ exercises, selectExercise, selectExerciseId, value }) => {
     return (
         <>
-            {exercises ? (
+            {exercises?.length > 0 ? (
                 exercises?.map((item) => (
                     <li
                         className={cl.exercise__item}

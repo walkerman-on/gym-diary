@@ -9,7 +9,7 @@ interface IFooter {
     text: string
 }
 
-export const Footer: FC<IFooter> = ({ link, text }) => {
+export const Footer: FC<IFooter> = React.memo(({ link, text }) => {
     const navigate = useNavigate();
     const addMoreBtnHandler = () => {
         navigate(link);
@@ -23,4 +23,4 @@ export const Footer: FC<IFooter> = ({ link, text }) => {
             </Button>
         </footer>
     );
-};
+})

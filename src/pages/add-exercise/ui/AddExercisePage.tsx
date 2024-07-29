@@ -10,10 +10,11 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "features/auth/hooks/useAuth";
 import { Navigate } from 'react-router-dom';
 import { getLogin } from 'app/providers/router';
+import React from "react";
+
 
 const AddExercisePage = () => {
     const { isAuth } = useAuth()
-
     return isAuth ?
         (
             <Layout>

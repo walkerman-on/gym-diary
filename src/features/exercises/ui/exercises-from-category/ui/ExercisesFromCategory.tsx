@@ -51,7 +51,7 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
 
     if (!categoryId) {
         return (
-            <h1>категория не выбрана</h1>
+            null
         );
     }
 
@@ -61,12 +61,17 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
         <>
             <ExerciseCreateForm onValueChange={valueOnChange} />
             <ul className={cl.exercises__group}>
-                <ExerciseFromCategory
-                    exercises={exercises}
-                    selectExercise={selectExercise}
-                    selectExerciseId={selectedExerciseIds}
-                    value={deleteState}
-                />
+                {
+                    exercises ?
+                        <ExerciseFromCategory
+                            exercises={exercises}
+                            selectExercise={selectExercise}
+                            selectExerciseId={selectedExerciseIds}
+                            value={deleteState}
+                        />
+                        :
+                        <h1>Loading...</h1>
+                }
             </ul>
         </>
     );
