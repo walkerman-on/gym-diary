@@ -3,7 +3,7 @@ import { setUser } from '../model/slice/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { IUseSignUpReturn } from './types';
-import { getTraining } from 'app/providers/router/routeConfig/routes';
+import { getTraining } from 'app/providers/router/config/routes';
 
 export const useSignUp = (): IUseSignUpReturn => {
   const dispatch = useAppDispatch();

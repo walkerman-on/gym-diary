@@ -11,6 +11,7 @@ import { ExerciseCreateForm } from 'widgets/exercise-form/exercise-create-form';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from 'shared/ui/skeleton';
 import { deleteExerciseById } from 'features/exercises';
+import { Loader } from 'shared/ui/loader';
 
 interface IExercisesFromCategory {
     exercises__all?: boolean,
@@ -40,11 +41,11 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
             }
         });
         if (deleteState) {
-            dispatch(deleteExerciseById({ exerciseID: id })); // Sync with Firebase
+            dispatch(deleteExerciseById({ exerciseID: id }));
 
         } else {
-            dispatch(toggleExerciseSelected(id)); // Local state update
-            dispatch(selectExerciseById({ exerciseID: id })); // Sync with Firebase
+            dispatch(toggleExerciseSelected(id));
+            dispatch(selectExerciseById({ exerciseID: id }));
         }
 
     };
@@ -60,19 +61,19 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
     return (
         <>
             <ExerciseCreateForm onValueChange={valueOnChange} />
-            <ul className={cl.exercises__group}>
-                {
-                    exercises ?
+            {
+                exercises ?
+                    <ul className={cl.exercises__group}>
                         <ExerciseFromCategory
                             exercises={exercises}
                             selectExercise={selectExercise}
                             selectExerciseId={selectedExerciseIds}
                             value={deleteState}
                         />
-                        :
-                        <h1>Loading...</h1>
-                }
-            </ul>
+                    </ul>
+                    :
+                    <Loader />
+            }
         </>
     );
 };

@@ -1,2 +1,2 @@
-export * from "./routeConfig/routes"
+export * from "./config/routes"
 export * from "./ui/AppRouter"

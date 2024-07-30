@@ -10,7 +10,6 @@ const ButtonF: FC<IButtonProps> = (props) => {
         borderRadius: props.radius,
         color: 'var(--color-primary-white)',
         height: props.height,
-        // width: "100%",
         flexGrow: "1",
         padding: '0 30px',
       }}

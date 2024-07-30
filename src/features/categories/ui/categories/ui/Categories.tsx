@@ -2,8 +2,8 @@ import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import cl from "./Categories.module.scss"
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import { useTheme } from 'app/providers/ThemeProvider';
-import { Theme } from "app/providers/ThemeProvider/lib/ThemeContext"
+import { useTheme } from 'app/providers/theme-provider';
+import { Theme } from "app/providers/theme-provider/lib/ThemeContext"
 import { Category } from 'entities/category';
 import { fetchCategoryCurrent } from 'features/categories/api/fetchCategoryCurrent';
 import { fetchCategories } from 'features/categories/api/fetchCategories';

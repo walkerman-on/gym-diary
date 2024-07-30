@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import cl from "./ExerciseCreateForm.module.scss";
 import { Input } from 'shared/ui/input';
-import { useAuth } from 'features/auth/hooks/useAuth';
 import classNames from 'classnames';
 import MoreIcon from 'shared/assets/icons/MoreIcon';
 import AddIcon from 'shared/assets/icons/AddIcon';
@@ -28,13 +27,13 @@ export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) =
     const createExerciseOnClick = () => {
         dispatch(createExerciseByCategoryId({ categoryID: categoryId, exerciseName: exerciseName }));
         setExerciseName('');
-        setIsVisible(false); // скрываем форму после создания упражнения
-        onValueChange(false); // уведомляем родителя о изменении состояния
+        setIsVisible(false);
+        onValueChange(false);
     };
 
     const openFormClick = () => {
         setIsVisible(!isVisible);
-        onValueChange(!isVisible); // уведомляем родителя о изменении состояния
+        onValueChange(!isVisible);
     };
 
     return (

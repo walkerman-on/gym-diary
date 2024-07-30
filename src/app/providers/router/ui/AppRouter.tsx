@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Suspense } from 'react';
-import { AppRoutesProps } from '../routeConfig/types';
+import { AppRoutesProps } from '../config/types';
 
 const AppRouter = (config: Record<any, AppRoutesProps>) => {
   return (

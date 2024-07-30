@@ -1,14 +1,8 @@
 import React, { FC, useState } from 'react';
 import cl from "./ExerciseSearchForm.module.scss"
 import { Input } from 'shared/ui/input';
-import { getCreateExercise } from 'app/providers/router';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { findExerciseByName } from 'features/exercises/api/findExerciseByName';
-import { useAuth } from 'features/auth/hooks/useAuth';
-import { Link } from 'react-router-dom';
-import { Button } from 'shared/ui/button';
-import { User } from 'features/auth';
-
 
 interface IExerciseSearchForm {
 }

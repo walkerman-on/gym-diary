@@ -1,0 +1,1 @@
+export { createInitialStructure } from "./api/createInitialStructure"

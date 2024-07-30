@@ -11,7 +11,6 @@ const InputF: FC<IInputProps> = (props) => {
         height: props.height,
         color: 'var(--color-primary-800)',
         padding: '0 30px',
-        // textAlign: "center",
         width: "100%",
       }}
       disableUnderline={true}

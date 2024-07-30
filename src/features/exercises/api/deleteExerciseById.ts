@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { db, deleteDoc, doc, getDoc } from 'shared/services/firebase/firebase';
-import { IExercise } from '../types/types';
-import { RootState } from "app/providers/StoreProvider"; // Adjust the import according to your setup
+import { db, deleteDoc, doc, getDoc } from 'shared/services/firebase';
+import { RootState } from "app/providers/store-provider";
 
 
 interface DeleteExerciseArgs {
@@ -13,7 +12,7 @@ export const deleteExerciseById = createAsyncThunk(
     async ({ exerciseID }: DeleteExerciseArgs, { rejectWithValue, getState }) => {
         try {
             const state = getState() as RootState;
-            const userId = state.user.user?.id; // Adjust according to your state shape
+            const userId = state.user.user?.id;
 
             if (!userId) {
                 return rejectWithValue('User not authenticated');

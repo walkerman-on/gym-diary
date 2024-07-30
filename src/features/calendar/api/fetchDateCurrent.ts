@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { collection, getDocs } from "firebase/firestore";
-import { db, query, where } from "shared/services/firebase/firebase";
+import { db, query, where, collection, getDocs } from "shared/services/firebase";
 
 export const fetchDateCurrent = createAsyncThunk<any, { userId: string, date__current: string }, { rejectValue: string }>(
     "fetchDateCurrent",

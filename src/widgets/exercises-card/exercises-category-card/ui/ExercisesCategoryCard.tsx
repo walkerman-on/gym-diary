@@ -1,8 +1,6 @@
-// ExercisesCategoryCard.js
 import React from 'react';
 import cl from "./ExercisesCategoryCard.module.scss";
 import { ExercisesFromCategory } from 'features/exercises/ui/exercises-from-category';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import { useParams } from 'react-router-dom';
 
 interface ExercisesCategoryCardProps {

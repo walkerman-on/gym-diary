@@ -5,7 +5,7 @@ import { setUser } from '../model/slice/userSlice';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import { getUserSelector } from '../model/selectors/userSelector';
 import { useNavigate } from 'react-router-dom';
-import { getLogin } from 'app/providers/router/routeConfig/routes';
+import { getLogin } from 'app/providers/router/config/routes';
 import { User } from '../model/types/user';
 
 export interface IUseAuthReturn {

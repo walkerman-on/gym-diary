@@ -1,7 +1,7 @@
-import {Switch as MUISwitch} from '@mui/material';
+import { Switch as MUISwitch } from '@mui/material';
 import { ISwitchProps } from './IProps';
 import { FC, memo } from 'react';
-import { Theme, useTheme } from 'app/providers/ThemeProvider';
+import { Theme, useTheme } from 'app/providers/theme-provider';
 
 const SwitchF: FC<ISwitchProps> = (props: any) => {
   const { theme } = useTheme();
@@ -26,12 +26,12 @@ const SwitchF: FC<ISwitchProps> = (props: any) => {
             '& + .MuiSwitch-track': {
               opacity: 1,
               backgroundColor:
-              theme === Theme.DARK ? '#8796A5' : '#aab4be',
+                theme === Theme.DARK ? '#8796A5' : '#aab4be',
             },
           },
         },
         '& .MuiSwitch-thumb': {
-          backgroundColor: 
+          backgroundColor:
             theme === Theme.DARK ? '#003892' : 'var(--color-primary-800)',
           width: 32,
           height: 32,

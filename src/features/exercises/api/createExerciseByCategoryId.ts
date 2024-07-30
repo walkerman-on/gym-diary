@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import uniqid from 'uniqid';
-import { db, setDoc, doc, collection, query, where, getDocs } from '../../../shared/services/firebase/firebase';
+import { db, setDoc, doc, collection, query, where, getDocs } from 'shared/services/firebase';
 import { IExercise } from 'features/exercises';
-import { RootState } from "app/providers/StoreProvider"; // Adjust the import according to your setup
+import { RootState } from "app/providers/store-provider";
 
 interface CreateExerciseArgs {
     categoryID: string;

@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "shared/services/firebase/firebase";
+import { db, collection, getDocs } from "shared/services/firebase";
 import { IExerciseCategory } from "../types/types";
 
 export const fetchCategories = createAsyncThunk<IExerciseCategory[], void, { rejectValue: string }>(
