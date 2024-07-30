@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import cl from "./ExerciseCreateForm.module.scss";
 import { Input } from 'shared/ui/input';
-import { useAuth } from 'features/auth/hooks/useAuth';
 import classNames from 'classnames';
 import MoreIcon from 'shared/assets/icons/MoreIcon';
 import AddIcon from 'shared/assets/icons/AddIcon';
-import { createExercise } from 'shared/helper/createExercise';
 import { useParams } from 'react-router-dom';
+import { createExerciseByCategoryId } from 'features/exercises';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import CloseIcon from 'shared/assets/icons/CloseIcon';
 
-export const ExerciseCreateForm = () => {
-    const { user } = useAuth();
+interface IExerciseCreateForm {
+    onValueChange: (value: boolean) => void;
+}
+
+export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) => {
     const [exerciseName, setExerciseName] = useState<string>("");
     const [isVisible, setIsVisible] = useState(false);
 
@@ -17,17 +21,20 @@ export const ExerciseCreateForm = () => {
         setExerciseName(e.target.value);
     };
 
-    const { categoryId } = useParams()
+    const { categoryId } = useParams();
+    const dispatch = useAppDispatch();
 
-    const createExerciseOnClick = async () => {
-        setIsVisible(prev => !prev); // инвертируем состояние isVisible
-        createExercise(categoryId, { name: exerciseName, userId: user.id });
+    const createExerciseOnClick = () => {
+        dispatch(createExerciseByCategoryId({ categoryID: categoryId, exerciseName: exerciseName }));
         setExerciseName('');
+        setIsVisible(false);
+        onValueChange(false);
     };
 
     const openFormClick = () => {
-        setIsVisible(prev => !prev); // инвертируем состояние isVisible
-    }
+        setIsVisible(!isVisible);
+        onValueChange(!isVisible);
+    };
 
     return (
         <section className={cl.menu}>
@@ -41,15 +48,9 @@ export const ExerciseCreateForm = () => {
             </div>
             {
                 isVisible ?
-                    <div className={cl.additional__button} onClick={createExerciseOnClick}>
-                        <AddIcon />
-                    </div>
-
+                    exerciseName === "" ? <CloseIcon onClick={openFormClick} /> : < AddIcon onClick={createExerciseOnClick} />
                     :
-                    <div className={cl.additional__button} onClick={openFormClick}>
-                        <MoreIcon />
-                    </div>
-
+                    <MoreIcon onClick={openFormClick} />
             }
         </section>
     );

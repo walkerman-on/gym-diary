@@ -2,15 +2,29 @@ import { Skeleton as MUISkeleton } from '@mui/material';
 import { FC, memo } from 'react';
 import { ISkeletonProps } from './IProps';
 
-const SkeletonF: FC<ISkeletonProps> = (props) => {
+interface ISkeletonPropsExtended extends ISkeletonProps {
+  count?: number;
+}
+
+const SkeletonF: FC<ISkeletonPropsExtended> = (props) => {
+  const { height, width, count = 1 } = props;
+
   return (
-    <MUISkeleton height={props.height} width={props.width}
-      sx={{
-        background: "var(--color-primary-400)",
-        padding: '0',
-        margin: "0",
-        borderRadius: "12px"
-      }} />
+    <>
+      {Array.from({ length: count }).map((_, index) => (
+        <MUISkeleton
+          key={index}
+          height={height}
+          width={width}
+          sx={{
+            background: "var(--color-primary-400)",
+            borderRadius: "9px",
+            marginBottom: '-10px',
+            marginTop: "-10px"
+          }}
+        />
+      ))}
+    </>
   );
 };
 

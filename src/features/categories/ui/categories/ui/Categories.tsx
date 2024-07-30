@@ -1,59 +1,51 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import cl from "./Categories.module.scss"
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import { useTheme } from 'app/providers/ThemeProvider';
-import { Theme } from "app/providers/ThemeProvider/lib/ThemeContext"
-import { useSwipeable } from 'react-swipeable';
+import { useTheme } from 'app/providers/theme-provider';
+import { Theme } from "app/providers/theme-provider/lib/ThemeContext"
 import { Category } from 'entities/category';
-import { useAuth } from 'features/auth/hooks/useAuth';
 import { fetchCategoryCurrent } from 'features/categories/api/fetchCategoryCurrent';
 import { fetchCategories } from 'features/categories/api/fetchCategories';
 import { getCategory } from 'app/providers/router';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Skeleton } from 'shared/ui/skeleton';
 
 interface IExercisesCategory { }
 
-export const Categories: FC<IExercisesCategory> = () => {
-    const { user } = useAuth()
+export const Categories: FC<IExercisesCategory> = React.memo(() => {
+    const dispatch = useAppDispatch();
+    const { categories, loading } = useAppSelector(state => state?.categories);
+    const { categoryId } = useParams();
+    const navigate = useNavigate();
 
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-        dispatch(fetchCategories())
-    }, [dispatch])
-
-    const { categories, loading } = useAppSelector(state => state?.categories)
-    // const categoryURL: string[] = theme === Theme.LIGHT ? categories?.map(item => item?.imageDarkURL) : categories?.map(item => item?.imageLightURL);
-
-    const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
-    const navigate = useNavigate()
-
-    const { categoryId } = useParams()
 
     useEffect(() => {
-        dispatch(fetchCategoryCurrent({ categoryId, userId: user?.id }));
-    }, [categoryId])
-
-    const handleClick = (categoryId: string) => {
-        setSelectedCategoryId(categoryId);
-        navigate(getCategory(categoryId))
-    };
+        dispatch(fetchCategories());
+    }, []);
 
 
-    const swipeHandlers = useSwipeable({
-        onSwipedLeft: () => console.log("Swiped left"),
-        onSwipedRight: () => console.log("Swiped right"),
-    });
+    useEffect(() => {
+        if (categoryId) {
+            dispatch(fetchCategoryCurrent({ categoryID: categoryId }));
+        }
+    }, [categoryId]);
+
+    const handleClick = useCallback((categoryId: string) => {
+        navigate(getCategory(categoryId));
+    }, [categoryId]);
 
     return (
-        <>
+
+        <ul className={cl.category__list} >
             {
-
-                <ul {...swipeHandlers} className={cl.category__list}>
+                loading ?
+                    <Skeleton height={63.342} count={4} width={100} />
+                    :
                     <Category categories={categories} handleClick={handleClick} selectedCategoryId={categoryId} />
-                </ul>
             }
-        </>
-    );
-};
+        </ul >
 
+
+    );
+});

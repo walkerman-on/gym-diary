@@ -1,36 +1,45 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { doc, updateDoc, getDoc } from 'firebase/firestore';
-import { db } from 'shared/services/firebase/firebase';
+import { db, doc, updateDoc, getDoc } from 'shared/services/firebase';
+import { RootState } from "app/providers/store-provider";
+
+interface SelectExerciseByIdArgs {
+    exerciseID: string;
+}
 
 export const selectExerciseById = createAsyncThunk<
-    string, // Возвращаемый тип будет id упражнения
-    { userId: string, exerciseId: string }, // Входные параметры - userId и exerciseId
+    string,
+    SelectExerciseByIdArgs,
     { rejectValue: string }
 >(
     'exercises/selectExerciseById',
-    async ({ userId, exerciseId }, { rejectWithValue }) => {
+    async ({ exerciseID }, { rejectWithValue, getState }) => {
         try {
-            // Создаем ссылку на документ упражнения для указанного пользователя и exerciseId
-            const exerciseDocRef = doc(db, `users/${userId}/exercises/${exerciseId}`);
+            const state = getState() as RootState;
+            const userId = state.user.user?.id;
 
-            // Получаем текущее значение поля selected
+            if (!userId) {
+                return rejectWithValue('User not authenticated');
+            }
+
+            const exerciseDocRef = doc(db, `users/${userId}/exercises/${exerciseID}`);
+
             const exerciseDocSnapshot = await getDoc(exerciseDocRef);
             if (!exerciseDocSnapshot.exists()) {
-                throw new Error(`Упражнение с ID ${exerciseId} не найдено`);
+                throw new Error(`Упражнение с ID ${exerciseID} не найдено`);
             }
 
             const currentSelected = exerciseDocSnapshot.data().selected;
 
-            // Обновляем документ, устанавливая поле selected в противоположное значение
             await updateDoc(exerciseDocRef, {
                 selected: !currentSelected,
             });
 
-            console.log(`Упражнение с ID ${exerciseId} успешно обновлено`);
-            return exerciseId; // Возвращаем exerciseId в случае успешного обновления
+            console.log(`Упражнение с ID ${exerciseID} успешно обновлено`);
+            return exerciseID;
+
         } catch (error: any) {
             console.error('Ошибка при обновлении упражнения: ', error);
-            return rejectWithValue(error.message); // Возвращаем сообщение об ошибке в случае неудачи
+            return rejectWithValue(error.message);
         }
     }
 );

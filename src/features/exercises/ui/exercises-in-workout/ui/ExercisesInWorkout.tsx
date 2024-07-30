@@ -13,7 +13,7 @@ export const ExercisesInWorkout = () => {
 
   const { exercises__selected, loading } = useAppSelector(state => state?.exercises)
   useEffect(() => {
-    dispatch(fetchSelectedExercises({ userId: user?.id }))
+    dispatch(fetchSelectedExercises())
   }, [])
 
   return (

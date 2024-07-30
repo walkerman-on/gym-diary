@@ -3,7 +3,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import { IUseLogoutReturn } from './types';
 import { useNavigate } from 'react-router-dom';
-import { getLogin } from 'app/providers/router/routeConfig/routes';
+import { getLogin } from 'app/providers/router/config/routes';
 import { deleteUser } from '../model/slice/userSlice';
 import { getUserSelector } from '../model/selectors/userSelector';
 

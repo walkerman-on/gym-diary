@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import cl from "./Layout.module.scss"
-import { useTheme } from 'app/providers/ThemeProvider';
+import { useTheme } from 'app/providers/theme-provider';
 import classNames from 'classnames';
 
 interface ILayout {

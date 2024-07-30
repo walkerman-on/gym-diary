@@ -1,45 +1,58 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, query, where, startAt, endAt } from 'firebase/firestore';
-import { db } from 'shared/services/firebase/firebase';
+import { db, collection, getDocs, query, where } from 'shared/services/firebase';
 import { IExercise } from '../types/types';
+import { RootState } from "app/providers/store-provider";
 
-export const findExerciseByName = createAsyncThunk<IExercise[], { userId: string, namePrefix: string }, { rejectValue: string }>(
+interface FindExerciseByNameArgs {
+    exerciseName: string;
+}
+
+export const findExerciseByName = createAsyncThunk<
+    IExercise[],
+    FindExerciseByNameArgs,
+    { rejectValue: string }
+>(
     'findExerciseByName',
-    async ({ userId, namePrefix }, { rejectWithValue }) => {
+    async ({ exerciseName }, { rejectWithValue, getState }) => {
         try {
-            // Проверка на пустое поле инпута
-            if (!namePrefix.trim()) {
-                console.log("Поле инпута пустое. Поиск не выполняется.");
-                return null; // Возвращаем пустой массив, если поле инпута пустое
+            const state = getState() as RootState;
+            const userId = state.user.user?.id;
+
+            if (!userId) {
+                return rejectWithValue('User not authenticated');
             }
 
-            // Преобразуем префикс имени в нижний и верхний регистр для поиска независимо от регистра
-            const lowercasePrefix = namePrefix.toLowerCase();
-            const uppercasePrefix = namePrefix.toUpperCase();
+            if (!exerciseName.trim()) {
+                console.log("Поле инпута пустое. Поиск не выполняется.");
+                return []
+            }
 
-            // Создаем ссылку на коллекцию упражнений для указанного пользователя
             const exercisesCollectionRef = collection(db, `users/${userId}/exercises`);
 
-            // Формируем запрос для поиска упражнений, имена которых начинаются с namePrefix (независимо от регистра)
-            const exerciseQuery = query(exercisesCollectionRef,
-                where('name', '>=', lowercasePrefix),
-                where('name', '<=', lowercasePrefix + '\uf8ff')
+            const exerciseQuery = query(
+                exercisesCollectionRef,
+                where('name', '>=', exerciseName),
+                where('name', '<=', exerciseName + '\uf8ff')
             );
+
             const querySnapshot = await getDocs(exerciseQuery);
 
-            // Проверяем, найдены ли упражнения с заданным префиксом
             if (querySnapshot.empty) {
-                console.log(`Упражнения, начинающиеся с '${namePrefix}', не найдены`);
-                return []; // Возвращаем пустой массив, если упражнения не найдены
+                console.log(`Упражнения, начинающиеся с '${exerciseName}', не найдены`);
+                return [];
             }
 
-            // Если упражнения найдены, собираем их данные в массив
-            const exercises: IExercise[] = querySnapshot.docs.map(doc => doc.data() as IExercise);
+            const exercises: IExercise[] = querySnapshot.docs.map(doc => ({
+                ...doc.data() as IExercise,
+                id: doc.id
+            }));
             console.log('Найденные упражнения:', exercises);
+
             return exercises;
-        } catch (error: any) {
+
+        } catch (error) {
             console.error('Ошибка при поиске упражнений: ', error);
-            return rejectWithValue(error.message);
+            return rejectWithValue('Ошибка при поиске упражнений');
         }
     }
 );

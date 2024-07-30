@@ -1,14 +1,21 @@
-import { ExercisesFromCategory } from 'features/exercises/ui/exercises-from-category';
 import React from 'react';
-import cl from "./ExercisesCategoryCard.module.scss"
-import { ExerciseSearchForm } from 'widgets/exercise-form/exercise-search-form';
+import cl from "./ExercisesCategoryCard.module.scss";
+import { ExercisesFromCategory } from 'features/exercises/ui/exercises-from-category';
+import { useParams } from 'react-router-dom';
 
-export const ExercisesCategoryCard = () => {
+interface ExercisesCategoryCardProps {
+}
 
+export const ExercisesCategoryCard: React.FC<ExercisesCategoryCardProps> = () => {
+    const { categoryId } = useParams();
 
     return (
         <section className={cl.categories}>
-            <ExercisesFromCategory />
+            {categoryId ? (
+                <ExercisesFromCategory categoryId={categoryId} />
+            ) : (
+                <h1>Выбери категорию или введи упражнение в поле поиска</h1>
+            )}
         </section>
     );
 };

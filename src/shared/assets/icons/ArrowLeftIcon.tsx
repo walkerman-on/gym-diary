@@ -1,7 +1,7 @@
 const ArrowLeftIcon = ({
-  color = "var(--color-primary-200)",
-  width = 32,
-  height = 32,
+  color = "var(--color-primary-800)",
+  width = 36,
+  height = 36,
   onClick,
 }: {
   color?: string;
@@ -9,16 +9,16 @@ const ArrowLeftIcon = ({
   height?: number;
   onClick?: () => void;
 }) => (
-  <div
+  <button
     onClick={onClick}
     style={{
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      borderRadius: "50%",
-      height: "50px",
-      width: "50px",
-      background: "var(--color-primary-800)",
+      borderRadius: "15px",
+      height: "60px",
+      width: "60px",
+      background: "var(--color-primary-400)",
     }}
   >
     <svg width={width} height={height} viewBox="0 -960 960 960" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@ const ArrowLeftIcon = ({
         fill={color}
       />
     </svg>
-  </div>
+  </button>
 );
 
 export default ArrowLeftIcon;

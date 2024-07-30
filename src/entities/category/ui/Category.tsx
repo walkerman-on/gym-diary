@@ -9,7 +9,7 @@ interface ICategory {
     selectedCategoryId: string
 }
 
-export const Category: FC<ICategory> = ({ handleClick, categories, selectedCategoryId }) => {
+export const Category: FC<ICategory> = React.memo(({ handleClick, categories, selectedCategoryId }) => {
     return (
         <>
             {categories?.map(item => (
@@ -23,5 +23,5 @@ export const Category: FC<ICategory> = ({ handleClick, categories, selectedCateg
             ))}
         </>
     );
-};
+})
 

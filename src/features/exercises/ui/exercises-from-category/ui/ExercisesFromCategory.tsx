@@ -10,22 +10,27 @@ import { selectExerciseById } from 'features/exercises/api/selectExerciseById';
 import { ExerciseCreateForm } from 'widgets/exercise-form/exercise-create-form';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from 'shared/ui/skeleton';
+import { deleteExerciseById } from 'features/exercises';
+import { Loader } from 'shared/ui/loader';
 
 interface IExercisesFromCategory {
     exercises__all?: boolean,
+    categoryId: string
 }
 
-export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__all }) => {
+export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__all, categoryId }) => {
+
     const category = useAppSelector(state => state.categories?.category__current);
-    const { exercise__search, loading: exerciseLoading } = useAppSelector(state => state?.exercises);
-    const { categoryId } = useParams<{ categoryId: string }>();
-    const { user } = useAuth();
+
+    const { exercise__search } = useAppSelector(state => state?.exercises);
     const dispatch = useAppDispatch();
 
-    const { loading } = useAppSelector(state => state?.categories)
+    const [deleteState, setDeleteState] = useState<boolean>(false)
+    const valueOnChange = (value: boolean) => {
+        setDeleteState(value)
+    }
 
     const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
-
 
     const selectExercise = (id: string) => {
         setSelectedExerciseIds(prevIds => {
@@ -35,39 +40,40 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
                 return [...prevIds, id];
             }
         });
-        dispatch(toggleExerciseSelected(id)); // Local state update
-        dispatch(selectExerciseById({ userId: user?.id, exerciseId: id })); // Sync with Firebase
+        if (deleteState) {
+            dispatch(deleteExerciseById({ exerciseID: id }));
+
+        } else {
+            dispatch(toggleExerciseSelected(id));
+            dispatch(selectExerciseById({ exerciseID: id }));
+        }
+
     };
-    console.log("category", category?.exercises)
-    if (!category) {
+
+    if (!categoryId) {
         return (
-            <Skeleton height={150} />
+            null
         );
     }
-
-    // if (!category) {
-    //     return (
-    //         <div className={cl.warning}>
-    //             <div style={{ width: "320px" }}>
-    //                 {/* <PeopleIcon /> */}
-    //             </div>
-    //             <h1 className={cl.warning__title}>Выберите категорию</h1>
-    //         </div>
-    //     );
-    // }
 
     const exercises = exercises__all ? exercise__search : category?.exercises;
 
     return (
         <>
-            <ExerciseCreateForm />
-            <ul className={cl.exercises__group}>
-                <ExerciseFromCategory
-                    exercises={exercises}
-                    selectExercise={selectExercise}
-                    selectExerciseId={selectedExerciseIds}
-                />
-            </ul>
+            <ExerciseCreateForm onValueChange={valueOnChange} />
+            {
+                exercises ?
+                    <ul className={cl.exercises__group}>
+                        <ExerciseFromCategory
+                            exercises={exercises}
+                            selectExercise={selectExercise}
+                            selectExerciseId={selectedExerciseIds}
+                            value={deleteState}
+                        />
+                    </ul>
+                    :
+                    <Loader />
+            }
         </>
     );
 };

@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import cl from "./ExerciseSearchForm.module.scss"
 import { Input } from 'shared/ui/input';
-import { getCreateExercise } from 'app/providers/router';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { findExerciseByName } from 'features/exercises/api/findExerciseByName';
-import { useAuth } from 'features/auth/hooks/useAuth';
-import { Link } from 'react-router-dom';
-import { Button } from 'shared/ui/button';
 
-export const ExerciseSearchForm = () => {
-    const { user } = useAuth();
+interface IExerciseSearchForm {
+}
+
+export const ExerciseSearchForm: FC<IExerciseSearchForm> = React.memo(() => {
     const [exerciseName, setExerciseName] = useState<string>("")
 
     const dispatch = useAppDispatch()
 
-    const findExerciseOnChange = (e: any) => {
+    const findExerciseOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setExerciseName(e.target.value)
-        dispatch(findExerciseByName({ userId: user?.id, namePrefix: e.target.value }))
+        dispatch(findExerciseByName({ exerciseName: e.target.value }))
     }
 
     return (
@@ -25,8 +23,8 @@ export const ExerciseSearchForm = () => {
                 placeholder="Искать"
                 height='50px'
                 value={exerciseName}
-                onChange={(e) => findExerciseOnChange(e)}
+                onChange={findExerciseOnChange}
             />
         </section>
     );
-};
+});
