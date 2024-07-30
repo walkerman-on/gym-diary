@@ -10,12 +10,15 @@ export const ExercisesCategoryCard: React.FC<ExercisesCategoryCardProps> = () =>
     const { categoryId } = useParams();
 
     return (
-        <section className={cl.categories}>
-            {categoryId ? (
+
+        categoryId ?
+            <section className={cl.categories} >
                 <ExercisesFromCategory categoryId={categoryId} />
-            ) : (
+            </section >
+            :
+            <section className={cl.info}>
                 <h1>Выбери категорию или введи упражнение в поле поиска</h1>
-            )}
-        </section>
-    );
-};
+            </section>
+    )
+}
+

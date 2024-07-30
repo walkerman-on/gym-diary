@@ -1,0 +1,45 @@
+.Dekstop {
+	padding: 0 50px;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	flex-direction: column;
+
+}
+
+.main {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	font-size: 30px;
+	line-height: 40px;
+}
+
+.subtitle {
+	font-weight: 500;
+	color: var(--color-primary-600)
+}
+
+.footer {
+	padding: 15px 0;
+	flex-shrink: 0;
+}
+
+.creator {
+	color: var(--color-accent);
+	cursor: pointer;
+	font-weight: 700;
+}
+
+.creator:hover {
+	transition: 0.8s;
+	color: #f6dacf;
+}
+
+.figure {
+	color: var(--color-accent);
+}

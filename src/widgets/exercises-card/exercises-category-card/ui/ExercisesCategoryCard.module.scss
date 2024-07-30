@@ -4,3 +4,10 @@
     flex-direction: column;
     gap: 20px
 }
+
+.info {
+    flex-grow: 1;
+    display: flex;
+    text-align: center;
+    // flex-direction: column;
+}

@@ -1,0 +1,1 @@
+export { DekstopSupportPage } from "./ui/DekstopSupportPage"

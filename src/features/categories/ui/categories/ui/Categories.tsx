@@ -40,7 +40,7 @@ export const Categories: FC<IExercisesCategory> = React.memo(() => {
         <ul className={cl.category__list} >
             {
                 loading ?
-                    <Skeleton height={63.342} count={4} width={100} />
+                    <Skeleton height={58} count={4} width={100} />
                     :
                     <Category categories={categories} handleClick={handleClick} selectedCategoryId={categoryId} />
             }
