@@ -1,9 +1,13 @@
 .footer {
-    padding: 20px 0 10px 0;
+    padding: 20px 0 35px 0;
     flex-shrink: 0;
     position: sticky;
     bottom: 0;
     display: flex;
     gap: 10px;
     background: var(--color-primary-200);
+}
+
+.training__page {
+    padding: 20px 10px 35px 10px;
 }

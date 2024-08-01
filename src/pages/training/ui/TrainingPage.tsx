@@ -16,7 +16,7 @@ export const TrainingPage = () => {
     <main className={classNames('app', cl.TrainingPage, {}, [theme])}>
       <Calendar />
       <ExercisesWorkoutCard />
-      <Footer link={getAddExercise()} text='Добавить еще' />
+      <Footer link={getAddExercise()} text='Добавить еще' training__page />
     </main>
   ) : (
     <Navigate to={getLogin()} />

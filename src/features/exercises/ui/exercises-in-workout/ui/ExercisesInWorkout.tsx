@@ -5,6 +5,7 @@ import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAuth } from "features/auth/hooks/useAuth";
 import { fetchSelectedExercises } from "features/exercises/api/fetchSelectedExercises";
 import { ExerciseInWorkout } from "entities/exercise/exercise-in-workout";
+import { Loader } from "shared/ui/loader";
 
 export const ExercisesInWorkout = () => {
   const { user } = useAuth()
@@ -19,7 +20,7 @@ export const ExercisesInWorkout = () => {
   return (
     <>
       {
-        loading ? <h1>Загрузка данных...</h1>
+        loading ? <Loader />
           :
           exercises__selected ?
             <ul className={cl.exersises__list}>
