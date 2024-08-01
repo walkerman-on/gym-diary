@@ -1,1 +1,1 @@
-export { AddExerciseAsyncPage as AddExercisePage } from "./ui/AddExercisePage.async";
+export { AddExercisePage } from "./ui/AddExercisePage";
