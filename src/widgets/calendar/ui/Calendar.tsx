@@ -5,17 +5,17 @@ import { CalendarExpanded } from 'features/calendar/ui/calendar-expanded';
 import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
 import ArrowUpIcon from 'shared/assets/icons/ArrowUpIcon';
 import { useAuth } from 'features/auth/hooks/useAuth';
+import SettingsIcon from 'shared/assets/icons/SettingsIcon';
 
 export const Calendar = () => {
     const [showCalendarBig, setShowCalendarBig] = useState<boolean>(true);
-    const { user } = useAuth()
     const toggleCalendarBig = () => {
         setShowCalendarBig((prev) => !prev);
     };
 
     return (
         <section className={cl.calendar}>
-            {showCalendarBig ? <CalendarСollapsed userId={user?.id} /> : <CalendarExpanded userId={user?.id} />}
+            {showCalendarBig ? <CalendarСollapsed /> : <CalendarExpanded />}
             <span onClick={toggleCalendarBig} className={cl.arrow}>
                 {
                     showCalendarBig ? <ArrowDownIcon /> : <ArrowUpIcon />

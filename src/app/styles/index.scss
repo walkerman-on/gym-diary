@@ -3,41 +3,11 @@
 @import "./themes/dark.scss";
 @import "./themes/light.scss";
 
-
-html,
-body {
-    height: 100%;
-}
-
 .app {
+    min-height: 100vh;
+    box-sizing: border-box;
     background: var(--color-primary-200);
     color: var(--color-bg);
-    box-sizing: border-box;
     font: var(--font-l);
     font-weight: 900;
-    font-size: 20px;
-    min-height: 100vh;
-}
-
-.container {
-    padding: 0 113.5px;
-}
-
-
-@media (max-width: map-get($breakpoints, dekstop)) {
-    .container {
-        padding: 0 10px;
-    }
-}
-
-@media (max-width: map-get($breakpoints, tablet)) {
-    .container {
-        padding: 0;
-    }
-}
-
-@media (max-width: map-get($breakpoints, mobile)) {
-    .container {
-        // padding: 0 0 300px 0;
-    }
 }

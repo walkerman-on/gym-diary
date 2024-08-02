@@ -12,7 +12,7 @@ import { ICalendar } from '../../../types/types';
 
 dayjs.locale('ru');
 
-export const CalendarExpanded: React.FC<ICalendar> = ({ userId }) => {
+export const CalendarExpanded: React.FC<ICalendar> = () => {
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
   const [selectedDateKey, setSelectedDateKey] = useState<string>(selectedDate.format('YYYY-MM-DD'));
   const today = dayjs();
@@ -29,7 +29,6 @@ export const CalendarExpanded: React.FC<ICalendar> = ({ userId }) => {
   const handleDateChange = (dateKey: string) => {
     setSelectedDate(dayjs(dateKey));
     setSelectedDateKey(dateKey);
-    fetchDateCurrent({ userId: userId, date__current: dateKey })
     console.log(dateKey)
   };
 

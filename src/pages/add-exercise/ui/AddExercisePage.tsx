@@ -7,9 +7,9 @@ import { useAuth } from "features/auth/hooks/useAuth";
 import { Navigate } from 'react-router-dom';
 import { getLogin } from 'app/providers/router';
 
-
 export const AddExercisePage = () => {
     const { isAuth } = useAuth()
+
     return isAuth ?
         (
             <Layout>

@@ -8,16 +8,18 @@ import classNames from 'classnames';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
 import { fetchDateCurrent } from 'features/calendar';
 import { ICalendar } from '../../../types/types';
+import SettingsIcon from 'shared/assets/icons/SettingsIcon';
+import { useNavigate } from 'react-router-dom';
+import { getSettings } from 'app/providers/router';
 
 dayjs.locale('ru');
 
-export const CalendarСollapsed: React.FC<ICalendar> = ({ userId }) => {
+export const CalendarСollapsed: React.FC<ICalendar> = () => {
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
   const today = dayjs();
 
   const handleDateChange = (date: Dayjs | null) => {
     setSelectedDate(date);
-    fetchDateCurrent({ userId: userId, date__current: date?.format('YYYY-MM-DD') })
     console.log(date?.format('YYYY-MM-DD'));
   };
 
@@ -50,11 +52,17 @@ export const CalendarСollapsed: React.FC<ICalendar> = ({ userId }) => {
 
   const startOfWeek = selectedDate ? selectedDate.startOf('week') : dayjs().startOf('week');
 
+  const navigate = useNavigate()
+  const settingsOnClick = () => {
+    navigate(getSettings())
+  }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={cl.header}>
         <span className={cl.currentMonth}>{selectedDate ? selectedDate.format('MMMM YYYY') : dayjs().format('MMMM YYYY')}</span>
         {/* <ThemeSwitcher /> */}
+        <SettingsIcon onClick={settingsOnClick} />
       </div>
       {renderWeekDays(startOfWeek)}
     </LocalizationProvider>

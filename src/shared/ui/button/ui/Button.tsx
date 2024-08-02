@@ -12,6 +12,12 @@ const ButtonF: FC<IButtonProps> = (props) => {
         height: props.height,
         flexGrow: "1",
         padding: '0 30px',
+        '&:hover': {
+          backgroundColor: 'var(--color-primary-400)',
+        },
+        '&:active': {
+          backgroundColor: 'var(--color-primary-200)',
+        },
       }}
       style={{ fontWeight: "800" }}
       {...props}
