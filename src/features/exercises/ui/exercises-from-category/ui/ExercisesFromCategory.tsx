@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import cl from "./ExercisesFromCategory.module.scss";
 import { ExerciseFromCategory } from 'entities/exercise/exercise-from-category';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
@@ -17,6 +17,7 @@ interface IExercisesFromCategory {
     exercises__all?: boolean,
     categoryId: string
 }
+const MemoizedExerciseCreateForm = React.memo(ExerciseCreateForm);
 
 export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__all, categoryId }) => {
 
@@ -26,9 +27,10 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
     const dispatch = useAppDispatch();
 
     const [deleteState, setDeleteState] = useState<boolean>(false)
-    const valueOnChange = (value: boolean) => {
+
+    const valueOnChange = useCallback((value: boolean) => {
         setDeleteState(value)
-    }
+    }, [setDeleteState])
 
     const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
 
@@ -60,7 +62,8 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
 
     return (
         <>
-            <ExerciseCreateForm onValueChange={valueOnChange} />
+            {/* <ExerciseCreateForm onValueChange={valueOnChange} /> */}
+            <MemoizedExerciseCreateForm onValueChange={valueOnChange} />
             {
                 exercises ?
                     <ul className={cl.exercises__group}>

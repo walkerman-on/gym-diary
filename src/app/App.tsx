@@ -14,9 +14,9 @@ const App = () => {
     return <DekstopSupportPage />;
   }
 
-  if (installMessage) {
-    return <Message />;
-  }
+  // if (installMessage) {
+  //   return <Message />;
+  // }
 
   return (
     <>

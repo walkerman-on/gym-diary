@@ -24,6 +24,8 @@ export const Categories: FC<IExercisesCategory> = React.memo(() => {
         dispatch(fetchCategories());
     }, []);
 
+    const cat = useMemo(() => categories, [])
+
 
     useEffect(() => {
         if (categoryId) {
@@ -40,7 +42,7 @@ export const Categories: FC<IExercisesCategory> = React.memo(() => {
         <ul className={cl.category__list} >
             {
                 loading ?
-                    <Skeleton height={58} count={4} width={100} />
+                    <Skeleton height={58} count={4} />
                     :
                     <Category categories={categories} handleClick={handleClick} selectedCategoryId={categoryId} />
             }

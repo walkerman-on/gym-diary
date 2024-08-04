@@ -13,6 +13,7 @@ export const Category: FC<ICategory> = React.memo(({ handleClick, categories, se
     return (
         <>
             {categories?.map(item => (
+
                 <li
                     className={`${cl.category__item} ${item.id === selectedCategoryId ? cl.category__current : ''}`}
                     key={item?.id}

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import cl from "./ExerciseCreateForm.module.scss";
 import { Input } from 'shared/ui/input';
 import classNames from 'classnames';
@@ -13,13 +13,13 @@ interface IExerciseCreateForm {
     onValueChange: (value: boolean) => void;
 }
 
-export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) => {
+export const ExerciseCreateForm: FC<IExerciseCreateForm> = (({ onValueChange }) => {
     const [exerciseName, setExerciseName] = useState<string>("");
     const [isVisible, setIsVisible] = useState(false);
 
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setExerciseName(e.target.value);
-    };
+    }, [setExerciseName])
 
     const { categoryId } = useParams();
     const dispatch = useAppDispatch();
@@ -31,10 +31,10 @@ export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) =
         onValueChange(false);
     };
 
-    const openFormClick = () => {
+    const openFormClick = useCallback(() => {
         setIsVisible(!isVisible);
         onValueChange(!isVisible);
-    };
+    }, [isVisible])
 
     return (
         <section className={cl.menu}>
@@ -54,4 +54,4 @@ export const ExerciseCreateForm: FC<IExerciseCreateForm> = ({ onValueChange }) =
             }
         </section>
     );
-};
+})

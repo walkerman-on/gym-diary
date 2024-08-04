@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import cl from "./Footer.module.scss"
 import { Button } from 'shared/ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -8,23 +8,24 @@ import classNames from 'classnames';
 interface IFooter {
     link: string,
     text: string,
-    training__page?: boolean
+    small?: boolean
 }
 
-export const Footer: FC<IFooter> = React.memo(({ link, text, training__page }) => {
+export const Footer: FC<IFooter> = React.memo(({ link, text, small }) => {
     const navigate = useNavigate();
-    const addMoreBtnHandler = () => {
-        navigate(link);
-    };
 
+    const addMoreBtnHandler = useCallback(() => {
+        navigate(link);
+    }, [])
     return (
-        <footer className={classNames(cl.footer, { [cl.training__page]: training__page })}>
+        <footer className={classNames(cl.footer, { [cl.training__page]: small })}>
             {
-                !training__page && <ArrowLeftIcon onClick={addMoreBtnHandler} />
+                small ? <ArrowLeftIcon onClick={addMoreBtnHandler} />
+                    :
+                    <Button height="60px" radius="15px" onClick={addMoreBtnHandler}>
+                        {text}
+                    </Button>
             }
-            <Button height="60px" radius="15px" onClick={addMoreBtnHandler}>
-                {text}
-            </Button>
         </footer>
     );
 })

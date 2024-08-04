@@ -1,0 +1,28 @@
+summary {
+	list-style: none;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+.info__block {
+	padding: 12px;
+	background: var(--color-primary-400);
+	border-radius: 10px;
+}
+
+.info__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title {
+	// color: var(--color-accent);
+}
+
+.subtitle {
+	font-size: 18px;
+	font-weight: 700;
+}

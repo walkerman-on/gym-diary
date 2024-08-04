@@ -20,7 +20,8 @@ const SkeletonF: FC<ISkeletonPropsExtended> = (props) => {
             background: "var(--color-primary-400)",
             borderRadius: "9px",
             marginBottom: '-10px',
-            marginTop: "-10px"
+            marginTop: "-10px",
+            width: "100%"
           }}
         />
       ))}
