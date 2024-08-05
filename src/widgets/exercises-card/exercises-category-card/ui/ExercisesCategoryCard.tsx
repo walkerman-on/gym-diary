@@ -10,7 +10,6 @@ export const ExercisesCategoryCard: React.FC<ExercisesCategoryCardProps> = () =>
     const { categoryId } = useParams();
 
     return (
-
         categoryId ?
             <section className={cl.categories} >
                 <ExercisesFromCategory categoryId={categoryId} />

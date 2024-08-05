@@ -7,7 +7,7 @@ import { Theme } from "app/providers/theme-provider/lib/ThemeContext"
 import { Category } from 'entities/category';
 import { fetchCategoryCurrent } from 'features/categories/api/fetchCategoryCurrent';
 import { fetchCategories } from 'features/categories/api/fetchCategories';
-import { getCategory } from 'app/providers/router';
+import { getExercisesByCategory } from 'app/providers/router';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Skeleton } from 'shared/ui/skeleton';
 
@@ -24,7 +24,6 @@ export const Categories: FC<IExercisesCategory> = React.memo(() => {
         dispatch(fetchCategories());
     }, []);
 
-    const cat = useMemo(() => categories, [])
 
 
     useEffect(() => {
@@ -34,7 +33,7 @@ export const Categories: FC<IExercisesCategory> = React.memo(() => {
     }, [categoryId]);
 
     const handleClick = useCallback((categoryId: string) => {
-        navigate(getCategory(categoryId));
+        navigate(getExercisesByCategory(categoryId));
     }, [categoryId]);
 
     return (

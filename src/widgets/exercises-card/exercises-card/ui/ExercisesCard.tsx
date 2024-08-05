@@ -3,12 +3,13 @@ import { ExercisesSearchCard } from 'widgets/exercises-card/exercises-search-car
 import { CategoriesCard } from 'widgets/categories-card';
 import { ExercisesCategoryCard } from 'widgets/exercises-card/exercises-category-card';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
+import { Outlet } from "react-router-dom";
 
 export const ExercisesCard = () => {
-    const { exercise__search } = useAppSelector(state => state?.exercises);
+    // const { exercise__search } = useAppSelector(state => state?.exercises);
     return (
-        <>
-            {
+        <div className={cl.ExercisesCard}>
+            {/* {
                 exercise__search
                     ? <ExercisesSearchCard />
                     :
@@ -16,7 +17,12 @@ export const ExercisesCard = () => {
                         <CategoriesCard />
                         <ExercisesCategoryCard />
                     </>
-            }
-        </>
+            } */}
+            {/* <CategoriesCard /> */}
+            {/* <ExercisesCategoryCard /> */}
+
+            {/* <Outlet /> */}
+
+        </div>
     );
 };

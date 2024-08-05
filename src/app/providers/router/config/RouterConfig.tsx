@@ -1,18 +1,21 @@
 import { AppRoutesProps } from './types';
-import { getLogin, getNotFound, getRegister, getSettings, getTraining } from './routes';
+import { getAddExercise, getExercisesByCategory, getExercisesBySearch, getLogin, getNotFound, getRegister, getSettings, getTraining } from './routes';
 import { LoginPage } from 'pages/login';
 import { RegisterPage } from 'pages/register';
 import { TrainingPage } from 'pages/training';
 import { NotFoundPage } from 'pages/not-found';
 import { AddExercisePage } from 'pages/add-exercise';
 import { SettingsPage } from 'pages/settings';
+import { ExercisesFromCategory } from 'features/exercises/ui/exercises-from-category';
+import { ExercisesCategoryCard } from 'widgets/exercises-card/exercises-category-card';
+import { CategoriesCard } from 'widgets/categories-card';
+import { ExercisesSearchCard } from 'widgets/exercises-card/exercises-search-card';
 
 export enum AppRoutes {
   LOGIN = 'login',
   REGISTER = 'register',
   TRAINING = 'training',
   ADD_EXERCISE = 'add_exercise',
-  ADD_EXERCISE_CATEGORY = 'add_exercise_category',
   SETTINGS = "settings",
   NOT_FOUND = 'not_found'
 }
@@ -22,8 +25,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.REGISTER]: getRegister(),
   [AppRoutes.TRAINING]: getTraining(),
   [AppRoutes.SETTINGS]: getSettings(),
-  [AppRoutes.ADD_EXERCISE]: `/add-exercise`,
-  [AppRoutes.ADD_EXERCISE_CATEGORY]: `/add-exercise/category/:categoryId`,
+  [AppRoutes.ADD_EXERCISE]: getAddExercise(),
   [AppRoutes.NOT_FOUND]: getNotFound(),
 };
 
@@ -47,10 +49,31 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.ADD_EXERCISE]: {
     path: RoutePath.add_exercise,
     element: <AddExercisePage />,
-  },
-  [AppRoutes.ADD_EXERCISE_CATEGORY]: {
-    path: RoutePath.add_exercise_category,
-    element: <AddExercisePage />,
+    children: [
+      {
+        path: getAddExercise(),
+        element:
+          <>
+            <CategoriesCard />
+            <ExercisesCategoryCard />
+          </>
+      },
+      {
+        path: getExercisesByCategory(":categoryId"),
+        element:
+          <>
+            <CategoriesCard />
+            <ExercisesCategoryCard />
+          </>
+      },
+      {
+        path: getExercisesBySearch(),
+        element:
+          <>
+            <ExercisesSearchCard />
+          </>
+      },
+    ],
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,

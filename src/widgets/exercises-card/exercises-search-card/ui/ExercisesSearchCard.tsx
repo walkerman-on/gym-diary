@@ -8,12 +8,14 @@ export const ExercisesSearchCard = () => {
     const { categoryId } = useParams();
 
     return (
-        <>
+        <section className={cl.ExercisesSearchCard}>
+            <h1 >поиск упражнений</h1>
+
             {
-                exercise__search.length > 0 ?
-                    <ExercisesFromCategory exercises__all categoryId={categoryId} />
-                    : <h1 className={cl.title}>Такого упражнения не найдено(</h1>
+                // exercise__search?.length > 0 ?
+                <ExercisesFromCategory exercises__all categoryId={categoryId} />
+                // : <h1 className={cl.title}>Такого упражнения не найдено(</h1>
             }
-        </>
+        </section>
     );
 };
