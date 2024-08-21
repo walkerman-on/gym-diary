@@ -4,9 +4,10 @@ import DarkThemeIcon from 'shared/assets/icons/DarkThemeIcon';
 import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
 import ArrowUpIcon from 'shared/assets/icons/ArrowUpIcon';
 import { IExercise } from 'features/exercises';
+import { IExerciseWorkout } from 'features/workout';
 
 interface IExerciseInWorkout {
-  exercises: IExercise[],
+  exercises: IExerciseWorkout[],
 }
 
 export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercises }) => {
@@ -20,10 +21,10 @@ export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercises }) => {
     <>
       {
         exercises?.map(item => (
-          <li className={cl.exersise_item} onClick={toggleWorkoutMenu} key={item?.id}>
+          <li className={cl.exersise_item} onClick={toggleWorkoutMenu} key={item?.exercise.id}>
             <p className={cl.info}>
               <DarkThemeIcon />
-              <h2 className={cl.title}>{item?.name}</h2>
+              <h2 className={cl.title}>{item?.exercise.name}</h2>
             </p>
             {collapsed ? <ArrowDownIcon /> : <ArrowUpIcon />}
           </li>

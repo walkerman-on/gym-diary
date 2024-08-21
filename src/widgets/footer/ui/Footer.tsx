@@ -11,6 +11,7 @@ interface IFooter {
     small?: boolean
 }
 
+
 export const Footer: FC<IFooter> = React.memo(({ link, text, small }) => {
     const navigate = useNavigate();
 

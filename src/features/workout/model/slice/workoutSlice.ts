@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IWorkoutState } from "../../types/types"
-import { fetchDateCurrent } from "features/calendar";
-import { fetchSelectedExercises } from "features/exercises";
+import { IWorkoutState } from "../../types/types";
+import { addWorkout } from "features/workout/api/addWorkout";
+import { fetchWorkout } from "features/workout/api/fetchWorkout";
 
 const initialState: IWorkoutState = {
     workout__current: {
-        data: null,
-        exercises: null
+        date: null,
+        exercises: []
     },
     loading: false,
-    error: null,
-}
+    error: null
+};
 
 export const workoutSlice = createSlice({
     name: "workout",
@@ -18,34 +18,36 @@ export const workoutSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            // .addCase(fetchDateCurrent.fulfilled, (state, action) => {
-            //     state.workout__current.data = action.payload
-            //     state.loading = false
-            //     state.error = null
-            // })
-            // .addCase(fetchDateCurrent.pending, (state) => {
-            //     state.loading = true
-            //     state.error = null
-            // })
-            // .addCase(fetchDateCurrent.rejected, (state, action) => {
-            //     state.loading = false
-            //     state.error = action.payload
-            // })
-
-            .addCase(fetchSelectedExercises.fulfilled, (state, action) => {
-                // state.workout__current.exercises = action.payload;
+            .addCase(addWorkout.fulfilled, (state, action) => {
+                state.workout__current.date = action.payload.date
+                state.workout__current.exercises = [...state.workout__current.exercises, action.payload.exercise]
                 state.loading = false;
                 state.error = null;
             })
-            .addCase(fetchSelectedExercises.pending, (state) => {
+            .addCase(addWorkout.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchSelectedExercises.rejected, (state, action) => {
+            .addCase(addWorkout.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload;
+                state.error = action.payload as string;
             })
-    }
-})
 
-export default workoutSlice.reducer
+            .addCase(fetchWorkout.fulfilled, (state, action) => {
+                state.workout__current.date = action.payload.date
+                state.workout__current.exercises = action.payload.exercises
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(fetchWorkout.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchWorkout.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            });
+    },
+});
+
+export default workoutSlice.reducer;

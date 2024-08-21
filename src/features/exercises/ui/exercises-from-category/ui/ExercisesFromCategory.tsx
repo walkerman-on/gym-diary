@@ -42,12 +42,13 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
                 return [...prevIds, id];
             }
         });
+
         if (deleteState) {
             dispatch(deleteExerciseById({ exerciseID: id }));
 
         } else {
             dispatch(toggleExerciseSelected(id));
-            dispatch(selectExerciseById({ exerciseID: id }));
+            // dispatch(selectExerciseById({ exerciseID: id }));
         }
 
     };

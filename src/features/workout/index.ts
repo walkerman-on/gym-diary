@@ -1,4 +1,5 @@
 export * from "./types/types"
 
 export { default as workoutReducer } from "./model/slice/workoutSlice"
-export { createWorkout } from "./api/createWorkout"
+export { addWorkout } from "./api/addWorkout"
+export { fetchWorkout } from "./api/fetchWorkout"
