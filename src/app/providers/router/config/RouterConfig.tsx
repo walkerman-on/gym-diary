@@ -1,5 +1,5 @@
 import { AppRoutesProps } from './types';
-import { getAddExercise, getExercisesByCategory, getExercisesBySearch, getLogin, getNotFound, getRegister, getSettings, getTraining } from './routes';
+import { getAddExercise, getDate, getExercisesByCategory, getExercisesBySearch, getLogin, getNotFound, getRegister, getSettings, getTraining } from './routes';
 import { LoginPage } from 'pages/login';
 import { RegisterPage } from 'pages/register';
 import { TrainingPage } from 'pages/training';
@@ -23,7 +23,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.LOGIN]: getLogin(),
   [AppRoutes.REGISTER]: getRegister(),
-  [AppRoutes.TRAINING]: getTraining(),
+  [AppRoutes.TRAINING]: getDate(":date"),
   [AppRoutes.SETTINGS]: getSettings(),
   [AppRoutes.ADD_EXERCISE]: getAddExercise(),
   [AppRoutes.NOT_FOUND]: getNotFound(),

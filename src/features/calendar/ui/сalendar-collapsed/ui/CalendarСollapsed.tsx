@@ -10,17 +10,20 @@ import { fetchDateCurrent } from 'features/calendar';
 import { ICalendar } from '../../../types/types';
 import SettingsIcon from 'shared/assets/icons/SettingsIcon';
 import { useNavigate } from 'react-router-dom';
-import { getSettings } from 'app/providers/router';
+import { getDate, getSettings } from 'app/providers/router';
 
 dayjs.locale('ru');
 
 export const CalendarСollapsed: React.FC<ICalendar> = () => {
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
   const today = dayjs();
+  console.log(today.format('MMMM YYYY'))
+
+  const navigate = useNavigate();
 
   const handleDateChange = (date: Dayjs | null) => {
     setSelectedDate(date);
-    console.log(date?.format('YYYY-MM-DD'));
+    navigate(getDate(date?.format('YYYY-MM-DD')))
   };
 
   const renderWeekDays = (startOfWeek: Dayjs) => {
@@ -52,7 +55,6 @@ export const CalendarСollapsed: React.FC<ICalendar> = () => {
 
   const startOfWeek = selectedDate ? selectedDate.startOf('week') : dayjs().startOf('week');
 
-  const navigate = useNavigate()
   const settingsOnClick = () => {
     navigate(getSettings())
   }

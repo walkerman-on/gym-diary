@@ -9,6 +9,8 @@ import { useSpring, animated } from '@react-spring/web';
 import { useSwipeable } from 'react-swipeable';
 import { fetchDateCurrent } from 'features/calendar';
 import { ICalendar } from '../../../types/types';
+import { getDate } from 'app/providers/router';
+import { useNavigate } from 'react-router-dom';
 
 dayjs.locale('ru');
 
@@ -21,6 +23,7 @@ export const CalendarExpanded: React.FC<ICalendar> = () => {
   const endOfMonth = selectedDate.endOf('month');
   const startOfCalendar = startOfMonth.startOf('week');
   const endOfCalendar = endOfMonth.endOf('week');
+  const navigate = useNavigate();
 
   const handleMonthChange = (direction: 'prev' | 'next') => {
     setSelectedDate(prev => prev.add(direction === 'next' ? 1 : -1, 'month'));
@@ -29,7 +32,7 @@ export const CalendarExpanded: React.FC<ICalendar> = () => {
   const handleDateChange = (dateKey: string) => {
     setSelectedDate(dayjs(dateKey));
     setSelectedDateKey(dateKey);
-    console.log(dateKey)
+    navigate(getDate(dateKey))
   };
 
   const generateCalendarDates = () => {
