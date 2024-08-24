@@ -28,10 +28,6 @@ export const fetchWorkout = createAsyncThunk<
 			// Получаем данные тренировки
 			const workoutDoc = await getDoc(workoutDocRef);
 
-			if (!workoutDoc.exists()) {
-				return rejectWithValue('Workout not found for the specified date');
-			}
-
 			const workoutData = workoutDoc.data();
 			const exercises: IExerciseWorkout[] = workoutData?.exercises || [];
 

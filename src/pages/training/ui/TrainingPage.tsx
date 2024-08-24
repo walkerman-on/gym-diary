@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import cl from './TrainingPage.module.scss';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { getAddExercise, getLogin } from 'app/providers/router';
 import { useTheme } from 'app/providers/theme-provider';
 import { Calendar } from 'widgets/calendar';
@@ -10,6 +10,7 @@ import { Footer } from 'widgets/footer';
 import { Button } from '@mui/material';
 import { addWorkout, IWorkout } from 'features/workout';
 import { useAppDispatch } from 'shared/lib/hooks';
+import { createWorkout } from 'features/workout/api/createWorkout';
 
 const exerciseInWorkout = {
   exercise: {
@@ -31,11 +32,13 @@ const exerciseInWorkout = {
 export const TrainingPage = () => {
   const { theme } = useTheme();
   const { isAuth } = useAuth();
+  const { date } = useParams()
 
   const dispatch = useAppDispatch()
 
   const addMoreBtnHandler = () => {
-    dispatch(addWorkout({ date: "2024-08-24", exercise: exerciseInWorkout }))
+    // dispatch(createWorkout({ date: date }))
+    // dispatch(addWorkout({ date: date, exercise: exerciseInWorkout }))
   }
   return isAuth ? (
     <main className={classNames('app', cl.TrainingPage, {}, [theme])}>

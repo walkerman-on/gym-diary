@@ -1,4 +1,4 @@
-import { getTraining } from 'app/providers/router';
+import { getDate, getTraining } from 'app/providers/router';
 import { ExerciseSearchForm } from 'widgets/exercise-form/exercise-search-form';
 import { Footer } from "widgets/footer";
 import { ExercisesCard } from "widgets/exercises-card/exercises-card";
@@ -15,7 +15,7 @@ export const AddExercisePage = React.memo(() => {
         <Layout>
             <ExerciseSearchForm />
             <Outlet />
-            <Footer link={getTraining()} text="Добавить в тренировку" />
+            <Footer link={getDate()} text="Добавить в тренировку" />
         </Layout>
     );
 });

@@ -12,6 +12,8 @@ import { useParams } from 'react-router-dom';
 import { Skeleton } from 'shared/ui/skeleton';
 import { deleteExerciseById } from 'features/exercises';
 import { Loader } from 'shared/ui/loader';
+import { selectExerciseForWorkout } from 'features/workout/api/selectExerciseForWorkout';
+import { addWorkout } from 'features/workout';
 
 interface IExercisesFromCategory {
     exercises__all?: boolean,
@@ -22,7 +24,7 @@ const MemoizedExerciseCreateForm = React.memo(ExerciseCreateForm);
 export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__all, categoryId }) => {
 
     const category = useAppSelector(state => state.categories?.category__current);
-
+    const { date } = useAppSelector(state => state.workout.workout__current)
     const { exercise__search } = useAppSelector(state => state?.exercises);
     const dispatch = useAppDispatch();
 
@@ -48,7 +50,8 @@ export const ExercisesFromCategory: FC<IExercisesFromCategory> = ({ exercises__a
 
         } else {
             dispatch(toggleExerciseSelected(id));
-            // dispatch(selectExerciseById({ exerciseID: id }));
+            // dispatch(selectExerciseForWorkout({ exerciseID: id }));
+            dispatch(addWorkout({ date: date, exerciseID: id }))
         }
 
     };

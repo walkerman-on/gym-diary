@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
@@ -9,21 +9,38 @@ import { ThemeSwitcher } from 'shared/ui/theme-switcher';
 import { fetchDateCurrent } from 'features/calendar';
 import { ICalendar } from '../../../types/types';
 import SettingsIcon from 'shared/assets/icons/SettingsIcon';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getDate, getSettings } from 'app/providers/router';
+import { fetchWorkout } from 'features/workout';
+import { useAppDispatch } from 'shared/lib/hooks';
 
 dayjs.locale('ru');
 
 export const CalendarСollapsed: React.FC<ICalendar> = () => {
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
-  const today = dayjs();
-  console.log(today.format('MMMM YYYY'))
-
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { date } = useParams();
+
+  // Initialize the selected date state based on the URL parameter
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(() => {
+    const dateFromUrl = date ? dayjs(date, 'YYYY-MM-DD') : null;
+    return dateFromUrl.isValid() ? dateFromUrl : dayjs();
+  });
+
+  const today = dayjs();
+
+  useEffect(() => {
+    // Fetch workout data whenever the selected date changes
+    if (selectedDate) {
+      dispatch(fetchWorkout({ date: selectedDate.format('YYYY-MM-DD') }));
+    }
+  }, [selectedDate, dispatch]);
 
   const handleDateChange = (date: Dayjs | null) => {
-    setSelectedDate(date);
-    navigate(getDate(date?.format('YYYY-MM-DD')))
+    if (date) {
+      setSelectedDate(date);
+      navigate(getDate(date.format('YYYY-MM-DD')));
+    }
   };
 
   const renderWeekDays = (startOfWeek: Dayjs) => {
@@ -56,8 +73,8 @@ export const CalendarСollapsed: React.FC<ICalendar> = () => {
   const startOfWeek = selectedDate ? selectedDate.startOf('week') : dayjs().startOf('week');
 
   const settingsOnClick = () => {
-    navigate(getSettings())
-  }
+    navigate(getSettings());
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

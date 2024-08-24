@@ -2,7 +2,7 @@ import React from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/theme-provider';
 import cl from "./NotFoundPage.module.scss"
-import { getTraining } from 'app/providers/router';
+import { getDate, getTraining } from 'app/providers/router';
 import { Link } from 'react-router-dom';
 import { Layout } from 'pages/layout';
 
@@ -13,7 +13,7 @@ export const NotFoundPage = () => {
         <Layout>
             <div className={cl.NotFoundPage}>
                 <span>Такой страницы нет, вернитесь к
-                    <Link to={getTraining()}>
+                    <Link to={getDate()}>
                         <span className={cl.textBack}> тренировкам</span>
                     </Link>
                 </span>
