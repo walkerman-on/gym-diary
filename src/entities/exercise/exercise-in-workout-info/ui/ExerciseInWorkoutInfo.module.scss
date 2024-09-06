@@ -1,0 +1,16 @@
+.exercise_info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 5px;
+}
+
+.info_input {
+	display: flex;
+	gap: 10px;
+}
+
+.set_title {
+	color: var(--color-primary-600);
+	font-weight: 700;
+}

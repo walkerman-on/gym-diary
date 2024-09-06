@@ -1,0 +1,1 @@
+export { ExerciseInWorkoutInfo } from "./ui/ExerciseInWorkoutInfo"

@@ -1,12 +1,13 @@
 import { IExercise } from "features/exercises"
 
+export interface IExerciseInfo {
+    id: number,
+    reps: number,
+    weight: number
+}
 export interface IExerciseWorkout {
     exercise: IExercise | null,
-    sets: {
-        id: number,
-        reps: number,
-        weight: number
-    }[]
+    sets: IExerciseInfo[]
 }
 
 export interface IWorkout {

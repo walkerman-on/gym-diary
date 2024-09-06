@@ -7,6 +7,7 @@ import { Calendar } from 'widgets/calendar';
 import { useAuth } from 'features/auth/hooks/useAuth';
 import { ExercisesWorkoutCard } from 'widgets/exercises-card/exercises-workout-card';
 import { Footer } from 'widgets/footer';
+import { WorkoutsCard } from 'widgets/workouts-card';
 
 export const TrainingPage = () => {
   const { theme } = useTheme();
@@ -15,7 +16,8 @@ export const TrainingPage = () => {
   return isAuth ? (
     <main className={classNames('app', cl.TrainingPage, {}, [theme])}>
       <Calendar />
-      <ExercisesWorkoutCard />
+      <WorkoutsCard />
+      {/* <ExercisesWorkoutCard /> */}
       <Footer link={getAddExercise()} text='Добавить еще' />
     </main>
   ) : (
