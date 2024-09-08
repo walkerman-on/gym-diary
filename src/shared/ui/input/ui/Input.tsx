@@ -16,6 +16,7 @@ const InputF: FC<IInputProps> = (props) => {
       disableUnderline={true}
       placeholder={props.placeholder}
       {...props}
+
     />
   );
 };

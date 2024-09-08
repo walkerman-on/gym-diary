@@ -4,7 +4,7 @@ import DarkThemeIcon from 'shared/assets/icons/DarkThemeIcon';
 import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
 import ArrowUpIcon from 'shared/assets/icons/ArrowUpIcon';
 import { IExercise } from 'features/exercises';
-import { addSetAndWeightInWorkout, IExerciseWorkout } from 'features/workout';
+import { addSetAndWeightInWorkout, deleteWorkout, IExerciseWorkout } from 'features/workout';
 import { ExerciseInWorkoutInfo } from 'entities/exercise/exercise-in-workout-info';
 import { useAppDispatch } from 'shared/lib/hooks';
 
@@ -19,6 +19,11 @@ export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercises }) => {
     setCollapsed(prevState => !prevState);
   };
 
+  const dispatch = useAppDispatch()
+  const deleteExercise = (exerciseID: string) => {
+    dispatch(deleteWorkout({ date: "2024-09-07", exerciseID: exerciseID }))
+  }
+
   return (
     <>
       {
@@ -32,6 +37,7 @@ export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercises }) => {
               {collapsed ? <ArrowDownIcon /> : <ArrowUpIcon />}
             </div>
             <ExerciseInWorkoutInfo exersiceID={item?.exercise.id} />
+            <span onClick={() => deleteExercise(item?.exercise.id)}>delete</span>
           </div>
         ))
       }
