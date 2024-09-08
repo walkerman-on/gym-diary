@@ -14,26 +14,24 @@ interface IExerciseInWorkout {
 
 export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercises }) => {
   const [collapsed, setCollapsed] = useState<boolean>(true);
-  const dispatch = useAppDispatch()
 
   const toggleWorkoutMenu = () => {
     setCollapsed(prevState => !prevState);
-    dispatch(addSetAndWeightInWorkout({ date: "2024-09-06", exerciseID: "m088aeya", info: { id: 1, reps: 12, weight: 20 } }))
   };
 
   return (
     <>
       {
         exercises?.map(item => (
-          <div className={cl.exercise}>
+          <div className={cl.exercise} key={item?.exercise.id}>
             <div className={cl.exersise_item} onClick={toggleWorkoutMenu} key={item?.exercise.id}>
-              <p className={cl.info}>
+              <div className={cl.info}>
                 <DarkThemeIcon />
                 <h2 className={cl.title}>{item?.exercise.name}</h2>
-              </p>
+              </div>
               {collapsed ? <ArrowDownIcon /> : <ArrowUpIcon />}
             </div>
-            <ExerciseInWorkoutInfo />
+            <ExerciseInWorkoutInfo exersiceID={item?.exercise.id} />
           </div>
         ))
       }

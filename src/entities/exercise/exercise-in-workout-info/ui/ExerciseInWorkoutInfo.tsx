@@ -1,54 +1,80 @@
 import React, { FC, useState } from 'react';
 import cl from "./ExerciseInWorkoutInfo.module.scss";
 import { Input } from 'shared/ui/input';
+import { useAppDispatch, useAppSelector } from 'shared/lib/hooks';
+import { addSetAndWeightInWorkout } from 'features/workout';
 
 interface IExerciseInWorkoutInfo {
-	//  id: string;
+	exersiceID?: string;
 }
 
-export const ExerciseInWorkoutInfo: FC<IExerciseInWorkoutInfo> = ({ }) => {
-	const [exerciseInfo, setExerciseInfo] = useState<{ weight: number, reps: number }>({
+export const ExerciseInWorkoutInfo: FC<IExerciseInWorkoutInfo> = ({ exersiceID }) => {
+	const [exerciseInfo, setExerciseInfo] = useState<{ weight?: number, reps?: number }>({
 		weight: null,
 		reps: null
 	});
 
 	const handleWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const weight = parseFloat(e.target.value) || 0; // Преобразуем строку в число
+		const weight = parseFloat(e.target.value) || null;
 		setExerciseInfo(prevState => ({
 			...prevState,
 			weight
 		}));
-		console.log({ weight })
 	};
 
 	const handleRepsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const reps = parseFloat(e.target.value) || 0; // Преобразуем строку в число
+		const reps = parseFloat(e.target.value) || null;
 		setExerciseInfo(prevState => ({
 			...prevState,
 			reps
 		}));
-		console.log({ reps })
+	};
 
+	const dispatch = useAppDispatch();
+
+	const { date } = useAppSelector(state => state.workout.workout__current);
+
+	const toggleWorkoutMenu = () => {
+		const { weight, reps } = exerciseInfo;
+
+		if (weight !== null && reps !== null && weight > 0 && reps > 0) {
+			console.log("if выполнился");
+			dispatch(addSetAndWeightInWorkout({
+				date: date,
+				exerciseID: exersiceID,
+				info: {
+					id: 5, // Замените на реальный id, если он должен быть динамическим
+					reps,
+					weight
+				}
+			}));
+		} else {
+			console.error('Invalid input values', exerciseInfo);
+		}
 	};
 
 	return (
-		<div className={cl.exercise_info}>
-			<span className={cl.set_title}>1</span>
-			<div className={cl.info_input}>
+		<div className={cl.workout_block} >
+			<div className={cl.exercise_info}>
+				<span className={cl.set_title}>1</span>
 				<Input
-					placeholder="Количество"
+					placeholder="Повторения"
 					type="number"
-					value={exerciseInfo.reps}
+					height='50px'
+					value={exerciseInfo.reps ?? ''}
 					onChange={handleRepsChange}
+					onBlur={toggleWorkoutMenu}
 				/>
 				<Input
 					placeholder="Вес"
 					height='50px'
 					type="number"
-					value={exerciseInfo.weight}
+					value={exerciseInfo.weight ?? ''}
 					onChange={handleWeightChange}
+					onBlur={toggleWorkoutMenu}
 				/>
 			</div>
+			<span className={cl.addSet_title}>добавить подход</span>
 		</div>
 	);
 };
