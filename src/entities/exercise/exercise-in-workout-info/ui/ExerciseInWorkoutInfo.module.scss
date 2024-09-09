@@ -18,9 +18,11 @@
 	font-weight: 700;
 }
 
-.addSet_title {
-	color: var(--color-primary-600);
-	font-weight: 600;
-	font-size: 18px;
-	padding: 5px 20px;
+.addSet {
+	background-color: var(--color-primary-400);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	border-radius: 8px;
 }

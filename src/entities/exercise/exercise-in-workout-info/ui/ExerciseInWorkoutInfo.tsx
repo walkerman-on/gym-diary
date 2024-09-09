@@ -3,6 +3,7 @@ import cl from "./ExerciseInWorkoutInfo.module.scss";
 import { Input } from 'shared/ui/input';
 import { useAppDispatch, useAppSelector } from 'shared/lib/hooks';
 import { addSetAndWeightInWorkout } from 'features/workout';
+import AddSetIcon from 'shared/assets/icons/AddSetIcon';
 
 interface IExerciseInWorkoutInfo {
 	exersiceID?: string;
@@ -73,8 +74,10 @@ export const ExerciseInWorkoutInfo: FC<IExerciseInWorkoutInfo> = ({ exersiceID }
 					onChange={handleWeightChange}
 					onBlur={toggleWorkoutMenu}
 				/>
+				<span className={cl.addSet}>
+					<AddSetIcon />
+				</span>
 			</div>
-			<span className={cl.addSet_title}>добавить подход</span>
 		</div>
 	);
 };

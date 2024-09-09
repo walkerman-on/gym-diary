@@ -1,26 +1,25 @@
 .exersise_item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: 10px;
     background: var(--color-primary-400);
     padding: 12px;
     border-radius: 16px;
+    transition: transform 0.3s ease; 
 }
 
 .exercise {
     display: flex;
     flex-direction: column;
-    gap: 10px
+    gap: 10px;
 }
 
 .info {
     display: flex;
-    align-items: center;
     gap: 10px;
 }
 
-.title {
-    font-weight: 700;
-    color: var(--color-bg)
+.swiped {
+    transform: translateX(-80px); 
+    background: var(--color-error); 
 }
