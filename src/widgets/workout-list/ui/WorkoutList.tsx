@@ -1,0 +1,34 @@
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useEffect, FC } from "react";
+import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
+import { Loader } from "shared/ui/loader";
+import { fetchWorkout } from "features/workout";
+import { useParams } from "react-router-dom";
+import { WorkoutCard } from "features/workout/ui/workout-card";
+import cl from "./WorkoutList.module.scss"
+export const WorkoutList: FC = () => {
+	const { date } = useParams<{ date: string }>();
+
+	const { loading, workout__current } = useAppSelector(state => state.workout);
+	const exercises = workout__current?.exercises || [];
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchWorkout({ date }));
+	}, [date, dispatch]);
+
+	return (
+		<>
+			{loading ?
+				<Loader />
+				: exercises.length > 0 ? (
+					<WorkoutCard exercises={exercises} date={date} />
+				) :
+					<section className={cl.content}>
+						<h1>Упражнения не добавлены в тренировку, добавь их!</h1>
+					</section>
+			}
+		</>
+	);
+};

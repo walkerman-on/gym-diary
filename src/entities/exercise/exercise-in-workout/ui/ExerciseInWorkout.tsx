@@ -9,61 +9,46 @@ import { IExerciseWorkout } from 'features/workout';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { deleteWorkout } from 'features/workout';
 import { ExerciseInWorkoutInfo } from 'entities/exercise/exercise-in-workout-info';
+import { IExercise } from 'features/exercises';
 
 interface IExerciseInWorkout {
-  exercises: IExerciseWorkout[],
+  exercise: IExercise,
 }
 
-export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercises }) => {
-  const dispatch = useAppDispatch();
+export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercise }) => {
+  const [swipeable, setSwipeable] = useState(false);
+  const [infoVisible, setInfoVisible] = useState(false); // Add state for visibility
 
-  const deleteExercise = (exerciseID: string) => {
-    dispatch(deleteWorkout({ date: "2024-09-09", exerciseID: exerciseID }));
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setSwipeable(true),
+    onSwipedRight: () => setSwipeable(false),
+    trackMouse: true,
+  });
+
+  const toggleInfo = () => {
+    setInfoVisible(!infoVisible);
   };
 
   return (
-    <>
-      {
-        exercises?.map(item => {
-          const [swipeable, setSwipeable] = useState(false);
-          const [infoVisible, setInfoVisible] = useState(false); // Add state for visibility
+    <div
+      className={`${cl.exersise_item} ${swipeable ? cl.swiped : ''}`}
+      onClick={toggleInfo}
+      {...handlers}
+    >
+      <div className={cl.info}>
+        <DarkThemeIcon />
+        <h2 className={cl.title}>{exercise?.name}</h2>
+      </div>
+      {swipeable ? (
+        <div className={cl.delete_icon}>
+          <TrashIcon color='var(--color-bg)' />
+        </div>
+      ) : (
+        <>
+          {infoVisible ? <ArrowUpIcon /> : <ArrowDownIcon />}
+        </>
+      )}
+    </div>
 
-          const handlers = useSwipeable({
-            onSwipedLeft: () => setSwipeable(true),
-            onSwipedRight: () => setSwipeable(false),
-            trackMouse: true,
-          });
-
-          const toggleInfo = () => {
-            setInfoVisible(!infoVisible);
-          };
-
-          return (
-            <section className={cl.exercise} key={item?.exercise.id} >
-              <div
-                className={`${cl.exersise_item} ${swipeable ? cl.swiped : ''}`}
-                onClick={toggleInfo}
-                {...handlers}
-              >
-                <div className={cl.info}>
-                  <DarkThemeIcon />
-                  <h2 className={cl.title}>{item?.exercise.name}</h2>
-                </div>
-                {swipeable ? (
-                  <div className={cl.delete_icon} onClick={() => deleteExercise(item?.exercise.id)}>
-                    <TrashIcon color='var(--color-bg)' />
-                  </div>
-                ) : (
-                  <>
-                    {infoVisible ? <ArrowUpIcon /> : <ArrowDownIcon />}
-                  </>
-                )}
-              </div>
-              {infoVisible && <ExerciseInWorkoutInfo exersiceID={item?.exercise.id} />}
-            </section>
-          );
-        })
-      }
-    </>
   );
 };

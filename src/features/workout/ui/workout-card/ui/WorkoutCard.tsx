@@ -1,40 +1,30 @@
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useEffect, Suspense } from "react";
-import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
+import { FC } from "react";
 import { ExerciseInWorkout } from "entities/exercise/exercise-in-workout";
-import { Loader } from "shared/ui/loader";
-import { fetchWorkout } from "features/workout";
-import { useParams } from "react-router-dom";
+import { deleteWorkout, IExerciseWorkout } from "features/workout";
 import { ExerciseInWorkoutInfo } from "entities/exercise/exercise-in-workout-info";
-import cl from "./WorkoutCard.module.scss"
+import cl from "./WorkoutCard.module.scss";
 
-export const WorkoutCard = () => {
-  const dispatch = useAppDispatch()
+interface IWorkoutCard {
+  exercises: IExerciseWorkout[],
+  date: string
+}
 
-  const { loading, workout__current } = useAppSelector(state => state.workout)
-  const exercises = workout__current?.exercises
+export const WorkoutCard: FC<IWorkoutCard> = ({ exercises, date }) => {
+  const dispatch = useAppDispatch();
 
-  const { date } = useParams()
-
-  useEffect(() => {
-    dispatch(fetchWorkout({ date: date }))
-  }, [])
+  const deleteExercise = (exerciseID: string) => {
+    dispatch(deleteWorkout({ exerciseID: exerciseID, date: date }));
+  };
 
   return (
-    <>
-      {
-        loading ? <Loader />
-          :
-          exercises.length > 0 ?
-            <>
-              <li className={cl.workout_card}>
-                <ExerciseInWorkout exercises={exercises} />
-              </li>
-            </>
-            :
-            <h1>Упржанения не добавлены в тренировку, добавьте!</h1>
-      }
-    </>
+    <ul className={cl.workout_card}>
+      {exercises.map(exercise => (
+        <li key={exercise.exercise.id} className={cl.exercise}>
+          <ExerciseInWorkout exercise={exercise.exercise} />
+          <ExerciseInWorkoutInfo exersiceID={exercise.exercise.id} />
+        </li>
+      ))}
+    </ul>
   );
 };
-
