@@ -1,7 +1,7 @@
 import { IExercise } from "features/exercises"
 
 export interface IExerciseInfo {
-    id: number,
+    setID: number,
     reps: number,
     weight: number
 }

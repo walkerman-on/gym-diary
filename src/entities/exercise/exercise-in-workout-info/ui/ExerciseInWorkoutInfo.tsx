@@ -44,7 +44,7 @@ export const ExerciseInWorkoutInfo: FC<IExerciseInWorkoutInfo> = ({ exersiceID }
 				date: date,
 				exerciseID: exersiceID,
 				info: {
-					id: 5, // Замените на реальный id, если он должен быть динамическим
+					setID: 5, // Замените на реальный id, если он должен быть динамическим
 					reps,
 					weight
 				}

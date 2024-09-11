@@ -5,6 +5,7 @@ import { fetchWorkout } from "features/workout/api/fetchWorkout";
 import { selectExerciseForWorkout } from "features/workout/api/selectExerciseForWorkout";
 import { createWorkout } from "features/workout/api/createWorkout";
 import { deleteWorkout } from "features/workout/api/deleteWorkout";
+import { addSetAndWeightInWorkout } from "features/workout/api/addSetAndWeightInWorkout";
 
 const initialState: IWorkoutState = {
     workout__current: {
@@ -102,6 +103,31 @@ export const workoutSlice = createSlice({
                 state.error = null;
             })
             .addCase(deleteWorkout.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+
+            .addCase(addSetAndWeightInWorkout.fulfilled, (state, action) => {
+                const { exerciseID } = action.meta.arg
+                state.workout__current.exercises = state.workout__current.exercises.map(exercise => {
+                    if (exercise.exercise.id === exerciseID) {
+                        return {
+                            ...exercise,
+                            sets: [...exercise.sets, action.payload]
+                        };
+                    }
+                    return exercise;
+                });
+
+                state.loading = false;
+                state.error = null;
+            })
+
+            .addCase(addSetAndWeightInWorkout.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(addSetAndWeightInWorkout.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
             });
