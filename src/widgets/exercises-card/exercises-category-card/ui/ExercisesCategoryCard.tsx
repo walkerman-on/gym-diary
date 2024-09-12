@@ -15,9 +15,7 @@ export const ExercisesCategoryCard: React.FC<ExercisesCategoryCardProps> = () =>
                 <ExercisesFromCategory categoryId={categoryId} />
             </section >
             :
-            <section className={cl.info}>
-                <h1>Выбери категорию или введи упражнение в поле поиска</h1>
-            </section>
+            <h1 className={cl.info}>Выбери категорию или введи упражнение в поле поиска</h1>
     )
 }
 
