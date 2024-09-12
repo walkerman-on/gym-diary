@@ -39,7 +39,6 @@ export const ExerciseInWorkoutInfo: FC<IExerciseInWorkoutInfo> = ({ exersiceID }
 		const { weight, reps } = exerciseInfo;
 
 		if (weight !== null && reps !== null && weight > 0 && reps > 0) {
-			console.log("if выполнился");
 			dispatch(addSetAndWeightInWorkout({
 				date: date,
 				exerciseID: exersiceID,
@@ -74,10 +73,11 @@ export const ExerciseInWorkoutInfo: FC<IExerciseInWorkoutInfo> = ({ exersiceID }
 					onChange={handleWeightChange}
 					onBlur={toggleWorkoutMenu}
 				/>
-				<span className={cl.addSet}>
+				{/* <span className={cl.addSet}>
 					<AddSetIcon />
-				</span>
+				</span> */}
 			</div>
+			<span className={cl.addSet}>добавить подход</span>
 		</div>
 	);
 };

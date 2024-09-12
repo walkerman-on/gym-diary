@@ -6,7 +6,7 @@ const InputF: FC<IInputProps> = (props) => {
   return (
     <MUIInput
       sx={{
-        background: 'var(--color-primary-400)',
+        background: 'var(--color-primary-200)',
         borderRadius: 2,
         height: props.height,
         color: 'var(--color-primary-800)',

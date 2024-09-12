@@ -7,19 +7,12 @@ summary::-webkit-details-marker {
 }
 
 .info__block {
-	padding: 12px;
 	background: var(--color-primary-400);
 	border-radius: 10px;
 }
 
 .info__title {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.title {
-	// color: var(--color-accent);
+	width: 100%;
 }
 
 .subtitle {

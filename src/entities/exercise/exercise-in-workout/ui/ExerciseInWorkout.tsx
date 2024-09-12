@@ -36,7 +36,7 @@ export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercise }) => {
       {...handlers}
     >
       <div className={cl.info}>
-        <DarkThemeIcon />
+        {/* <img src={exercise?.categoryId} alt="Description" className={cl.scheme} /> */}
         <h2 className={cl.title}>{exercise?.name}</h2>
       </div>
       {swipeable ? (

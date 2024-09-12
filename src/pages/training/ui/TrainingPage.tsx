@@ -8,7 +8,6 @@ import { WorkoutList } from 'widgets/workout-list';
 import { Content } from 'widgets/content';
 
 export const TrainingPage = () => {
-  const { theme } = useTheme();
   const { isAuth } = useAuth();
 
   return isAuth ? (
@@ -17,7 +16,7 @@ export const TrainingPage = () => {
       <Content>
         <WorkoutList />
       </Content>
-      <Footer link={getAddExercise()} text='Добавить упражнения' />
+      <Footer link={getAddExercise()} text='Добавить упражнения' big />
     </>
   ) : (
     <Navigate to={getLogin()} />

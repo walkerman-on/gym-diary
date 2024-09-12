@@ -1,17 +1,21 @@
+
+.Loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .loader {
+	height: 100%;
 	position: relative;
 	width: 100px;
 	height: 130px;
 	background: var(--color-primary-400);
 	border-radius: 4px;
-}
-
-.Loader {
-	display: flex;
-	justify-content: center;
-	display: relative;
-	align-items: center;
-	flex-grow: 1;
 }
 
 .loader:before {

@@ -6,6 +6,7 @@ import { fetchWorkout } from "features/workout";
 import { useParams } from "react-router-dom";
 import { WorkoutCard } from "features/workout/ui/workout-card";
 import cl from "./WorkoutList.module.scss"
+
 export const WorkoutList: FC = () => {
 	const { date } = useParams<{ date: string }>();
 
@@ -25,9 +26,7 @@ export const WorkoutList: FC = () => {
 				: exercises.length > 0 ? (
 					<WorkoutCard exercises={exercises} date={date} />
 				) :
-					<section className={cl.content}>
-						<h1>Упражнения не добавлены в тренировку, добавь их!</h1>
-					</section>
+					<h1 className={cl.content}>Упражнения не добавлены в тренировку, добавь их!</h1>
 			}
 		</>
 	);

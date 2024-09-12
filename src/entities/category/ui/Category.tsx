@@ -19,6 +19,7 @@ export const Category: FC<ICategory> = React.memo(({ handleClick, categories, se
                     key={item?.id}
                     onClick={() => handleClick(item?.id)}
                 >
+                    <img src={item?.imageLightURL} alt="icon" className={cl.scheme} />
                     <span className={cl.title}>{item?.title}</span>
                 </li>
             ))}

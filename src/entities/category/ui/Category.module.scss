@@ -1,6 +1,9 @@
 .category__item {
     padding: 5px 10px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .category__current {
@@ -9,4 +12,9 @@
 
 .title {
     font-weight: 700;
+}
+
+.scheme {
+    height: 24px;
+    width: 24px
 }
