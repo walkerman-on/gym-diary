@@ -27,7 +27,7 @@ export const ExerciseSearchForm: FC<IExerciseSearchForm> = React.memo(() => {
     }, [])
 
     return (
-        <section className={cl.menu}>
+        <header className={cl.menu}>
             <Input
                 placeholder="Искать"
                 height='50px'
@@ -36,6 +36,6 @@ export const ExerciseSearchForm: FC<IExerciseSearchForm> = React.memo(() => {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
             />
-        </section>
+        </header>
     );
 });

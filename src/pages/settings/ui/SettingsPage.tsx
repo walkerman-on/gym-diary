@@ -1,7 +1,7 @@
 import cl from "./SettingsPage.module.scss"
 import { Layout } from 'pages/layout';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
-import { getTraining } from 'app/providers/router';
+import { getDate, getSettings, getTraining } from 'app/providers/router';
 import { useAuth } from 'features/auth/hooks/useAuth';
 import { Footer } from 'widgets/footer';
 import EmailIcon from 'shared/assets/icons/EmailIcon';
@@ -14,7 +14,7 @@ const SettingsPage = () => {
 	const { logout } = useLogout();
 
 	return (
-		<Layout>
+		<>
 			<div className={cl.page}>
 				<section className={cl.settings__info}>
 					<h1 className={cl.page_title}>Профиль</h1>
@@ -40,8 +40,8 @@ const SettingsPage = () => {
 					<DropDownMenu title='Обратная связь' content='💌 Все пожелания и предложения писать с пометкой #gym-diary_feedback в телеграмм - @walkerman_on' />
 				</article>
 			</div>
-			<Footer link={getTraining()} text='На главную' />
-		</Layout>
+			<Footer link={getDate()} text='Вернуться домой' />
+		</>
 	);
 };
 

@@ -11,11 +11,13 @@ export const AddExercisePage = React.memo(() => {
     const { date, exercises } = useAppSelector(state => state.workout.workout__current)
 
     return (
-        <Layout>
+        // <Layout>
+        <>
             <ExerciseSearchForm />
             <Outlet />
-            <Footer link={getDate(date)} text="Добавить в тренировку" />
-        </Layout>
+            <Footer link={getDate(date)} text='Добавить упражнения' />
+        </>
+        // </Layout>
     );
 });
 

@@ -10,6 +10,7 @@ import { ExercisesFromCategory } from 'features/exercises/ui/exercises-from-cate
 import { ExercisesCategoryCard } from 'widgets/exercises-card/exercises-category-card';
 import { CategoriesCard } from 'widgets/categories-card';
 import { ExercisesSearchCard } from 'widgets/exercises-card/exercises-search-card';
+import { Content } from 'widgets/content';
 
 export enum AppRoutes {
   LOGIN = 'login',
@@ -53,25 +54,25 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
       {
         path: getAddExercise(),
         element:
-          <>
+          <Content>
             <CategoriesCard />
             <ExercisesCategoryCard />
-          </>
+          </Content>
       },
       {
         path: getExercisesByCategory(":categoryId"),
         element:
-          <>
+          <Content>
             <CategoriesCard />
             <ExercisesCategoryCard />
-          </>
+          </Content>
       },
       {
         path: getExercisesBySearch(),
         element:
-          <>
+          <Content>
             <ExercisesSearchCard />
-          </>
+          </Content>
       },
     ],
   },
