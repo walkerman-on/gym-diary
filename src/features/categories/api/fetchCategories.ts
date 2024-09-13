@@ -1,9 +1,9 @@
-import { createAsyncThunk } from "@reduxjs/toolkit"
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { db, collection, getDocs } from "shared/services/firebase";
 import { IExerciseCategory } from "../types/types";
 
 export const fetchCategories = createAsyncThunk<IExerciseCategory[], void, { rejectValue: string }>(
-	"fetchCategories",
+	"categories/fetchCategories",
 	async (_, { rejectWithValue }) => {
 		try {
 			const querySnapshot = await getDocs(collection(db, "exercises-category"));
@@ -13,11 +13,11 @@ export const fetchCategories = createAsyncThunk<IExerciseCategory[], void, { rej
 			});
 
 			if (querySnapshot.empty) {
-				throw new Error("Server Error! Can not GET category")
+				throw new Error("Server Error! Cannot GET categories");
 			}
-			return exercisesCategory
-		} catch (error) {
-			return rejectWithValue(error.message)
+			return exercisesCategory;
+		} catch (error: any) {
+			return rejectWithValue(error.message);
 		}
 	}
-)
+);

@@ -13,12 +13,6 @@ export const WorkoutList: FC = () => {
 	const { loading, workout__current } = useAppSelector(state => state.workout);
 	const exercises = workout__current?.exercises || [];
 
-	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		dispatch(fetchWorkout({ date }));
-	}, [date, dispatch]);
-
 	return (
 		<>
 			{loading ?

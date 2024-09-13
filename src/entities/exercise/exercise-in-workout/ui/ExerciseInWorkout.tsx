@@ -1,15 +1,10 @@
 import { FC, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import cl from "./ExerciseInWorkout.module.scss";
-import DarkThemeIcon from 'shared/assets/icons/DarkThemeIcon';
 import ArrowDownIcon from 'shared/assets/icons/ArrowDownIcon';
 import ArrowUpIcon from 'shared/assets/icons/ArrowUpIcon';
-import TrashIcon from 'shared/assets/icons/TrashIcon';
-import { IExerciseWorkout } from 'features/workout';
-import { useAppDispatch } from 'shared/lib/hooks';
-import { deleteWorkout } from 'features/workout';
-import { ExerciseInWorkoutInfo } from 'entities/exercise/exercise-in-workout-info';
 import { IExercise } from 'features/exercises';
+import TrashIcon from 'shared/assets/icons/TrashIcon';
 
 interface IExerciseInWorkout {
   exercise: IExercise,
@@ -36,19 +31,13 @@ export const ExerciseInWorkout: FC<IExerciseInWorkout> = ({ exercise }) => {
       {...handlers}
     >
       <div className={cl.info}>
-        {/* <img src={exercise?.categoryId} alt="Description" className={cl.scheme} /> */}
+        <img src={exercise?.imageLightURL} alt="Description" className={cl.scheme} />
         <h2 className={cl.title}>{exercise?.name}</h2>
       </div>
-      {swipeable ? (
-        <div className={cl.delete_icon}>
-          <TrashIcon color='var(--color-bg)' />
-        </div>
-      ) : (
-        <>
-          {infoVisible ? <ArrowUpIcon /> : <ArrowDownIcon />}
-        </>
-      )}
+      {infoVisible ? <ArrowUpIcon /> : <ArrowDownIcon />}
+      {/* <div className={cl.delete_icon}>
+        <TrashIcon color='var(--color-bg)' />
+      </div> */}
     </div>
-
   );
 };
