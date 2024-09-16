@@ -1,7 +1,7 @@
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { FC } from "react";
 import { ExerciseInWorkout } from "entities/exercise/exercise-in-workout";
-import { deleteWorkout, IExerciseWorkout } from "features/workout";
+import { addSetInWorkout, deleteWorkout, IExerciseInfo, IExerciseWorkout } from "features/workout";
 import { ExerciseInWorkoutInfo } from "entities/exercise/exercise-in-workout-info";
 import cl from "./WorkoutCard.module.scss";
 import { DropDownMenu } from "shared/ui/drop-down-menu";
@@ -18,6 +18,10 @@ export const WorkoutCard: FC<IWorkoutCard> = ({ exercises, date }) => {
     dispatch(deleteWorkout({ exerciseID: exerciseID, date: date }));
   };
 
+  const addInfoToServer = (exersiceID: string, info: IExerciseInfo) => {
+    dispatch(addSetInWorkout({ date: date, exerciseID: exersiceID, info: info }));
+  }
+
   return (
     <ul className={cl.workout_card}>
       {exercises.map(exercise => (
@@ -28,6 +32,7 @@ export const WorkoutCard: FC<IWorkoutCard> = ({ exercises, date }) => {
               <ExerciseInWorkoutInfo
                 exersiceID={exercise.exercise.id}
                 set={exercise.sets}
+                addInfoToServer={addInfoToServer}
               />
             }
           />
