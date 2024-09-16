@@ -4,18 +4,18 @@ import { RootState } from "app/providers/store-provider";
 import { IExercise } from 'features/exercises';
 import { IExerciseInfo } from '../types/types';
 
-interface addSetAndWeightInWorkoutArgs {
+interface addSetInWorkoutArgs {
 	date: string;
 	exerciseID: string;
 	info: IExerciseInfo; // The information to be added to the sets array
 }
 
-export const addSetAndWeightInWorkout = createAsyncThunk<
+export const addSetInWorkout = createAsyncThunk<
 	IExerciseInfo, // Return type
-	addSetAndWeightInWorkoutArgs, // Input type
+	addSetInWorkoutArgs, // Input type
 	{ rejectValue: string }
 >(
-	'workout/addSetAndWeightInWorkout',
+	'workout/addSetInWorkout',
 	async ({ date, exerciseID, info }, { rejectWithValue, getState }) => {
 		try {
 			const state = getState() as RootState;
