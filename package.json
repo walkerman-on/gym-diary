@@ -1,6 +1,6 @@
 {
   "name": "gym-tracker",
-  "homepage": ".",
+  "homepage": "https://gym-diary-two.vercel.app",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
