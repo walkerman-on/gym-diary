@@ -1,19 +1,7 @@
 {
 	"routes": [
 		{
-			"src": "/",
-			"dest": "/"
-		},
-		{
-			"src": "/login",
-			"dest": "/"
-		},
-		{
-			"src": "/register",
-			"dest": "/"
-		},
-		{
-			"src": "/settings",
+			"src": "/[^.]+",
 			"dest": "/"
 		}
 	]
