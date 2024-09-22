@@ -21,8 +21,8 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: '../../public/manifest.webmanifest', // путь к вашему манифесту
-					to: 'build', // место, куда вы хотите его скопировать в папке сборки
+					from: '../../manifest.webmanifest', // путь к вашему манифесту
+					to: '.', // место, куда вы хотите его скопировать в папке сборки
 				},
 			],
 		}),
