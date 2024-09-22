@@ -1,8 +1,9 @@
 {
-	"routes": [
+	"rewrites": [
 		{
-			"src": "/[^.]+",
-			"dest": "/"
+			"source": "/((?!api/.*).*)",
+			"destination": "/index.html",
+			"status": 200
 		}
 	]
 }
