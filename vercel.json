@@ -1,12 +1,12 @@
 {
 	"routes": [
 		{
-			"src": "/(.*)",
-			"destination": "/"
+			"src": "/",
+			"dest": "/"
 		},
 		{
-			"src": "/(.*)",
-			"destination": "/login"
+			"src": "/login",
+			"dest": "/"
 		}
 	]
 }
