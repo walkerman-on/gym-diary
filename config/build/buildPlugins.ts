@@ -16,9 +16,6 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
 			chunkFilename: "css/[name].[contenthash:8].css",
 		}),
 		new webpack.HotModuleReplacementPlugin(),
-		new Dotenv(
-			{
-				path: '../../.env'
-			}),
+		new Dotenv()
 	]
 }
