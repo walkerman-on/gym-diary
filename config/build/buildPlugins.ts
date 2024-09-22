@@ -1,12 +1,12 @@
 import webpack from "webpack"
 import HTMLWebpackPlugin from "html-webpack-plugin"
-import {BuildOptions} from "./types/config"
+import { BuildOptions } from "./types/config"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import Dotenv from "dotenv-webpack"
 
-export function buildPlugins({paths}: BuildOptions): webpack.WebpackPluginInstance[] {
-    
-return [
+export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInstance[] {
+
+	return [
 		new HTMLWebpackPlugin({
 			template: paths.html
 		}),
@@ -16,6 +16,9 @@ return [
 			chunkFilename: "css/[name].[contenthash:8].css",
 		}),
 		new webpack.HotModuleReplacementPlugin(),
-		new Dotenv(),
+		new Dotenv(
+			{
+				path: '../../.env'
+			}),
 	]
 }
