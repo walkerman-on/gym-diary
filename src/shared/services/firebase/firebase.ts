@@ -3,12 +3,12 @@ import { getStorage } from "firebase/storage";
 import { getFirestore, collection, addDoc, doc, setDoc, getDoc, query, where, getDocs, deleteDoc, updateDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_API_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_API_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_API_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_API_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_API_APP_ID,
+  apiKey: "AIzaSyD8dbhHk0_eHue7nAuWm0aMBzt80QWguw4",
+  authDomain: "gym-tracker-18c82.firebaseapp.com",
+  projectId: "gym-tracker-18c82",
+  storageBucket: "gym-tracker-18c82.appspot.com",
+  messagingSenderId: "655600590846",
+  appId: "1:655600590846:web:e72b0c9b864427defa6aaf",
 };
 
 const app = initializeApp(firebaseConfig);
