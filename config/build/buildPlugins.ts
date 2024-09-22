@@ -4,6 +4,7 @@ import { BuildOptions } from "./types/config"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import Dotenv from "dotenv-webpack"
 import CopyWebpackPlugin from 'copy-webpack-plugin'
+import path from "path"
 
 export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInstance[] {
 
@@ -21,8 +22,9 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: paths.public,// 
-					to: '.', // место, куда вы хотите его скопировать в папке сборки
+					from: path.resolve(paths.public, '*'), // копирует все файлы из папки public
+					to: path.resolve(paths.build), // копирует в папку сборки
+					noErrorOnMissing: true, // игнорировать ошибки, если файлов нет
 				},
 			],
 		}),
