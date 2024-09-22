@@ -1,0 +1,29 @@
+{
+	"name": "Gym Diary App",
+	"short_name": "Gym Diary",
+	"description": "Gym Diary App: your way to save results",
+	"start_url": "/training",
+	"display": "fullscreen",
+	"icons": [
+		{
+			"src": "./logo_light_192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "./logo_light_512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "./logo_dark_192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "./logo_dark_512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}

@@ -3,6 +3,7 @@ import HTMLWebpackPlugin from "html-webpack-plugin"
 import { BuildOptions } from "./types/config"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import Dotenv from "dotenv-webpack"
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInstance[] {
 
@@ -16,6 +17,14 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
 			chunkFilename: "css/[name].[contenthash:8].css",
 		}),
 		new webpack.HotModuleReplacementPlugin(),
-		new Dotenv()
+		new Dotenv(),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: '../../public/manifest.webmanifest', // путь к вашему манифесту
+					to: 'build', // место, куда вы хотите его скопировать в папке сборки
+				},
+			],
+		}),
 	]
 }
