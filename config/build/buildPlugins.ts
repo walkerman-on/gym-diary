@@ -20,10 +20,6 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
 		new Dotenv(),
 		new CopyWebpackPlugin({
 			patterns: [
-				// {
-				// 	from: paths.public,// 
-				// 	to: '.', // место, куда вы хотите его скопировать в папке сборки
-				// },
 				{
 					from: paths.public, // копируем всю папку public
 					to: '.', // копируем в корень папки build
