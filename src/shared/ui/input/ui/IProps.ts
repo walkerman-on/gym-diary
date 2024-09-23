@@ -1,3 +1,3 @@
 import { InputProps } from '@mui/material';
 
-export interface IInputProps extends InputProps { height?: string }
+export interface IInputProps extends InputProps { height?: string, background?: string }

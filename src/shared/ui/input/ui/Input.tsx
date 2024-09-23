@@ -2,21 +2,25 @@ import { Input as MUIInput } from '@mui/material';
 import { FC, memo } from 'react';
 import { IInputProps } from './IProps';
 
-const InputF: FC<IInputProps> = (props) => {
+const InputF: FC<IInputProps> = ({
+  height,
+  background = 'var(--color-primary-200)',
+  placeholder,
+  ...otherProps
+}) => {
   return (
     <MUIInput
       sx={{
-        background: 'var(--color-primary-200)',
+        background: background,
         borderRadius: 2,
-        height: props.height,
+        height: height,
         color: 'var(--color-primary-800)',
         padding: '0 30px',
         width: "100%",
       }}
       disableUnderline={true}
-      placeholder={props.placeholder}
-      {...props}
-
+      placeholder={placeholder}
+      {...otherProps}
     />
   );
 };

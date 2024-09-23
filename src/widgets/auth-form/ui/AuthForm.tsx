@@ -34,6 +34,7 @@ export const AuthForm: FC<IForm> = ({ title, handleClick }) => {
             onChange={onLoginHandle}
             height="50px"
             placeholder='Логин'
+            background='var(--color-primary-400)'
           />
           <Input
             height="50px"
@@ -41,6 +42,7 @@ export const AuthForm: FC<IForm> = ({ title, handleClick }) => {
             type="password"
             value={userData.password}
             onChange={onPasswordHandle}
+            background='var(--color-primary-400)'
           />
         </div>
         <div className={cl.authButton}>

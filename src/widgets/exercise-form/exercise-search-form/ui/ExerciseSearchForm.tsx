@@ -35,6 +35,7 @@ export const ExerciseSearchForm: FC<IExerciseSearchForm> = React.memo(() => {
                 onChange={findExerciseOnChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                background='var(--color-primary-400)'
             />
         </header>
     );
