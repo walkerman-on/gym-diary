@@ -2,7 +2,7 @@
 	"name": "Gym Diary App",
 	"short_name": "Gym Diary",
 	"description": "Gym Diary App: your way to save results",
-	"start_url": "/workout/null",
+	"start_url": "/settings",
 	"display": "fullscreen",
 	"icons": [
 		{
