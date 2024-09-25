@@ -44,6 +44,7 @@ export const ExerciseCreateForm: FC<IExerciseCreateForm> = (({ onValueChange }) 
                     height='50px'
                     value={exerciseName}
                     onChange={handleOnChange}
+                    background='var(--color-primary-400)'
                 />
             </div>
             {

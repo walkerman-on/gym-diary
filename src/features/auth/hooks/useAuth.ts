@@ -20,14 +20,20 @@ export const useAuth = (): IUseAuthReturn => {
 
   useEffect(() => {
     const auth = getAuth();
-    onAuthStateChanged(auth, user => {
+
+    const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
         dispatch(setUser({ id: user.uid, email: user.email }));
       } else {
-        navigate(getLogin());
+        // Перенаправление только если пользователь не авторизован
+        if (isAuthorized) {
+          navigate(getLogin());
+        }
       }
     });
-  }, [dispatch, navigate]);
+
+    return () => unsubscribe(); // Очистка слушателя при размонтировании
+  }, [dispatch, navigate, isAuthorized]);
 
   return {
     isAuth: isAuthorized,
