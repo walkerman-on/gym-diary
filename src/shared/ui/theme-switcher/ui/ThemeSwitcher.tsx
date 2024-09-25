@@ -3,10 +3,10 @@ import { Switch } from 'shared/ui/switch/ui/Switch';
 import cl from "./ThemeSwitcher.module.scss"
 
 export const ThemeSwitcher = (props: any) => {
-    const { changeTheme } = useTheme()
+    // const { changeTheme } = useTheme()
 
     return (
-        <div onClick={changeTheme} {...props} className={cl.ThemeSwitcher}>
+        <div {...props} className={cl.ThemeSwitcher}>
             <Switch />
         </div>
     );
