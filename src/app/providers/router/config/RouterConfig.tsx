@@ -10,6 +10,7 @@ import { ExercisesCategoryCard } from 'widgets/exercises-card/exercises-category
 import { CategoriesCard } from 'widgets/categories-card';
 import { ExercisesSearchCard } from 'widgets/exercises-card/exercises-search-card';
 import { Content } from 'widgets/content';
+import { Navigate } from 'react-router-dom';
 
 export enum AppRoutes {
   LOGIN = 'login',
@@ -17,6 +18,7 @@ export enum AppRoutes {
   WORKOUT = 'workout',
   ADD_EXERCISE = 'add_exercise',
   SETTINGS = "settings",
+  HOME = "home",
   NOT_FOUND = 'not_found'
 }
 
@@ -26,10 +28,15 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.WORKOUT]: getDate(":date"),
   [AppRoutes.SETTINGS]: getSettings(),
   [AppRoutes.ADD_EXERCISE]: getAddExercise(),
+  [AppRoutes.HOME]: "/",
   [AppRoutes.NOT_FOUND]: getNotFound(),
 };
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
+  [AppRoutes.HOME]: {
+    path: RoutePath.home,
+    element: <Navigate to={RoutePath.workout} replace />,
+  },
   [AppRoutes.LOGIN]: {
     path: RoutePath.login,
     element: <LoginPage />,
