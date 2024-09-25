@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { setUser } from '../model/slice/userSlice';
 import { IUseLoginReturn } from './types';
-import { getTraining } from 'app/providers/router/config/routes';
+import { getWorkout } from 'app/providers/router/config/routes';
 
 export const useLogin = (): IUseLoginReturn => {
   const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ export const useLogin = (): IUseLoginReturn => {
             id: user.uid,
           }),
         );
-        navigate(getTraining());
+        navigate(getWorkout());
       })
       .catch(() => alert('Введены некорректные данные!'));
   };

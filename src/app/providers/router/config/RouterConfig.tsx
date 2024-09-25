@@ -1,12 +1,11 @@
 import { AppRoutesProps } from './types';
-import { getAddExercise, getDate, getExercisesByCategory, getExercisesBySearch, getLogin, getNotFound, getRegister, getSettings, getTraining } from './routes';
+import { getAddExercise, getDate, getExercisesByCategory, getExercisesBySearch, getLogin, getNotFound, getRegister, getSettings, getWorkout } from './routes';
 import { LoginPage } from 'pages/login';
 import { RegisterPage } from 'pages/register';
 import { TrainingPage } from 'pages/training';
 import { NotFoundPage } from 'pages/not-found';
 import { AddExercisePage } from 'pages/add-exercise';
 import { SettingsPage } from 'pages/settings';
-import { ExercisesFromCategory } from 'features/exercises/ui/exercises-from-category';
 import { ExercisesCategoryCard } from 'widgets/exercises-card/exercises-category-card';
 import { CategoriesCard } from 'widgets/categories-card';
 import { ExercisesSearchCard } from 'widgets/exercises-card/exercises-search-card';
@@ -15,7 +14,7 @@ import { Content } from 'widgets/content';
 export enum AppRoutes {
   LOGIN = 'login',
   REGISTER = 'register',
-  TRAINING = 'training',
+  WORKOUT = 'workout',
   ADD_EXERCISE = 'add_exercise',
   SETTINGS = "settings",
   NOT_FOUND = 'not_found'
@@ -24,7 +23,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.LOGIN]: getLogin(),
   [AppRoutes.REGISTER]: getRegister(),
-  [AppRoutes.TRAINING]: getDate(":date"),
+  [AppRoutes.WORKOUT]: getDate(":date"),
   [AppRoutes.SETTINGS]: getSettings(),
   [AppRoutes.ADD_EXERCISE]: getAddExercise(),
   [AppRoutes.NOT_FOUND]: getNotFound(),
@@ -43,8 +42,8 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: RoutePath.settings,
     element: <SettingsPage />,
   },
-  [AppRoutes.TRAINING]: {
-    path: RoutePath.training,
+  [AppRoutes.WORKOUT]: {
+    path: RoutePath.workout,
     element: <TrainingPage />,
   },
   [AppRoutes.ADD_EXERCISE]: {

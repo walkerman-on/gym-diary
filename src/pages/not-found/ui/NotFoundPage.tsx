@@ -2,7 +2,7 @@ import React from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/theme-provider';
 import cl from "./NotFoundPage.module.scss"
-import { getDate, getTraining } from 'app/providers/router';
+import { getDate } from 'app/providers/router';
 import { Link } from 'react-router-dom';
 import { Layout } from 'pages/layout';
 

@@ -1,7 +1,7 @@
 import cl from "./SettingsPage.module.scss"
 import { Layout } from 'pages/layout';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
-import { getDate, getSettings, getTraining } from 'app/providers/router';
+import { getDate } from 'app/providers/router';
 import { useAuth } from 'features/auth/hooks/useAuth';
 import { Footer } from 'widgets/footer';
 import EmailIcon from 'shared/assets/icons/EmailIcon';
