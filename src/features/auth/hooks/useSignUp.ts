@@ -3,7 +3,7 @@ import { setUser } from '../model/slice/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { IUseSignUpReturn } from './types';
-import { getWorkout } from 'app/providers/router/config/routes';
+import { getDate, getWorkout } from 'app/providers/router/config/routes';
 
 export const useSignUp = (): IUseSignUpReturn => {
   const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ export const useSignUp = (): IUseSignUpReturn => {
             id: user.uid,
           }),
         );
-        navigate(getWorkout());
+        navigate(getDate());
       })
       .catch(() => alert('Введены некорректные данные!'));
   };
