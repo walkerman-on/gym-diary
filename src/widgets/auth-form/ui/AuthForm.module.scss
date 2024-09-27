@@ -1,16 +1,16 @@
 .AuthPage {
-    display: grid;
-    grid-template-rows: 0.2fr 0.8fr;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px
 }
 
 .textTitle {
-    margin-top: 40%;
     font-size: 32px;
     text-align: center;
 }
 
 .authBlock {
-    margin-top: 45%;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -30,3 +30,29 @@
     gap: 15px
 }
 
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	animation: container 2s infinite;
+}
+
+.logo__block {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-grow: 1;
+	height: 100px;
+	width: 100px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 30px
+}

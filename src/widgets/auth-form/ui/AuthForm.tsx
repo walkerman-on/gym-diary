@@ -2,6 +2,7 @@ import { Input } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
 import cl from "./AuthForm.module.scss"
 import { FC, useCallback, useState } from 'react';
+import Logo from "shared/assets/img/logo.svg"
 
 
 interface IForm {
@@ -26,28 +27,35 @@ export const AuthForm: FC<IForm> = ({ title, handleClick }) => {
 
   return (
     <div className={cl.AuthPage}>
-      <span className={cl.textTitle}>Авторизация</span>
-      <section className={cl.authBlock}>
-        <div className={cl.authInput}>
-          <Input
-            value={userData.login}
-            onChange={onLoginHandle}
-            height="50px"
-            placeholder='Логин'
-            background='var(--color-primary-400)'
-          />
-          <Input
-            height="50px"
-            placeholder='Пароль'
-            type="password"
-            value={userData.password}
-            onChange={onPasswordHandle}
-            background='var(--color-primary-400)'
-          />
+      <div className={cl.logo__block}>
+        <div className={cl.container}>
+          <Logo />
         </div>
-        <div className={cl.authButton}>
-          <Button height='50px' radius='7px' onClick={onBtnClick}>{title}</Button>
-        </div>
+      </div>
+      <section className={cl.userInfo}>
+        <span className={cl.textTitle}>Авторизация</span>
+        <section className={cl.authBlock}>
+          <div className={cl.authInput}>
+            <Input
+              value={userData.login}
+              onChange={onLoginHandle}
+              height="50px"
+              placeholder='Логин'
+              background='var(--color-primary-400)'
+            />
+            <Input
+              height="50px"
+              placeholder='Пароль'
+              type="password"
+              value={userData.password}
+              onChange={onPasswordHandle}
+              background='var(--color-primary-400)'
+            />
+          </div>
+          <div className={cl.authButton}>
+            <Button height='50px' radius='7px' onClick={onBtnClick}>{title}</Button>
+          </div>
+        </section>
       </section>
     </div>
   );
