@@ -27,7 +27,12 @@ export const WorkoutCard: FC<IWorkoutCard> = ({ exercises, date }) => {
       {exercises.map(exercise => (
         <li key={exercise.exercise.id}>
           <DropDownMenu
-            title={<ExerciseInWorkout exercise={exercise.exercise} />}
+            title={
+              <ExerciseInWorkout
+                exercise={exercise.exercise}
+                onDelete={() => deleteExercise(exercise.exercise.id)} // Передаем функцию удаления
+              />
+            }
             content={
               <ExerciseInWorkoutInfo
                 exersiceID={exercise.exercise.id}
